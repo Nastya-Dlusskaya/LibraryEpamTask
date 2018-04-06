@@ -1,8 +1,10 @@
 package by.epam.library.controller;
 
-import by.epam.library.model.command.ActionCommand;
-import by.epam.library.model.command.ActionFactory;
+
+import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.common.ActionFactory;
 import by.epam.library.model.exception.CommandException;
+import by.epam.library.model.exception.ServiceException;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -25,7 +27,8 @@ public class Controller extends HttpServlet {
     }
 
     /**
-     * method of handling all requests
+     * m
+     * ethod of handling all requests
      *
      * @param request
      * @param response
@@ -35,19 +38,16 @@ public class Controller extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = null;
 
-        ActionFactory client = new by.epam.library.model.command.ActionFactory();
+        ActionFactory client = new ActionFactory();
         String currentCommand = request.getParameter(COMMAND);
         ActionCommand command = client.defineCommand(currentCommand);
 
         try {
-            page = command.execute(request);
+            command.execute(request, response);
         } catch (CommandException e) {
             e.printStackTrace();
-        }
-
-        if(page != null){
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(request, response);
+        } catch (ServiceException e) {
+            e.printStackTrace( );
         }
     }
 }

@@ -3,7 +3,7 @@ package by.epam.library.model.entity;
 import java.util.Date;
 
 public class Order {
-    private int id;
+    private Integer id;
     private Person reader;
     private Book book;
     private Date orderDate;
@@ -27,11 +27,11 @@ public class Order {
         this.place = place;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

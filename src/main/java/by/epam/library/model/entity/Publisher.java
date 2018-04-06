@@ -1,7 +1,7 @@
 package by.epam.library.model.entity;
 
 public class Publisher {
-    private int id;
+    private Integer id;
     private String name;
 
     public Publisher() {
@@ -12,11 +12,11 @@ public class Publisher {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

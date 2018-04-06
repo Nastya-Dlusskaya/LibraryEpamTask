@@ -1,0 +1,63 @@
+/*
+	MegaCorp by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+*/
+
+/* Header */
+section {
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+#header {
+    overflow: hidden;
+    position: relative;
+    height: 8em;
+}
+
+/* Logo */
+
+#logo {
+    position: absolute;
+    top: 3em;
+    left: 3em;
+}
+
+#logo h1 {
+    float: left;
+    padding: 0em 0.25em 0em 0em;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2.50em;
+    font-weight: 800;
+    color: #FFF;
+}
+
+/* User */
+#user {
+    position: absolute;
+    right: 3em;
+    top: 3em;
+}
+
+#user a {
+
+    background: #2B8FC4;
+    padding: 0.7em;
+    border-radius: 0.1em;
+    box-shadow: inset 0px -15px 10px 0px rgba(0, 0, 0, 0.10);
+    text-shadow: none;
+    text-decoration: none;
+    font-size: 1em;
+    color: #FFFFFF;
+}
+
+#user a:hover {
+    background-color: #167cb2;
+}
+
+.hide {
+    visibility: hidden;
+}

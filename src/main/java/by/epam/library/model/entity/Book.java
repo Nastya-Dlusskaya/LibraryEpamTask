@@ -1,11 +1,11 @@
 package by.epam.library.model.entity;
 
 public class Book {
-    private int id;
+    private Integer id;
     private Author author;
     private String name;
     private Publisher publisher;
-    private int amount;
+    private Integer amount;
 
     public Book() {
     }
@@ -18,11 +18,11 @@ public class Book {
         this.amount = amount;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -50,11 +50,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

@@ -8,11 +8,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class PersonDAO extends AbstractDAO{
+public class PersonDAO extends AbstractDAO {
 
     private static final String QUERY_FIND_TYPE_PERSON = "SELECT id_person, role, login, password, last_name_person," +
             " first_name_person FROM person WHERE login=? AND password=?";
+
+    private static final String FIND_ALL_READER_QUERY = "SELECT * FROM person WHERE role='reader'";
+
+    private static final String FIND_ALL_LIBRARIAN_QUERY = "SELECT * FROM person WHERE role='librarian'";
 
     public PersonDAO(Connection connection) {
         super(connection);
@@ -55,5 +60,30 @@ public class PersonDAO extends AbstractDAO{
     }
 
 
+    public List findAllReader() throws DAOException {
+        return execute(FIND_ALL_READER_QUERY);
+    }
 
+    public Person findPersonByID(int id) {
+        return null;
+    }
+
+    public List findAllLibrarian() throws DAOException {
+        return execute(FIND_ALL_LIBRARIAN_QUERY);
+    }
+
+    @Override
+    public void save(Object entity) throws DAOException {
+
+    }
+
+    @Override
+    public Object findById(int id) throws DAOException {
+        return null;
+    }
+
+    @Override
+    public List findAll() throws DAOException {
+        return null;
+    }
 }

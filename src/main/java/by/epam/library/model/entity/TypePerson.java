@@ -18,4 +18,9 @@ public enum TypePerson {
         }
         return UNKNOWN;
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

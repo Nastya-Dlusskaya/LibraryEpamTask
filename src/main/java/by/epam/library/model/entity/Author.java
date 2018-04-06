@@ -1,7 +1,7 @@
 package by.epam.library.model.entity;
 
 public class Author {
-    private int id;
+    private Integer id;
     private String lastName;
     private String firstName;
 
@@ -30,7 +30,7 @@ public class Author {
         this.firstName = firstName;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

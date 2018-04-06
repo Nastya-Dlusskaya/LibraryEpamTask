@@ -29,63 +29,8 @@ public abstract class AbstractDAO<T> implements DAO {
         return connection;
     }
 
-    @Override
-    public void insert(String table, String... params) throws DAOException {
-        int countColumns = params.length;
-        int indexParameters = countColumns / 2 - 1;
+    public abstract T buildEntity(ResultSet resultSet) throws DAOException;
 
-        StringBuilder columns = new StringBuilder();
-        StringBuilder parameters = new StringBuilder();
-
-        for (int i = 0; i < countColumns / 2; i++) {
-            columns.append(params[i]).append(", ");
-            parameters.append(params[i + indexParameters]).append(", ");
-        }
-
-        int lastIndexInColumn = columns.lastIndexOf(",");
-        columns.deleteCharAt(lastIndexInColumn);
-
-        int lastIndexInParameters = parameters.lastIndexOf(",");
-        parameters.deleteCharAt(lastIndexInParameters);
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(INSERT_QUERY);
-            statement.setString(1, table);
-            statement.setString(2, columns.toString( ));
-            statement.setString(3, Arrays.toString(params));
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-
-    }
-
-    @Override
-    public void updateByID(String table, String column,String param, int id) throws DAOException {
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(UPDATE_QUERY);
-            statement.setString(1, table);
-            statement.setString(2, column);
-            statement.setString(3, param);
-            statement.setInt(4, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-    }
-
-    @Override
-    public void deleteByID(String table, int id) throws DAOException {
-        try {
-            PreparedStatement statement = connection.prepareStatement(DELETE_QUERY);
-            statement.setString(1, table);
-            statement.setInt(2, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-    }
 
     public T executeObject(String query) throws DAOException {
         List <T> objects = execute(query);
@@ -99,7 +44,7 @@ public abstract class AbstractDAO<T> implements DAO {
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next()){
-                T order =buildEntity(resultSet);
+                T order = buildEntity(resultSet);
                 entities.add(order);
             }
 
@@ -109,5 +54,16 @@ public abstract class AbstractDAO<T> implements DAO {
         }
     }
 
-    public abstract T buildEntity(ResultSet resultSet) throws DAOException;
+    public void change(String query, Object... parameters) throws DAOException {
+        try(PreparedStatement statement = connection.prepareStatement(query)) {
+            int countParameters = parameters.length;
+            for (int i = 1; i <= countParameters; i++) {
+                statement.setObject(i, parameters[i - 1]);
+            }
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException(e.getMessage(), e);
+        }
+    }
+
 }

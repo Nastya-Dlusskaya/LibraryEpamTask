@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDAO extends AbstractDAO{
+public class OrderDAO extends AbstractDAO {
     private static final String QUERY_FIND_UNTREATED_ORDER = "SELECT * FROM library.order \n" +
             "join library.person on person.id_person=library.order.id_person\n" +
             "join library.book on library.order.id_book=book.id_book\n" +
@@ -22,6 +22,37 @@ public class OrderDAO extends AbstractDAO{
             "JOIN library.author ON library.book.id_author = library.author.id_author\n" +
             "WHERE library.order.id_person = ? && library.order.actual_return_date IS NULL &&" +
             " library.order.planned_return_date IS NOT NULL;";
+
+    private static final String QUERY_FIND_READER_CURRENT_BOOK = "SELECT * FROM library.order \n" +
+            "JOIN library.book ON library.order.id = library.book.id_book \n" +
+            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
+            "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
+            "JOIN library.person ON library.person.id_person = library.order.id_person \n" +
+            "WHERE library.order.id_person = ? && library.order.actual_return_date IS NULL &&" +
+            " library.order.planned_return_date IS NOT NULL;";
+
+    private static final String QUERY_FIND_READER_ARCHIVE = "SELECT * FROM library.order \n" +
+            "JOIN library.book ON library.order.id = library.book.id_book \n" +
+            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
+            "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
+            "JOIN library.person ON library.person.id_person = library.order.id_person \n" +
+            "WHERE library.order.id_person = 2 && library.order.actual_return_date IS NOT NULL";
+
+    private static final String QUERY_FIND_READER_ORDERED_BOOK = "SELECT * FROM library.order \n" +
+            "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
+            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
+            "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
+            "JOIN library.person ON library.person.id_person = library.order.id_person \n" +
+            "WHERE library.order.id_person = ? && " +
+            " library.order.hang_out_date IS NULL";
+
+    private static final String QUERY_FIND_HANDED_OUT_BOOK = "SELECT * FROM library.order\n " +
+            "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
+            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
+            "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
+            "JOIN library.person ON library.person.id_person = library.order.id_person\n " +
+            "WHERE library.order.actual_return_date IS NULL && library.order.planned_return_date IS NOT NULL " +
+            "ORDER BY library.order.planned_return_date DESC";
 
     public OrderDAO(Connection connection) {
         super(connection);
@@ -42,9 +73,38 @@ public class OrderDAO extends AbstractDAO{
      * @return
      * @throws DAOException
      */
-    public List<Order> findAllUntreatedOrders() throws DAOException {
-        List<Order> orders = execute(QUERY_FIND_UNTREATED_ORDER);
-        return orders;
+    public List findAllUntreatedOrders() throws DAOException {
+        return execute(QUERY_FIND_UNTREATED_ORDER);
     }
 
+    public List findAllReturnOrders() throws DAOException {
+        return execute(QUERY_FIND_HANDED_OUT_BOOK);
+    }
+
+    public List findUserCurrentBook(int id) throws DAOException {
+        return execute(QUERY_FIND_READER_CURRENT_BOOK);
+    }
+
+    public List findUserArchive(int id) throws DAOException {
+        return execute(QUERY_FIND_READER_ARCHIVE);
+    }
+
+    public List findUserOrderedBook(int id) throws DAOException {
+        return execute(QUERY_FIND_READER_ORDERED_BOOK);
+    }
+
+    @Override
+    public void save(Object entity) throws DAOException {
+
+    }
+
+    @Override
+    public Object findById(int id) throws DAOException {
+        return null;
+    }
+
+    @Override
+    public List findAll() throws DAOException {
+        return null;
+    }
 }

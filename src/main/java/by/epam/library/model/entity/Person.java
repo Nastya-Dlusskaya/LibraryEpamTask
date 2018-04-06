@@ -1,7 +1,7 @@
 package by.epam.library.model.entity;
 
 public class Person {
-    private int id;
+    private Integer id;
     private TypePerson role;
     private String login;
     private String password;
@@ -20,11 +20,11 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
