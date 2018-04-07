@@ -7,6 +7,7 @@ import by.epam.library.model.entity.Person;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class OrderBuilder implements Builder {
@@ -28,13 +29,13 @@ public class OrderBuilder implements Builder {
         BookBuilder bookCreator = new BookBuilder();
         Book book = bookCreator.buildObject(resultSet);
 
-        Date orderDate = resultSet.getDate(ORDER_DATE);
-        Date hangOutDate = resultSet.getDate(HANG_OUT_DATE);
-        Date plannedReturnDate = resultSet.getDate(PLANNED_RETURN_DATE);
-        Date actualReturnDate = resultSet.getDate(ACTUAL_RETURN_DATE);
+        Timestamp orderDate = resultSet.getTimestamp(ORDER_DATE);
+        Timestamp hangOutDate = resultSet.getTimestamp(HANG_OUT_DATE);
+        Timestamp plannedReturnDate = resultSet.getTimestamp(PLANNED_RETURN_DATE);
+        Timestamp actualReturnDate = resultSet.getTimestamp(ACTUAL_RETURN_DATE);
 
         String place = resultSet.getString(PLACE);
         TypePlace typePlace = TypePlace.getTypePlace(place);
-        return new Order();
+        return new Order(id, person, book, orderDate, hangOutDate, plannedReturnDate, actualReturnDate, typePlace);
     }
 }

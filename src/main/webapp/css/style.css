@@ -7,12 +7,6 @@
     font-style: normal
 }
 
-/*
-	MegaCorp by TEMPLATED
-    templated.co @templatedco
-    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 body {
     margin: 0;
     padding: 0;
@@ -55,6 +49,12 @@ a:hover {
 table {
     border-collapse: collapse;
     width: 100%;
+}
+
+caption{
+    text-transform: uppercase;
+    font-size: 1em;
+    color: #FFF;
 }
 
 th, td {
@@ -180,7 +180,7 @@ header .byline {
     padding: 0.8em 2em;
     border-radius: 4px;
     text-decoration: none;
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: 300;
     color: #FFF !important;
     -moz-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;

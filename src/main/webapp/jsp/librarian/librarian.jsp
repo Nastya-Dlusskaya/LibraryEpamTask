@@ -54,8 +54,8 @@
                             <th><c:out value="${order.orderDate}"/></th>
                             <th>
                                 <c:if test="${order.book.amount > 0}">
-                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.idBook}"/>&type=home">Home</a>
-                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.idBook}"/>&type=hall">Library</a>
+                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.id}"/>&type=home">Home</a>
+                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.id}"/>&type=hall">Library</a>
                                 </c:if>
                             </th>
                         </c:if>
@@ -63,7 +63,7 @@
                             <td><c:out value="${order.place}"/></td>
                             <th><c:out value="${order.plannedReturnDate}"/></th>
                             <th>
-                                <a href="?command=return_book&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.idBook}"/>">Take
+                                <a href="?command=return_book&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.id}"/>">Take
                                     book</a>
                             </th>
                         </c:if>

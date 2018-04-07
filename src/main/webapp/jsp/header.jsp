@@ -12,12 +12,9 @@
 
         <div id="logo"><h1>Library</h1></div>
         <div id="user">
-
             <a class="${user != null ? "" : "hide"}" href="/?command=logout">
                     ${user}
             </a>
-
-
         </div>
     </div>
 

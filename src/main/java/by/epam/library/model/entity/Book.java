@@ -85,4 +85,9 @@ public class Book {
         result = 31 * result + amount;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return author + " " + name;
+    }
 }

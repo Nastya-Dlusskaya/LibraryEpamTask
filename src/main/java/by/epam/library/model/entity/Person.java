@@ -93,4 +93,9 @@ public class Person {
         result = 31 * result + (firstName != null ? firstName.hashCode( ) : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return lastName + " " + firstName;
+    }
 }

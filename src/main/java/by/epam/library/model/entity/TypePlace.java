@@ -11,6 +11,9 @@ public enum TypePlace {
 
     public static TypePlace getTypePlace(String value){
         TypePlace[] places = TypePlace.values();
+        if(value == null){
+            return UNKNOWN;
+        }
         for (TypePlace place:places) {
             String placeValue = place.value;
             if (value.equals(placeValue)){

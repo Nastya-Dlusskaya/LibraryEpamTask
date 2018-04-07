@@ -11,20 +11,14 @@ import java.util.List;
 
 public class OrderDAO extends AbstractDAO {
     private static final String QUERY_FIND_UNTREATED_ORDER = "SELECT * FROM library.order \n" +
-            "join library.person on person.id_person=library.order.id_person\n" +
-            "join library.book on library.order.id_book=book.id_book\n" +
+            "join library.person on person.id_person=library.order.id_person\n " +
+            "join library.book on library.order.id_book=book.id_book\n " +
+            "JOIN library.author ON library.book.id_author = library.author.id_author\n" +
+            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher\n" +
             "where hang_out_date IS null";
 
-    private static final String QUERY_FIND_READER_CURRERN_BOOK = "SELECT planned_return_date, place, name_book, " +
-            "name_publisher,last_name_author, first_name_author FROM library.order \n" +
-            "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
-            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher\n" +
-            "JOIN library.author ON library.book.id_author = library.author.id_author\n" +
-            "WHERE library.order.id_person = ? && library.order.actual_return_date IS NULL &&" +
-            " library.order.planned_return_date IS NOT NULL;";
-
     private static final String QUERY_FIND_READER_CURRENT_BOOK = "SELECT * FROM library.order \n" +
-            "JOIN library.book ON library.order.id = library.book.id_book \n" +
+            "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
             "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
             "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
             "JOIN library.person ON library.person.id_person = library.order.id_person \n" +
@@ -36,7 +30,7 @@ public class OrderDAO extends AbstractDAO {
             "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
             "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
             "JOIN library.person ON library.person.id_person = library.order.id_person \n" +
-            "WHERE library.order.id_person = 2 && library.order.actual_return_date IS NOT NULL";
+            "WHERE library.order.id_person = ? && library.order.actual_return_date IS NOT NULL";
 
     private static final String QUERY_FIND_READER_ORDERED_BOOK = "SELECT * FROM library.order \n" +
             "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
@@ -82,15 +76,15 @@ public class OrderDAO extends AbstractDAO {
     }
 
     public List findUserCurrentBook(int id) throws DAOException {
-        return execute(QUERY_FIND_READER_CURRENT_BOOK);
+        return execute(QUERY_FIND_READER_CURRENT_BOOK.replace("?", id+""));
     }
 
     public List findUserArchive(int id) throws DAOException {
-        return execute(QUERY_FIND_READER_ARCHIVE);
+        return execute(QUERY_FIND_READER_ARCHIVE.replace("?", id+""));
     }
 
     public List findUserOrderedBook(int id) throws DAOException {
-        return execute(QUERY_FIND_READER_ORDERED_BOOK);
+        return execute(QUERY_FIND_READER_ORDERED_BOOK.replace("?", id+""));
     }
 
     @Override

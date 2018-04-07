@@ -1,22 +1,23 @@
 package by.epam.library.model.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Order {
     private Integer id;
     private Person reader;
     private Book book;
-    private Date orderDate;
-    private Date handOutDate;
-    private Date plannedReturnDate;
-    private Date actualReturnDate;
+    private Timestamp orderDate;
+    private Timestamp handOutDate;
+    private Timestamp plannedReturnDate;
+    private Timestamp actualReturnDate;
     private TypePlace place;
 
     public Order() {
     }
 
-    public Order(int id, Person reader, Book book, Date orderDate, Date handOutDate, Date plannedReturnDate,
-                 Date actualReturnDate, TypePlace place) {
+    public Order(int id, Person reader, Book book, Timestamp orderDate, Timestamp handOutDate, Timestamp plannedReturnDate,
+                 Timestamp actualReturnDate, TypePlace place) {
         this.id = id;
         this.reader = reader;
         this.book = book;
@@ -51,35 +52,35 @@ public class Order {
         this.book = book;
     }
 
-    public Date getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Date getHandOutDate() {
+    public Timestamp getHandOutDate() {
         return handOutDate;
     }
 
-    public void setHandOutDate(Date handOutDate) {
+    public void setHandOutDate(Timestamp handOutDate) {
         this.handOutDate = handOutDate;
     }
 
-    public Date getPlannedReturnDate() {
+    public Timestamp getPlannedReturnDate() {
         return plannedReturnDate;
     }
 
-    public void setPlannedReturnDate(Date plannedReturnDate) {
+    public void setPlannedReturnDate(Timestamp plannedReturnDate) {
         this.plannedReturnDate = plannedReturnDate;
     }
 
-    public Date getActualReturnDate() {
+    public Timestamp getActualReturnDate() {
         return actualReturnDate;
     }
 
-    public void setActualReturnDate(Date actualReturnDate) {
+    public void setActualReturnDate(Timestamp actualReturnDate) {
         this.actualReturnDate = actualReturnDate;
     }
 
