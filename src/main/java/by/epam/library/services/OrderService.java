@@ -41,50 +41,7 @@ public class OrderService {
 
     }
 
-//    public void setTypePlace(String type, int id) throws ServiceException {
-//        ConnectionPool connectionPool = null;
-//        Connection connection = null;
-//        try {
-//            connectionPool = ConnectionPool.getInstance( );
-//            connection = connectionPool.getConnection( );
-//            OrderDAO orderDAO = new OrderDAO(connection);
-//            orderDAO.updateByID(ORDER_TABLE, PLACE_FIELD, ORDER_ID, type, id);
-//            connectionPool.returnConnection(connection);
-//        } catch (DAOException exception) {
-//            throw new ServiceException(exception.getMessage( ), exception);
-//        }
-//    }
-//
-//    public void setHandOutDate(int id, Date now) throws ServiceException {
-//        ConnectionPool connectionPool = null;
-//
-//        try {
-//            connectionPool = ConnectionPool.getInstance( );
-//            Connection connection = connectionPool.getConnection( );
-//            OrderDAO orderDAO = new OrderDAO(connection);
-//
-//            orderDAO.updateByID(ORDER_TABLE, HANG_OUT_DATE_FIELD, ORDER_ID, now, id);
-//
-//            connectionPool.returnConnection(connection);
-//        } catch (DAOException exception) {
-//            throw new ServiceException(exception.getMessage( ), exception);
-//        }
-//    }
-//
-//    public void setPlannedReturnDate(Date plannedReturnDate, int id) throws ServiceException {
-//        ConnectionPool connectionPool = null;
-//        try {
-//            connectionPool = ConnectionPool.getInstance( );
-//            Connection connection = connectionPool.getConnection( );
-//            OrderDAO orderDAO = new OrderDAO(connection);
-//
-//            orderDAO.updateByID(ORDER_TABLE, PLANNED_RETURN_DATE_FIELD, ORDER_ID, plannedReturnDate, id);
-//
-//            connectionPool.returnConnection(connection);
-//        } catch (DAOException exception) {
-//            throw new ServiceException(exception.getMessage( ), exception);
-//        }
-//    }
+
 
     public List findReturnBook() throws ServiceException {
         List<Order> orders;
@@ -100,29 +57,24 @@ public class OrderService {
         return orders;
     }
 
-//    public void setActualReturnDate(int id, Date actualReturnDate) {
-//        try {
-//            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-//            Connection connection = connectionPool.getConnection( );
-//            OrderDAO orderDAO = new OrderDAO(connection);
-//
-//            orderDAO.updateByID(ORDER_TABLE, ACTUAL_RETURN_DATE, ORDER_ID, actualReturnDate, id);
-//        } catch (DAOException e) {
-//            e.printStackTrace( );
-//        }
-//    }
-//
-//    public void orderBook(int idBook, int idPerson, Date now) throws ServiceException {
-//        try {
-//            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-//            Connection connection = connectionPool.getConnection( );
-//            OrderDAO orderDAO = new OrderDAO(connection);
-//            orderDAO.insert(ORDER_TABLE, BOOK_ID, ID_PERSON, ORDER_DATE, idBook,
-//                    idPerson, now);
-//        } catch (DAOException e) {
-//            throw new ServiceException(e.getMessage( ), e);
-//        }
-//    }
+
+
+    public void orderBook(Order order) throws ServiceException {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
+        try {
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
+            OrderDAO orderDAO = new OrderDAO(connection);
+            orderDAO.save(order);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
+        }
+    }
 
     public List findUserCurrentBook(int id) throws ServiceException {
         try {

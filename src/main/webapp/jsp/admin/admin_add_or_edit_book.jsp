@@ -56,7 +56,7 @@
                     </option>
                 </c:forEach>
             </select>
-
+            <br/>
             <input type="submit" value="Save">
 
 </section>

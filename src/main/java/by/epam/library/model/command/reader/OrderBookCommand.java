@@ -3,6 +3,8 @@ package by.epam.library.model.command.reader;
 import by.epam.library.model.command.common.ActionCommand;
 import by.epam.library.model.command.util.MessageManager;
 import by.epam.library.model.command.util.PageFactory;
+import by.epam.library.model.entity.Book;
+import by.epam.library.model.entity.Order;
 import by.epam.library.model.entity.Person;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class OrderBookCommand implements ActionCommand {
@@ -29,15 +32,24 @@ public class OrderBookCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory( );
         String page = pageFactory.createPage(READER);
+
         String stringIdBook = request.getParameter(ID_BOOK);
         int ibBook = Integer.parseInt(stringIdBook);
+        Book book = new Book();
+        book.setId(ibBook);
 
         Person person = (Person) request.getSession( ).getAttribute(USER);
-        int idPerson = person.getId( );
+
+        Date now = CalenderCalculator.calculateCurrentDate();
+
+        Order order = new Order();
+        order.setBook(book);
+        order.setReader(person);
+        Timestamp timestamp = new Timestamp(now.getTime());
+        order.setOrderDate(timestamp);
 
         OrderService orderService = new OrderService( );
-        Date now = CalenderCalculator.calculateCurrentDate();
-        //orderService.orderBook(ibBook, idPerson, now);
+        orderService.orderBook(order);
 
         String message = MessageManager.getProperty(MESSAGE_BOOK_ORDER);
         HttpSession session = request.getSession( );

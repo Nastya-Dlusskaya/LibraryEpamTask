@@ -18,9 +18,10 @@
 <body>
     <jsp:include page="../header.jsp"/>
     <jsp:include page="reader_menu.jsp"/>
-    <table border="1">
-        <caption>${captionBook}</caption>
-        <thead>
+    <section>
+        <table border="1">
+            <caption>${captionBook}</caption>
+            <thead>
             <tr>
                 <th>Author</th>
                 <th>Name of book</th>
@@ -36,27 +37,29 @@
                     <th>Ordered date</th>
                 </c:if>
             </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="order" items="${orders}">
-            <tr>
-                <td><c:out value="${order.reader}"/></td>
-                <td><c:out value="${order.book}"/></td>
-                <c:if test="${captionBook eq 'Archive'}">
-                    <td><c:out value="${order.handOutDate}"/></td>
-                    <td><c:out value="${order.actualReturnDate}"/></td>
-                </c:if>
-                <c:if test="${captionBook eq 'Current book'}">
-                    <td><c:out value="${order.handOutDate}"/></td>
-                    <td><c:out value="${order.plannedReturnDate}"/></td>
-                </c:if>
-                <c:if test="${captionBook eq 'Ordered book'}">
-                    <td><c:out value="${order.orderDate}"/></td>
-                </c:if>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach var="order" items="${orders}">
+                <tr>
+                    <td><c:out value="${order.reader}"/></td>
+                    <td><c:out value="${order.book}"/></td>
+                    <c:if test="${captionBook eq 'Archive'}">
+                        <td><c:out value="${order.handOutDate}"/></td>
+                        <td><c:out value="${order.actualReturnDate}"/></td>
+                    </c:if>
+                    <c:if test="${captionBook eq 'Current book'}">
+                        <td><c:out value="${order.handOutDate}"/></td>
+                        <td><c:out value="${order.plannedReturnDate}"/></td>
+                    </c:if>
+                    <c:if test="${captionBook eq 'Ordered book'}">
+                        <td><c:out value="${order.orderDate}"/></td>
+                    </c:if>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </section>
+
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>

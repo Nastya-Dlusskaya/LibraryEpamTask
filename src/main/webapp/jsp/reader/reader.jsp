@@ -48,14 +48,14 @@
             <tbody>
             <c:forEach var="book" items="${books}">
                 <tr>
-                    <td><c:out value="${book.idBook}"/></td>
+                    <td><c:out value="${book.id}"/></td>
                     <td><c:out value="${book.author}"/></td>
                     <td><c:out value="${book.name}"/></td>
                     <td><c:out value="${book.publisher}"/></td>
                     <td><c:out value="${book.amount}"/></td>
                     <td>
                         <c:if test="${book.amount > 0}">
-                            <a href="/?command=order&idBook=<c:out value="${book.idBook}"/>">
+                            <a href="/?command=order&idBook=<c:out value="${book.id}"/>">
                                 Order book
                             </a>
                         </c:if>

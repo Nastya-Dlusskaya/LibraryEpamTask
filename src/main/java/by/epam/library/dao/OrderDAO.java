@@ -1,5 +1,6 @@
 package by.epam.library.dao;
 
+import by.epam.library.model.entity.Author;
 import by.epam.library.model.entity.Order;
 import by.epam.library.model.exception.DAOException;
 import by.epam.library.util.builder.OrderBuilder;
@@ -48,6 +49,11 @@ public class OrderDAO extends AbstractDAO {
             "WHERE library.order.actual_return_date IS NULL && library.order.planned_return_date IS NOT NULL " +
             "ORDER BY library.order.planned_return_date DESC";
 
+    private static final String INSERT_QUERY = "INSERT INTO library.order(id_person, id_book, order_date) VALUES(?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE library.author SET id_person=? id_book=? order_date=? " +
+            "hang_out_date=? planned_return_date=? actual_return_date=? place=?" +
+            "WHERE id=?";
+
     public OrderDAO(Connection connection) {
         super(connection);
     }
@@ -76,19 +82,28 @@ public class OrderDAO extends AbstractDAO {
     }
 
     public List findUserCurrentBook(int id) throws DAOException {
-        return execute(QUERY_FIND_READER_CURRENT_BOOK.replace("?", id+""));
+        return execute(QUERY_FIND_READER_CURRENT_BOOK.replace("?", id + ""));
     }
 
     public List findUserArchive(int id) throws DAOException {
-        return execute(QUERY_FIND_READER_ARCHIVE.replace("?", id+""));
+        return execute(QUERY_FIND_READER_ARCHIVE.replace("?", id + ""));
     }
 
     public List findUserOrderedBook(int id) throws DAOException {
-        return execute(QUERY_FIND_READER_ORDERED_BOOK.replace("?", id+""));
+        return execute(QUERY_FIND_READER_ORDERED_BOOK.replace("?", id + ""));
     }
 
     @Override
     public void save(Object entity) throws DAOException {
+        Order order = (Order) entity;
+        Integer idAuthor = order.getId();
+        if(idAuthor == null){
+            change(INSERT_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate());
+        } else{
+            change(UPDATE_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate(),
+                    order.getHandOutDate(), order.getPlannedReturnDate(), order.getActualReturnDate(), order.getPlace(),
+                    order.getId());
+        }
 
     }
 

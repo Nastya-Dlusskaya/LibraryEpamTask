@@ -18,6 +18,6 @@ public class CalenderCalculator {
     }
 
     public static Date calculateCurrentDate() {
-        return new Date( );
+        return new Date();
     }
 }

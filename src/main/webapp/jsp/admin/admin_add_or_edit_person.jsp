@@ -25,7 +25,7 @@
         <input type="hidden" name="command" value="edit"/>
         </c:if>
         <c:if test="${person == null}">
-        <form action="add" method="post" action="/">
+        <form action="add" method="post" action="/" class="form">
             <input type="hidden" name="command" value="add"/>
             </c:if>
             <c:if test="${person != null}">
@@ -45,9 +45,10 @@
 
             <h3>Role</h3>
 
-            <input type="radio" name="role" value="librarian"> Librarian
+            <input type="radio" name="role" value="librarian"> <h3>Librarian</h3>
             <br>
-            <input type="radio" name="role" value="reader" checked="checked"> Reade
+            <input type="radio" name="role" value="reader" checked="checked"> <h3>Reader</h3>
+            <br>
             <input type="submit" value="Save">
 </section>
 <jsp:include page="../footer.jsp"/>

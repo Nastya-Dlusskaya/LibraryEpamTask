@@ -11,9 +11,9 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/style-desktop.css" />
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/style-desktop.css"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -30,20 +30,20 @@
             <input type="hidden" name="command" value="add_publisher"/>
         </c:if>
 
-            <c:if test="${title eq 'author'}">
-                <h3>Last name of author</h3>
-                                            <input type="text" name="lastNameAuthor"/>
+        <c:if test="${title eq 'author'}">
+            <h3>Last name of author</h3>
+            <input type="text" name="lastNameAuthor"/>
 
-                    <h3>First name of author</h3>
+            <h3>First name of author</h3>
 
-                        <input type="text" name="firstNameAuthor"/>
+            <input type="text" name="firstNameAuthor"/>
 
-            </c:if>
-            <c:if test="${title eq 'publisher'}">
-                <h3>Name of publisher</h3>
-                        <input type="text" name="namePublisher"/>
-                                </c:if>
-
+        </c:if>
+        <c:if test="${title eq 'publisher'}">
+            <h3>Name of publisher</h3>
+            <input type="text" name="namePublisher"/>
+        </c:if>
+        <br/>
         <input type="submit" value="Add">
     </form>
 
@@ -79,7 +79,6 @@
     </div>
 
 </section>
-
 
 
 <jsp:include page="../footer.jsp"/>

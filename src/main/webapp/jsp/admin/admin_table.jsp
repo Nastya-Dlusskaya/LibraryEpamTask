@@ -40,6 +40,7 @@
                 <input type="text" name="name_book"/>
                 <input type="hidden" name="command" value="search_book"/>
             </c:if>
+            <br/>
             <input type="submit" name="search"/>
         </form>
         <table border="1">
@@ -97,11 +98,11 @@
                             <c:out value="${entity.amount}"/>
                         </td>
                         <td>
-                            <a href="/?command=show_add_or_edit_book&idBook=<c:out value="${entity.idBook}"/>">
+                            <a href="/?command=show_add_or_edit_book&idBook=<c:out value="${entity.id}"/>">
                                 Edit
                             </a>
                             <br>
-                            <a href="/?command=deleteBook&idBook=<c:out value="${entity.idBook}"/>">
+                            <a href="/?command=deleteBook&idBook=<c:out value="${entity.id}"/>">
                                 Delete
                             </a>
                         </td>
