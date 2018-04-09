@@ -48,7 +48,6 @@
             <thead>
             <tr>
                 <c:if test="${caption eq 'Readers' || caption eq 'Librarians'}">
-                    <th>ID</th>
                     <th>Last name</th>
                     <th>First name</th>
                 </c:if>
@@ -65,9 +64,6 @@
             <c:forEach var="entity" items="${entities}">
                 <tr>
                     <c:if test="${caption eq 'Readers' || caption eq 'Librarians'}">
-                        <td>
-                            <c:out value="${entity.id}"/>
-                        </td>
                         <td>
                             <c:out value="${entity.lastName}"/>
                         </td>

@@ -30,7 +30,6 @@
                 <caption>${captionBook}</caption>
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Reader</th>
                     <th>Book</th>
                     <c:if test="${captionBook eq 'Ordered book'}">
@@ -47,7 +46,6 @@
                 <tbody>
                 <c:forEach var="order" items="${orders}">
                     <tr>
-                        <td><c:out value="${order.id}"/></td>
                         <td><c:out value="${order.reader}"/></td>
                         <td><c:out value="${order.book}"/></td>
                         <c:if test="${captionBook eq 'Ordered book'}">

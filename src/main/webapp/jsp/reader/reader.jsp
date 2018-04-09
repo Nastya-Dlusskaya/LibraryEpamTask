@@ -37,7 +37,6 @@
         <table border="1" cellpadding="6">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Author</th>
                 <th>Name of book</th>
                 <th>Publisher</th>
@@ -48,7 +47,6 @@
             <tbody>
             <c:forEach var="book" items="${books}">
                 <tr>
-                    <td><c:out value="${book.id}"/></td>
                     <td><c:out value="${book.author}"/></td>
                     <td><c:out value="${book.name}"/></td>
                     <td><c:out value="${book.publisher}"/></td>

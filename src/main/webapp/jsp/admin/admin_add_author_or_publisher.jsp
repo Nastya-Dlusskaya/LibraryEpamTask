@@ -51,7 +51,6 @@
         <table border="1">
             <thead>
             <tr>
-                <th>ID</th>
                 <c:if test="${title eq 'author'}">
                     <th>Last name</th>
                     <th>First name</th>
@@ -64,7 +63,6 @@
             <tbody>
             <c:forEach var="entity" items="${entities}">
                 <tr>
-                    <td><c:out value="${entity.id}"/></td>
                     <c:if test="${title eq 'author'}">
                         <td><c:out value="${entity.lastName}"/></td>
                         <td><c:out value="${entity.firstName}"/></td>
