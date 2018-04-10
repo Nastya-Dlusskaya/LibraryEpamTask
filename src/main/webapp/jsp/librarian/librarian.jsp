@@ -51,10 +51,15 @@
                         <c:if test="${captionBook eq 'Ordered book'}">
                             <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></th>
                             <th>
-                                <c:if test="${order.book.amount > 0}">
-                                    <a href="?command=hand&order=<c:out value="${order}"/>&type=home">Home</a>
-                                    <a href="?command=hand&order=<c:out value="${order}"/>&type=hall">Library</a>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${order.plannedReturnDate == null}">
+                                        <a href="?command=put_aside&id=<c:out value="${order.id}"/>">Put Aside</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="?command=hand&id=<c:out value="${order.id}"/>&type=hall">Hall</a>
+                                        <a href="?command=hand&id=<c:out value="${order.id}"/>&type=home">Home</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </th>
                         </c:if>
                         <c:if test="${captionBook eq 'Returned book'}">

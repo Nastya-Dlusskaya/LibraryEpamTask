@@ -60,7 +60,7 @@ public class OrderBookCommand implements ActionCommand {
         HttpSession session = request.getSession( );
         session.setAttribute(STRING, message);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-        dispatcher.forward(request, response);
+        SearchBookCommand searchBookCommand = new SearchBookCommand();
+        searchBookCommand.execute(request, response);
     }
 }

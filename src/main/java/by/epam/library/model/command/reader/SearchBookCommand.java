@@ -27,7 +27,7 @@ public class SearchBookCommand implements ActionCommand {
 
         List catalog = null;
         BookService bookService = new BookService( );
-        if (lastNameAuthor.isEmpty( ) && nameBook.isEmpty( )) {
+        if ((lastNameAuthor == null && nameBook == null) || (lastNameAuthor.isEmpty( ) && nameBook.isEmpty( ))) {
             catalog = bookService.findAllBook( );
         } else if (!lastNameAuthor.isEmpty( ) && !nameBook.isEmpty( )) {
             catalog = bookService.findBookByLastNameAuthorAndNameBook(lastNameAuthor, nameBook);

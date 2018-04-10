@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>local.namePage.login</title>
@@ -8,8 +8,8 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
 <div class="wrapper">
+    <jsp:include page="header.jsp"/>
     <div id="header-wrapper">
         <div id="banner">
             <section class="12u">

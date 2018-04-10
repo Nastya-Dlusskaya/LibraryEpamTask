@@ -10,9 +10,9 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
-<jsp:include page="reader_menu.jsp"/>
 <section>
+    <jsp:include page="../header.jsp"/>
+    <jsp:include page="reader_menu.jsp"/>
     <form name="search" method="post" action="/" class="form">
         <h1>
             Search
