@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -35,6 +36,7 @@
                 </c:if>
                 <c:if test="${captionBook eq 'Ordered book'}">
                     <th>Ordered date</th>
+                    <th>Status</th>
                 </c:if>
             </tr>
             </thead>
@@ -44,15 +46,16 @@
                     <td><c:out value="${order.reader}"/></td>
                     <td><c:out value="${order.book}"/></td>
                     <c:if test="${captionBook eq 'Archive'}">
-                        <td><c:out value="${order.handOutDate}"/></td>
-                        <td><c:out value="${order.actualReturnDate}"/></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.handOutDate}"/></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.actualReturnDate}"/></td>
                     </c:if>
                     <c:if test="${captionBook eq 'Current book'}">
-                        <td><c:out value="${order.handOutDate}"/></td>
-                        <td><c:out value="${order.plannedReturnDate}"/></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.handOutDate}"/></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedReturnDate}"/></td>
                     </c:if>
                     <c:if test="${captionBook eq 'Ordered book'}">
-                        <td><c:out value="${order.orderDate}"/></td>
+                        <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></td>
+                        <td></td>
                     </c:if>
                 </tr>
             </c:forEach>

@@ -41,8 +41,6 @@ public class OrderService {
 
     }
 
-
-
     public List findReturnBook() throws ServiceException {
         List<Order> orders;
         try {
@@ -111,6 +109,5 @@ public class OrderService {
             throw new ServiceException(e.getMessage( ), e);
         }
     }
-
 
 }

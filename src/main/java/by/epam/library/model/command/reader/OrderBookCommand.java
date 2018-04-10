@@ -8,6 +8,7 @@ import by.epam.library.model.entity.Order;
 import by.epam.library.model.entity.Person;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
+import by.epam.library.services.BookService;
 import by.epam.library.services.OrderService;
 import by.epam.library.util.CalenderCalculator;
 
@@ -34,9 +35,9 @@ public class OrderBookCommand implements ActionCommand {
         String page = pageFactory.createPage(READER);
 
         String stringIdBook = request.getParameter(ID_BOOK);
-        int ibBook = Integer.parseInt(stringIdBook);
+        int idBook = Integer.parseInt(stringIdBook);
         Book book = new Book();
-        book.setId(ibBook);
+        book.setId(idBook);
 
         Person person = (Person) request.getSession( ).getAttribute(USER);
 
@@ -45,11 +46,15 @@ public class OrderBookCommand implements ActionCommand {
         Order order = new Order();
         order.setBook(book);
         order.setReader(person);
-        Timestamp timestamp = new Timestamp(now.getTime());
-        order.setOrderDate(timestamp);
+
+        Timestamp orderDate = new Timestamp(now.getTime());
+        order.setOrderDate(orderDate);
 
         OrderService orderService = new OrderService( );
         orderService.orderBook(order);
+
+        BookService bookService = new BookService();
+        bookService.decrementAmountBook(idBook);
 
         String message = MessageManager.getProperty(MESSAGE_BOOK_ORDER);
         HttpSession session = request.getSession( );

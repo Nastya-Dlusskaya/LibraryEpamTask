@@ -15,11 +15,32 @@ public class BookDAO extends AbstractDAO {
     private static final String FIND_BOOK_BY_ID = "SELECT * FROM library.book\n " +
             "JOIN author ON author.id_author=book.id_author\n " +
             "join publisher ON publisher.id_publisher=book.id_publisher\n " +
-            "WHERE id_book=";
+            "WHERE id_book=?";
 
     private static final String FIND_ALL_BOOK = "SELECT * FROM library.book\n " +
             "JOIN author ON author.id_author=book.id_author\n " +
             "join publisher ON publisher.id_publisher=book.id_publisher";
+
+    private static final String FIND_BOOK_BY_LAST_NAME = "SELECT * FROM library.book \n" +
+            "JOIN author ON author.id_author = book.id_author\n" +
+            "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
+            "WHERE author.last_name_author = ?";
+
+    private static final String FIND_BOOK_BY_NAME_BOOK = "SELECT * FROM library.book \n" +
+            "JOIN author ON author.id_author = book.id_author\n" +
+            "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
+            "WHERE book.name_book = ?";
+
+    private static final String FIND_BOOK_BY_NAME_BOOK_AND_LAST_NAME = "SELECT * FROM library.book \n" +
+            "JOIN author ON author.id_author = book.id_author\n" +
+            "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
+            "WHERE book.name_book = ? AND author.last_name_author = ?";
+
+    private static final String INSERT_QUERY = "INSERT INTO library.book(id_author, name_book, id_publisher, amount)" +
+            " VALUES(?, ?, ?, ?)";
+
+    private static final String UPDATE_QUERY = "UPDATE library.book SET id_author=?, name_book=?, id_publisher=?, " +
+            "amount=? WHERE id_book=?";
 
     public BookDAO(Connection connection) {
         super(connection);
@@ -38,12 +59,20 @@ public class BookDAO extends AbstractDAO {
 
     @Override
     public void save(Object entity) throws DAOException {
-
+        Book book = (Book) entity;
+        Integer id = book.getId();
+        if(id == null){
+            change(INSERT_QUERY, book.getAuthor().getId(), book.getName(), book.getPublisher().getId(),
+                    book.getAmount()) ;
+        } else{
+            change(UPDATE_QUERY, book.getAuthor().getId(), book.getName(), book.getPublisher().getId(),
+                    book.getAmount(), book.getId());
+        }
     }
 
     @Override
     public Object findById(int id) throws DAOException {
-        return (Author)executeObject(FIND_BOOK_BY_ID + id);
+        return executeObject(FIND_BOOK_BY_ID, id);
     }
 
     @Override
@@ -51,11 +80,15 @@ public class BookDAO extends AbstractDAO {
         return execute(FIND_ALL_BOOK);
     }
 
-    public List findBookByLastNameAuthorAndNameBook(String lastNameAuthor, String nameBook) {
-        return null;
+    public List findBookByLastNameAuthorAndNameBook(String lastNameAuthor, String nameBook) throws DAOException {
+        return execute(FIND_BOOK_BY_NAME_BOOK_AND_LAST_NAME, nameBook, lastNameAuthor);
     }
 
-    public List findBookByLastNameAuthor(String lastNameAuthor) {
-        return null;
+    public List findBookByLastNameAuthor(String lastNameAuthor) throws DAOException {
+        return execute(FIND_BOOK_BY_LAST_NAME, lastNameAuthor);
+    }
+
+    public List findBookByNameBook(String nameBook) throws DAOException {
+        return execute(FIND_BOOK_BY_NAME_BOOK, nameBook);
     }
 }

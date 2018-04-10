@@ -34,7 +34,7 @@
                     <th>Book</th>
                     <c:if test="${captionBook eq 'Ordered book'}">
                         <th>Order Date</th>
-                        <th>Hand out book</th>
+                        <th>Action</th>
                     </c:if>
                     <c:if test="${captionBook eq 'Returned book'}">
                         <th>Place</th>
@@ -49,19 +49,19 @@
                         <td><c:out value="${order.reader}"/></td>
                         <td><c:out value="${order.book}"/></td>
                         <c:if test="${captionBook eq 'Ordered book'}">
-                            <th><c:out value="${order.orderDate}"/></th>
+                            <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></th>
                             <th>
                                 <c:if test="${order.book.amount > 0}">
-                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.id}"/>&type=home">Home</a>
-                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.id}"/>&type=hall">Library</a>
+                                    <a href="?command=hand&order=<c:out value="${order}"/>&type=home">Home</a>
+                                    <a href="?command=hand&order=<c:out value="${order}"/>&type=hall">Library</a>
                                 </c:if>
                             </th>
                         </c:if>
                         <c:if test="${captionBook eq 'Returned book'}">
                             <td><c:out value="${order.place}"/></td>
-                            <th><c:out value="${order.plannedReturnDate}"/></th>
+                            <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedReturnDate}"/></th>
                             <th>
-                                <a href="?command=return_book&id=<c:out value="${order.id}"/>&idBook=<c:out value="${order.book.id}"/>">Take
+                                <a href="?command=return_book&id=<c:out value="${order}"/>">Take
                                     book</a>
                             </th>
                         </c:if>

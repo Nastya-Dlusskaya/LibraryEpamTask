@@ -49,9 +49,11 @@ public class OrderDAO extends AbstractDAO {
             "WHERE library.order.actual_return_date IS NULL && library.order.planned_return_date IS NOT NULL " +
             "ORDER BY library.order.planned_return_date DESC";
 
-    private static final String INSERT_QUERY = "INSERT INTO library.order(id_person, id_book, order_date) VALUES(?, ?, ?)";
+    private static final String INSERT_QUERY = "INSERT INTO library.order(id_person, id_book, order_date)" +
+            " VALUES(?, ?, ?)";
+
     private static final String UPDATE_QUERY = "UPDATE library.author SET id_person=? id_book=? order_date=? " +
-            "hang_out_date=? planned_return_date=? actual_return_date=? place=?" +
+            "planned_hand_out_date=? hang_out_date=? planned_return_date=? actual_return_date=? place=?" +
             "WHERE id=?";
 
     public OrderDAO(Connection connection) {
@@ -96,9 +98,9 @@ public class OrderDAO extends AbstractDAO {
     @Override
     public void save(Object entity) throws DAOException {
         Order order = (Order) entity;
-        Integer idAuthor = order.getId();
-        if(idAuthor == null){
-            change(INSERT_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate());
+        Integer id = order.getId();
+        if(id == null){
+            change(INSERT_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate()) ;
         } else{
             change(UPDATE_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate(),
                     order.getHandOutDate(), order.getPlannedReturnDate(), order.getActualReturnDate(), order.getPlace(),

@@ -45,9 +45,18 @@
 
             <h3>Role</h3>
 
-            <input type="radio" name="role" value="librarian"> <h3>Librarian</h3>
-            <br>
-            <input type="radio" name="role" value="reader" checked="checked"> <h3>Reader</h3>
+            <ul>
+                <li>
+                    <input type="radio" name="selector" id="librarian">
+                    <label for="librarian">Librarian</label>
+                </li>
+                <li>
+                    <input type="radio" name="selector" id="reader" checked="checked">
+                    <label for="reader">Reader</label>
+                </li>
+            </ul>
+
+
             <br>
             <input type="submit" value="Save">
 </section>

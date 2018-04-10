@@ -17,8 +17,7 @@ import java.util.Date;
 public class HandOutCommand implements ActionCommand {
 
     private static final String TYPE = "type";
-    private static final String ID = "id";
-    private static final String ID_BOOK = "idBook";
+    //private static final
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
@@ -27,11 +26,11 @@ public class HandOutCommand implements ActionCommand {
 
         String typeHandOut = request.getParameter(TYPE);
 
-        String stringId = request.getParameter(ID);
-        int id = Integer.parseInt(stringId);
+        //String stringId = request.getParameter(ID);
+        //int id = Integer.parseInt(stringId);
 
-        String stringIdBook = request.getParameter(ID_BOOK);
-        int idBook = Integer.parseInt(stringIdBook);
+        //String stringIdBook = request.getParameter(ID_BOOK);
+        //int idBook = Integer.parseInt(stringIdBook);
 
         OrderService orderService = new OrderService();
         //orderService.setTypePlace(typeHandOut,id);
@@ -39,11 +38,11 @@ public class HandOutCommand implements ActionCommand {
         Date now = CalenderCalculator.calculateCurrentDate();
         //orderService.setHandOutDate(id, now);
 
-        Date plannedReturnDay = CalenderCalculator.calculatePlannedReturnDate(typeHandOut);
+        Date plannedReturnDay = CalenderCalculator.calculatePlannedDate(typeHandOut);
         //orderService.setPlannedReturnDate(plannedReturnDay, id);
 
         BookService bookService = new BookService();
-        bookService.decrementAmountBook(idBook);
+        //bookService.decrementAmountBook(idBook);
 
         LibrarianCommand librarianCommand = new LibrarianCommand( );
         librarianCommand.execute(request, response);

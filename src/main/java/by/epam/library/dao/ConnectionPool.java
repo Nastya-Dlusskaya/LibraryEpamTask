@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ConnectionPool {
     private static final int POOL_SIZE = 10;
     private static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/library";
+    private static final String URL = "jdbc:mysql://localhost:3306/library??useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root";
     private static final String PASSWORD = "12345";
     private static final int MAX_TIME = 1;
@@ -114,6 +114,4 @@ public class ConnectionPool {
             }
         }
     }
-
-
 }

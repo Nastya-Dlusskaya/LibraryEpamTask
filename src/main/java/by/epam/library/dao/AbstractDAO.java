@@ -32,14 +32,18 @@ public abstract class AbstractDAO<T> implements DAO {
     public abstract T buildEntity(ResultSet resultSet) throws DAOException;
 
 
-    public T executeObject(String query) throws DAOException {
-        List <T> objects = execute(query);
+    public T executeObject(String query, Object... parameters) throws DAOException {
+        List <T> objects = execute(query, parameters);
         return objects.get(0);
     }
 
-    public List<T> execute(String query) throws DAOException {
+    public List<T> execute(String query, Object... parameters) throws DAOException {
         try (PreparedStatement statement = connection.prepareStatement(query)){
             List<T> entities = new ArrayList<>();
+
+            if(parameters.length > 0){
+                insertData(statement, parameters);
+            }
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -56,14 +60,24 @@ public abstract class AbstractDAO<T> implements DAO {
 
     public void change(String query, Object... parameters) throws DAOException {
         try(PreparedStatement statement = connection.prepareStatement(query)) {
-            int countParameters = parameters.length;
-            for (int i = 1; i <= countParameters; i++) {
-                statement.setObject(i, parameters[i - 1]);
-            }
+
+            insertData(statement, parameters);
+
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DAOException(e.getMessage(), e);
         }
+    }
+
+    private void insertData(PreparedStatement statement, Object... parameters) throws DAOException {
+            try {
+                int countParameters = parameters.length;
+                for (int i = 1; i <= countParameters; i++) {
+                    statement.setObject(i, parameters[i - 1]);
+                }
+            } catch (SQLException exception) {
+                throw new DAOException(exception.getMessage( ), exception);
+            }
     }
 
 }

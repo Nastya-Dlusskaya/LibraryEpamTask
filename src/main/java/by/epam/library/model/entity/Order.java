@@ -8,6 +8,7 @@ public class Order {
     private Person reader;
     private Book book;
     private Timestamp orderDate;
+    private Timestamp plannedHandOutDate;
     private Timestamp handOutDate;
     private Timestamp plannedReturnDate;
     private Timestamp actualReturnDate;
@@ -16,12 +17,13 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, Person reader, Book book, Timestamp orderDate, Timestamp handOutDate, Timestamp plannedReturnDate,
-                 Timestamp actualReturnDate, TypePlace place) {
+    public Order(Integer id, Person reader, Book book, Timestamp orderDate, Timestamp plannedHandOutDate,
+                 Timestamp handOutDate, Timestamp plannedReturnDate, Timestamp actualReturnDate, TypePlace place) {
         this.id = id;
         this.reader = reader;
         this.book = book;
         this.orderDate = orderDate;
+        this.plannedHandOutDate = plannedHandOutDate;
         this.handOutDate = handOutDate;
         this.plannedReturnDate = plannedReturnDate;
         this.actualReturnDate = actualReturnDate;
@@ -60,6 +62,14 @@ public class Order {
         this.orderDate = orderDate;
     }
 
+    public Timestamp getPlannedHandOutDate() {
+        return plannedHandOutDate;
+    }
+
+    public void setPlannedHandOutDate(Timestamp plannedHandOutDate) {
+        this.plannedHandOutDate = plannedHandOutDate;
+    }
+
     public Timestamp getHandOutDate() {
         return handOutDate;
     }
@@ -93,34 +103,33 @@ public class Order {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass( ) != o.getClass( )) return false;
 
-        if (object == null || getClass( ) != object.getClass( )) {
+        Order order = (Order) o;
+
+        if (id != null ? !id.equals(order.id) : order.id != null) return false;
+        if (reader != null ? !reader.equals(order.reader) : order.reader != null) return false;
+        if (book != null ? !book.equals(order.book) : order.book != null) return false;
+        if (orderDate != null ? !orderDate.equals(order.orderDate) : order.orderDate != null) return false;
+        if (plannedHandOutDate != null ? !plannedHandOutDate.equals(order.plannedHandOutDate) : order.plannedHandOutDate != null)
             return false;
-        }
-
-        Order order = (Order) object;
-
-        return (id == order.id) &&
-                (reader == order.reader || reader != null && reader.equals(order.reader)) &&
-                (book == order.book || book != null && book.equals(order.book)) &&
-                (orderDate.equals(order.orderDate) && orderDate != null || order.orderDate != null) &&
-                (handOutDate.equals(order.handOutDate)) &&
-                (plannedReturnDate.equals(order.plannedReturnDate)) &&
-                (actualReturnDate.equals(order.actualReturnDate)) &&
-                (place == order.place);
-
+        if (handOutDate != null ? !handOutDate.equals(order.handOutDate) : order.handOutDate != null) return false;
+        if (plannedReturnDate != null ? !plannedReturnDate.equals(order.plannedReturnDate) : order.plannedReturnDate != null)
+            return false;
+        if (actualReturnDate != null ? !actualReturnDate.equals(order.actualReturnDate) : order.actualReturnDate != null)
+            return false;
+        return place == order.place;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode( ) : 0;
         result = 31 * result + (reader != null ? reader.hashCode( ) : 0);
         result = 31 * result + (book != null ? book.hashCode( ) : 0);
         result = 31 * result + (orderDate != null ? orderDate.hashCode( ) : 0);
+        result = 31 * result + (plannedHandOutDate != null ? plannedHandOutDate.hashCode( ) : 0);
         result = 31 * result + (handOutDate != null ? handOutDate.hashCode( ) : 0);
         result = 31 * result + (plannedReturnDate != null ? plannedReturnDate.hashCode( ) : 0);
         result = 31 * result + (actualReturnDate != null ? actualReturnDate.hashCode( ) : 0);
