@@ -56,6 +56,13 @@ public class OrderDAO extends AbstractDAO {
             "planned_hand_out_date=? hang_out_date=? planned_return_date=? actual_return_date=? place=?" +
             "WHERE id=?";
 
+    private static final String FIND_BY_ID = "SELECT * FROM library.order" +
+            "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
+            "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
+            "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
+            "JOIN library.person ON library.person.id_person = library.order.id_person\n " +
+            " WHERE id = ?";
+
     public OrderDAO(Connection connection) {
         super(connection);
     }
@@ -111,7 +118,7 @@ public class OrderDAO extends AbstractDAO {
 
     @Override
     public Object findById(int id) throws DAOException {
-        return null;
+        return executeObject(FIND_BY_ID, id);
     }
 
     @Override

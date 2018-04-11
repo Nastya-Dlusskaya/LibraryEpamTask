@@ -12,7 +12,6 @@ import by.epam.library.services.BookService;
 import by.epam.library.services.OrderService;
 import by.epam.library.util.CalenderCalculator;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +50,7 @@ public class OrderBookCommand implements ActionCommand {
         order.setOrderDate(orderDate);
 
         OrderService orderService = new OrderService( );
-        orderService.orderBook(order);
+        orderService.saveOrder(order);
 
         BookService bookService = new BookService();
         bookService.decrementAmountBook(idBook);

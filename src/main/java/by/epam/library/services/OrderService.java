@@ -57,7 +57,7 @@ public class OrderService {
 
 
 
-    public void orderBook(Order order) throws ServiceException {
+    public void saveOrder(Order order) throws ServiceException {
         ConnectionPool connectionPool = null;
         Connection connection = null;
         try {
@@ -110,4 +110,15 @@ public class OrderService {
         }
     }
 
+    public Order findOrderById(int id) throws ServiceException {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance( );
+            Connection connection = connectionPool.getConnection( );
+            OrderDAO orderDAO = new OrderDAO(connection);
+            connectionPool.returnConnection(connection);
+            return (Order)orderDAO.findById(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        }
+    }
 }

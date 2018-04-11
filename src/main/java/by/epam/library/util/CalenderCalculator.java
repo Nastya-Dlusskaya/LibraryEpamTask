@@ -16,7 +16,7 @@ public class CalenderCalculator {
             case "HALL":
                 calendar.add(Calendar.HOUR_OF_DAY, 3);
                 break;
-            case "ORDER_BOOK":
+            case "PUT_ASIDE_BOOK":
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
                 break;
             default:

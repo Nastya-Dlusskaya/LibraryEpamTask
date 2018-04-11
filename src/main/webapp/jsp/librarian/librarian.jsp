@@ -52,12 +52,13 @@
                             <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></th>
                             <th>
                                 <c:choose>
-                                    <c:when test="${order.plannedReturnDate == null}">
+                                    <c:when test="${order.plannedHandOutDate == null}">
                                         <a href="?command=put_aside&id=<c:out value="${order.id}"/>">Put Aside</a>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="?command=hand&id=<c:out value="${order.id}"/>&type=hall">Hall</a>
                                         <a href="?command=hand&id=<c:out value="${order.id}"/>&type=home">Home</a>
+                                        <a href="?command=cancelOrder&id=<c:out value="${order.id}"/>">Cancel</a>
                                     </c:otherwise>
                                 </c:choose>
                             </th>

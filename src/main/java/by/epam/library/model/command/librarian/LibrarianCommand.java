@@ -35,7 +35,6 @@ public class LibrarianCommand implements ActionCommand {
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-
         HttpSession currentSession = request.getSession();
         currentSession.setAttribute(CAPTION_BOOK, ORDERED_BOOK);
         currentSession.setAttribute(ORDERS, orders);
@@ -44,3 +43,4 @@ public class LibrarianCommand implements ActionCommand {
         dispatcher.forward(request, response);
     }
 }
+
