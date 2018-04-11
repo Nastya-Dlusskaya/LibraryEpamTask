@@ -52,16 +52,18 @@ public class OrderDAO extends AbstractDAO {
     private static final String INSERT_QUERY = "INSERT INTO library.order(id_person, id_book, order_date)" +
             " VALUES(?, ?, ?)";
 
-    private static final String UPDATE_QUERY = "UPDATE library.author SET id_person=? id_book=? order_date=? " +
-            "planned_hand_out_date=? hang_out_date=? planned_return_date=? actual_return_date=? place=?" +
+    private static final String UPDATE_QUERY = "UPDATE library.order SET id_person=?, id_book=?, order_date=?, " +
+            "planned_hand_out_date=?, hang_out_date=?, planned_return_date=?, actual_return_date=?, place=? " +
             "WHERE id=?";
 
-    private static final String FIND_BY_ID = "SELECT * FROM library.order" +
+    private static final String FIND_BY_ID = "SELECT * FROM library.order " +
             "JOIN library.book ON library.order.id_book = library.book.id_book \n" +
             "JOIN library.publisher ON library.book.id_publisher = library.publisher.id_publisher \n" +
             "JOIN library.author ON library.book.id_author = library.author.id_author \n" +
             "JOIN library.person ON library.person.id_person = library.order.id_person\n " +
             " WHERE id = ?";
+
+    private static final String DELETE_QUERY = "DELETE FROM library.order WHERE id=?";
 
     public OrderDAO(Connection connection) {
         super(connection);
@@ -110,10 +112,9 @@ public class OrderDAO extends AbstractDAO {
             change(INSERT_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate()) ;
         } else{
             change(UPDATE_QUERY, order.getReader().getId(), order.getBook().getId(), order.getOrderDate(),
-                    order.getHandOutDate(), order.getPlannedReturnDate(), order.getActualReturnDate(), order.getPlace(),
-                    order.getId());
+                    order.getPlannedHandOutDate(), order.getHandOutDate(), order.getPlannedReturnDate(),
+                    order.getActualReturnDate(), order.getPlace().name(), order.getId());
         }
-
     }
 
     @Override
@@ -124,5 +125,9 @@ public class OrderDAO extends AbstractDAO {
     @Override
     public List findAll() throws DAOException {
         return null;
+    }
+
+    public void deleteOrder(int idOrder) throws DAOException {
+        change(DELETE_QUERY, idOrder);
     }
 }

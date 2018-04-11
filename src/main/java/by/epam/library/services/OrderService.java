@@ -7,7 +7,6 @@ import by.epam.library.model.exception.DAOException;
 import by.epam.library.model.exception.ServiceException;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.util.List;
 
 public class OrderService {
@@ -54,7 +53,6 @@ public class OrderService {
         }
         return orders;
     }
-
 
 
     public void saveOrder(Order order) throws ServiceException {
@@ -116,7 +114,19 @@ public class OrderService {
             Connection connection = connectionPool.getConnection( );
             OrderDAO orderDAO = new OrderDAO(connection);
             connectionPool.returnConnection(connection);
-            return (Order)orderDAO.findById(id);
+            return (Order) orderDAO.findById(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        }
+    }
+
+    public void deleteOrder(int idOrder) throws ServiceException {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance( );
+            Connection connection = connectionPool.getConnection( );
+            OrderDAO orderDAO = new OrderDAO(connection);
+            orderDAO.deleteOrder(idOrder);
+            connectionPool.returnConnection(connection);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
         }

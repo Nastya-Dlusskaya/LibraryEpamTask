@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class PutAsideCommand implements ActionCommand {
+public class PostponeBookCommand implements ActionCommand {
     private static final String ID = "id";
 
     @Override

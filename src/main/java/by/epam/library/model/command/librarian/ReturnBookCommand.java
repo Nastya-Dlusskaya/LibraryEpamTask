@@ -1,6 +1,8 @@
 package by.epam.library.model.command.librarian;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.entity.Book;
+import by.epam.library.model.entity.Order;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.BookService;
@@ -11,11 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class ReturnBookCommand implements ActionCommand {
     private static final String ID = "id";
-    private static final String ID_BOOK = "idBook";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
@@ -23,14 +25,18 @@ public class ReturnBookCommand implements ActionCommand {
         String stringId = request.getParameter(ID);
         int id = Integer.parseInt(stringId);
 
-        String stringIdBook = request.getParameter(ID_BOOK);
-        int idBook = Integer.parseInt(stringIdBook);
+        OrderService orderService = new OrderService( );
+        Order order = orderService.findOrderById(id);
 
-        OrderService orderService = new OrderService();
-        Date now = CalenderCalculator.calculateCurrentDate();
-        //orderService.setActualReturnDate(id, now);
+        Date dateNow = CalenderCalculator.calculateCurrentDate( );
+        Timestamp now = new Timestamp(dateNow.getTime( ));
+        order.setActualReturnDate(now);
 
-        BookService bookService = new BookService();
+        orderService.saveOrder(order);
+
+        Book book = order.getBook( );
+        int idBook = book.getId( );
+        BookService bookService = new BookService( );
         bookService.incrementAmountBook(idBook);
 
         ShowPageReturnBookCommand pageReturnBookCommand = new ShowPageReturnBookCommand( );

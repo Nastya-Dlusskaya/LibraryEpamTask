@@ -1,10 +1,7 @@
 package by.epam.library.model.command.common;
 
 import by.epam.library.model.command.admin.*;
-import by.epam.library.model.command.librarian.HandOutCommand;
-import by.epam.library.model.command.librarian.LibrarianCommand;
-import by.epam.library.model.command.librarian.ReturnBookCommand;
-import by.epam.library.model.command.librarian.ShowPageReturnBookCommand;
+import by.epam.library.model.command.librarian.*;
 import by.epam.library.model.command.reader.*;
 
 public class ActionFactory {
@@ -46,6 +43,12 @@ public class ActionFactory {
                 return new ShowOrderedBookCommand( );
             case SHOW_PAGE_RETURN_BOOK:
                 return new ShowPageReturnBookCommand( );
+            case ADD_BOOK:
+                return new AddBookCommand();
+            case POSTPONE:
+                return new PostponeBookCommand();
+            case CANCEL_ORDER:
+                return new CancelOrderCommand();
             case RETURN_BOOK:
                 return new ReturnBookCommand( );
             case SHOW_SEARCH_BOOK:

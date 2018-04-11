@@ -30,10 +30,12 @@
                 <caption>${captionBook}</caption>
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Reader</th>
                     <th>Book</th>
                     <c:if test="${captionBook eq 'Ordered book'}">
                         <th>Order Date</th>
+                        <th>Planned hand out date</th>
                         <th>Action</th>
                     </c:if>
                     <c:if test="${captionBook eq 'Returned book'}">
@@ -46,19 +48,21 @@
                 <tbody>
                 <c:forEach var="order" items="${orders}">
                     <tr>
+                        <td><c:out value="${order.id}"></c:out></td>
                         <td><c:out value="${order.reader}"/></td>
                         <td><c:out value="${order.book}"/></td>
                         <c:if test="${captionBook eq 'Ordered book'}">
                             <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></th>
+                            <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedHandOutDate}"/></th>
                             <th>
                                 <c:choose>
                                     <c:when test="${order.plannedHandOutDate == null}">
-                                        <a href="?command=put_aside&id=<c:out value="${order.id}"/>">Put Aside</a>
+                                        <a href="?command=postpone&id=<c:out value="${order.id}"/>">Put Aside</a>
                                     </c:when>
                                     <c:otherwise>
                                         <a href="?command=hand&id=<c:out value="${order.id}"/>&type=hall">Hall</a>
                                         <a href="?command=hand&id=<c:out value="${order.id}"/>&type=home">Home</a>
-                                        <a href="?command=cancelOrder&id=<c:out value="${order.id}"/>">Cancel</a>
+                                        <a href="?command=cancel_order&id=<c:out value="${order.id}"/>">Cancel</a>
                                     </c:otherwise>
                                 </c:choose>
                             </th>

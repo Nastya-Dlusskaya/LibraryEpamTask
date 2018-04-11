@@ -7,7 +7,7 @@ public enum CommandEnum {
     SHOW_SEARCH_PERSON("show_search_person"), SHOW_SEARCH_BOOK("show_search_book"),
     SHOW_ADD_OR_EDIT_PERSON("show_add_or_edit_person"), SHOW_ADD_OR_EDIT_BOOK("show_add_or_edit_book"),
     SHOW_ADD_AUTHOR("show_add_author"), SHOW_ADD_PUBLISHER("show_add_publisher"), ADD_AUTHOR("add_author"),
-    ADD_PUBLISHER("add_publisher"), ADD_BOOK("add_book");
+    ADD_PUBLISHER("add_publisher"), ADD_BOOK("add_book"), POSTPONE("postpone"), CANCEL_ORDER("cancel_order");
 
     String value;
 
