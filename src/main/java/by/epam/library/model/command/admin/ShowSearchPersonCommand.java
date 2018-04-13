@@ -15,14 +15,14 @@ import java.util.List;
 
 public class ShowSearchPersonCommand implements ActionCommand {
 
-    public static final String TYPE_PAGE = "admin_table";
-    public static final String TYPE = "type";
-    public static final String READER = "reader";
-    public static final String READERS = "Readers";
-    public static final String LIBRARIANS = "Librarians";
-    public static final String TITLE = "title";
-    public static final String CAPTION = "caption";
-    public static final String ENTITIES = "entities";
+    private static final String TYPE_PAGE = "admin_table";
+    private static final String TYPE = "type";
+    private static final String READER = "reader";
+    private static final String READERS = "Readers";
+    private static final String LIBRARIANS = "Librarians";
+    private static final String TITLE = "title";
+    private static final String CAPTION = "caption";
+    private static final String ENTITIES = "entities";
 
     /**
      * Inspie if type of person, load list of person in page and load it in response

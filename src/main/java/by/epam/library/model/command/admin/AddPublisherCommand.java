@@ -1,6 +1,7 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.entity.Publisher;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.PublisherService;
@@ -28,8 +29,11 @@ public class AddPublisherCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         String namePublisher = request.getParameter(NAME_PUBLISHER);
 
+        Publisher publisher = new Publisher();
+        publisher.setName(namePublisher);
+
         PublisherService publisherService = new PublisherService();
-        publisherService.addPublisher(namePublisher);
+        publisherService.addPublisher(publisher);
 
         ShowAddPublisherCommand showAddPublisherCommand = new ShowAddPublisherCommand( );
         showAddPublisherCommand.execute(request, response);

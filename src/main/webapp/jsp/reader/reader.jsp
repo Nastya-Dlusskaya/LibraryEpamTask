@@ -66,7 +66,6 @@
         </table>
     </div>
     </c:if>
-
 </section>
 
 <jsp:include page="../footer.jsp"/>

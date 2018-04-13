@@ -2,6 +2,7 @@ package by.epam.library.services;
 
 import by.epam.library.dao.AuthorDAO;
 import by.epam.library.dao.ConnectionPool;
+import by.epam.library.model.entity.Author;
 import by.epam.library.model.exception.DAOException;
 import by.epam.library.model.exception.ServiceException;
 
@@ -27,15 +28,14 @@ public class AuthorService {
         }
     }
 
-    public void addAuthor(String lastName, String firstName) throws ServiceException {
+    public void addAuthor(Author author) throws ServiceException {
         ConnectionPool connectionPool = null;
         Connection connection = null;
         try {
             connectionPool = ConnectionPool.getInstance( );
             connection = connectionPool.getConnection( );
             AuthorDAO authorDAO = new AuthorDAO(connection);
-            connectionPool.returnConnection(connection);
-            //authorDAO.insert("author", "last_name_author", "first_name_author", lastName, firstName);
+            authorDAO.save(author);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
         } finally {

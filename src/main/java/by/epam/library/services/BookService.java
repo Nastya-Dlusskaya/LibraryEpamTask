@@ -119,4 +119,38 @@ public class BookService {
         }
         return catalog;
     }
+
+    public void addBook(Book book) throws ServiceException {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
+        try {
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
+            BookDAO authorDAO = new BookDAO(connection);
+            authorDAO.save(book);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
+        }
+    }
+
+    public void deletedBook(Book book) throws ServiceException {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
+        try {
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
+            BookDAO authorDAO = new BookDAO(connection);
+            authorDAO.save(book);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
+        }
+    }
 }

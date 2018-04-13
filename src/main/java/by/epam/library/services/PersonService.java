@@ -59,7 +59,7 @@ public class PersonService {
             Connection connection = connectionPool.getConnection( );
 
             PersonDAO personDAO = new PersonDAO(connection);
-            person = personDAO.findPersonByID(id);
+            person = (Person) personDAO.findById(id);
 
             connectionPool.returnConnection(connection);
 
@@ -70,4 +70,18 @@ public class PersonService {
     }
 
 
+    public void deletedPerson(Person person) throws ServiceException {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance( );
+            Connection connection = connectionPool.getConnection( );
+
+            PersonDAO personDAO = new PersonDAO(connection);
+            personDAO.save(person);
+
+            connectionPool.returnConnection(connection);
+
+        } catch (DAOException exception) {
+            throw new ServiceException(exception);
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class AuthorDAO extends AbstractDAO {
     private static final String FIND_ALL_AUTHOR = "SELECT last_name_author, first_name_author, id_author " +
             "FROM library.author";
     private static final String FIND_AUTHOR_BY_ID = "SELECT last_name_author, first_name_author, id_author " +
-            "FROM library.author WHERE id_author=";
+            "FROM library.author WHERE id_author=?";
     private static final String INSERT_QUERY = "INSERT INTO library.author(last_name_author, first_name_author)" +
             " VALUES(?, ?)";
     private static final String UPDATE_QUERY = "UPDATE library.author SET last_name_author=? first_name_author=? " +
@@ -48,7 +48,7 @@ public class AuthorDAO extends AbstractDAO {
 
     @Override
     public Author findById(int id) throws DAOException {
-        return (Author)executeObject(FIND_AUTHOR_BY_ID + id);
+        return (Author)executeObject(FIND_AUTHOR_BY_ID, id);
     }
 
     @Override

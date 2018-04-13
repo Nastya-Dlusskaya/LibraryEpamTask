@@ -21,10 +21,10 @@ public class ShowAddOrEditBookCommand implements ActionCommand {
     private static final String SHOW_ADD_OR_EDIT_PERSON = "show_add_or_edit_book";
     private static final String TYPE = "type";
     private static final String EDIT = "edit";
-    public static final String ID_BOOK = "idBook";
-    public static final String BOOK = "Books";
-    public static final String AUTHORS = "authors";
-    public static final String PUBLISHERS = "publishers";
+    private static final String ID_BOOK = "idBook";
+    private static final String BOOK = "Books";
+    private static final String AUTHORS = "authors";
+    private static final String PUBLISHERS = "publishers";
 
     /**
      * Inspire of type of action, load page in response. If action is create, fields in page will empty, else fields

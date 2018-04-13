@@ -1,6 +1,7 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.entity.Author;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.AuthorService;
@@ -28,11 +29,14 @@ public class AddAuthorCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         String lastName = request.getParameter(LAST_NAME_AUTHOR);
-
         String firstName = request.getParameter(FIRST_NAME_AUTHOR);
 
+        Author author = new Author();
+        author.setLastName(lastName);
+        author.setFirstName(firstName);
+
         AuthorService authorService = new AuthorService();
-        authorService.addAuthor(lastName, firstName);
+        authorService.addAuthor(author);
 
         ShowAddAuthorCommand pageReturnBookCommand = new ShowAddAuthorCommand( );
         pageReturnBookCommand.execute(request, response);

@@ -7,6 +7,7 @@ public class Person {
     private String password;
     private String lastName;
     private String firstName;
+    private Boolean isDeleted;
 
     public Person() {
     }
@@ -18,6 +19,7 @@ public class Person {
         this.password = password;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.isDeleted = false;
     }
 
     public Integer getId() {
@@ -62,6 +64,18 @@ public class Person {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     @Override

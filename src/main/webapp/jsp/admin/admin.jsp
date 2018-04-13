@@ -15,10 +15,7 @@
 </head>
 <body>
     <jsp:include page="../header.jsp"/>
-    <div>
-        <jsp:include page="admin_menu.jsp"/>
-    </div>
-
+    <jsp:include page="admin_menu.jsp"/>
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>

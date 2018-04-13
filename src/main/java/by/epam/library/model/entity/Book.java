@@ -6,6 +6,7 @@ public class Book {
     private String name;
     private Publisher publisher;
     private Integer amount;
+    private Boolean isDeleted;
 
     public Book() {
     }
@@ -16,6 +17,7 @@ public class Book {
         this.name = name;
         this.publisher = publisher;
         this.amount = amount;
+        this.isDeleted = false;
     }
 
     public Integer getId() {
@@ -56,6 +58,14 @@ public class Book {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     @Override
