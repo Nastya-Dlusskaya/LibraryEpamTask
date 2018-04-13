@@ -10,12 +10,12 @@
 
     <div id="header" class="container">
 
-        <div id="logo"><h1>Library</h1></div>
-        <div id="user">
+        <span id="logo"><h1>Library</h1></span>
+        <span id="user">
             <a class="${user != null ? "" : "hide"}" href="/?command=logout">
                     ${user}
             </a>
-        </div>
+        </span>
     </div>
 
 
