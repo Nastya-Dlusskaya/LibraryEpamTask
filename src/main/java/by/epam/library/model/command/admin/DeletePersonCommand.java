@@ -1,6 +1,7 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Person;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
@@ -27,6 +28,9 @@ public class DeletePersonCommand implements ActionCommand {
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
+        PageFactory pageFactory = new PageFactory();
+        String page = pageFactory.createPage("admin_table");
+
         String stringIdPerson = request.getParameter(ID_PERSON);
         int idPerson = Integer.parseInt(stringIdPerson);
 
@@ -37,7 +41,6 @@ public class DeletePersonCommand implements ActionCommand {
 
         personService.deletedPerson(person);
 
-        ShowSearchPersonCommand showSearchPersonCommand = new ShowSearchPersonCommand();
-        showSearchPersonCommand.execute(request, response);
+        response.sendRedirect(page);
     }
 }

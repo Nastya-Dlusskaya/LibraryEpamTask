@@ -12,14 +12,14 @@ import java.util.List;
 public class PersonDAO extends AbstractDAO {
 
     private static final String QUERY_FIND_TYPE_PERSON = "SELECT id_person, role, login, password, last_name_person," +
-            " first_name_person FROM person WHERE login=? AND password=?";
-    private static final String FIND_ALL_READER_QUERY = "SELECT * FROM person WHERE role='reader'";
-    private static final String FIND_ALL_LIBRARIAN_QUERY = "SELECT * FROM person WHERE role='librarian'";
+            " first_name_person FROM person WHERE login=? AND password=? AND is_deleted=0";
+    private static final String FIND_ALL_READER_QUERY = "SELECT * FROM person WHERE role='reader' AND is_deleted=0";
+    private static final String FIND_ALL_LIBRARIAN_QUERY = "SELECT * FROM person WHERE role='librarian' AND is_deleted=0";
     private static final String INSERT_QUERY = "INSERT INTO library.author(role, login, password, last_name_person, " +
             "first_name_person, is_deleted) VALUES(?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE library.author SET role=?, login=?, password=?, " +
-            "last_name_person=?, first_name_person=?, is_deleted=? WHERE id_author=?";
-    private static final String FIND_PERSON_BY_ID = "SELECT * FROM library.person WHERE id_person=?";
+    private static final String UPDATE_QUERY = "UPDATE library.person SET role=?, login=?, password=?, " +
+            "last_name_person=?, first_name_person=?, is_deleted=? WHERE id_person=?";
+    private static final String FIND_PERSON_BY_ID = "SELECT * FROM library.person WHERE id_person=? AND is_deleted=0";
 
     public PersonDAO(Connection connection) {
         super(connection);
@@ -64,7 +64,7 @@ public class PersonDAO extends AbstractDAO {
             change(INSERT_QUERY, person.getRole( ), person.getLogin( ), person.getPassword( ), person.getLastName( ),
                     person.getFirstName( ), person.getDeleted( ));
         } else {
-            change(UPDATE_QUERY, person.getRole( ), person.getLogin( ), person.getPassword( ), person.getLastName( ),
+            change(UPDATE_QUERY, person.getRole( ).toString(), person.getLogin( ), person.getPassword( ), person.getLastName( ),
                     person.getFirstName( ), person.getDeleted( ), person.getId( ));
         }
     }

@@ -75,7 +75,7 @@
                                 Edit
                             </a>
                             <br>
-                            <a href="/?command=deletePerson&idPerson=<c:out value="${entity.id}"/>">
+                            <a href="/?command=delete_person&idPerson=<c:out value="${entity.id}"/>">
                                 Delete
                             </a>
                         </td>
@@ -98,7 +98,7 @@
                                 Edit
                             </a>
                             <br>
-                            <a href="/?command=deleteBook&idBook=<c:out value="${entity.id}"/>">
+                            <a href="/?command=delete_book&idBook=<c:out value="${entity.id}"/>">
                                 Delete
                             </a>
                         </td>

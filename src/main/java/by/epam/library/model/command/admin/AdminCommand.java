@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AdminCommand implements ActionCommand {
+
+    private static final String ADMIN = "admin";
+
     /**
      * Loads page in the response
      *
@@ -24,7 +27,7 @@ public class AdminCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory( );
-        String page = pageFactory.createPage("admin");
+        String page = pageFactory.createPage(ADMIN);
 
         response.sendRedirect(page);
     }

@@ -46,7 +46,6 @@ public class ShowSearchPersonCommand implements ActionCommand {
         String caption;
 
         if (typePerson.equals(READER)) {
-
             persons = personService.findAllReaders( );
             caption = READERS;
         } else {

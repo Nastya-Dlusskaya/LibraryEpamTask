@@ -67,6 +67,14 @@ public class ActionFactory {
                 return new AddAuthorCommand();
             case ADD_PUBLISHER:
                 return new AddPublisherCommand();
+            case EDIT_BOOK:
+                return new EditBookCommand();
+            case EDIT_PERSON:
+                return new EditPersonCommand();
+            case DELETE_BOOK:
+                return new DeleteBookCommand();
+            case DELETE_PERSON:
+                return new DeletePersonCommand();
             default:
                 return new EmptyCommand( );
         }

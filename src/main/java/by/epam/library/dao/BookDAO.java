@@ -15,26 +15,27 @@ public class BookDAO extends AbstractDAO {
     private static final String FIND_BOOK_BY_ID = "SELECT * FROM library.book\n " +
             "JOIN author ON author.id_author=book.id_author\n " +
             "join publisher ON publisher.id_publisher=book.id_publisher\n " +
-            "WHERE id_book=?";
+            "WHERE id_book=? AND is_deleted=0";
 
     private static final String FIND_ALL_BOOK = "SELECT * FROM library.book\n " +
             "JOIN author ON author.id_author=book.id_author\n " +
-            "join publisher ON publisher.id_publisher=book.id_publisher";
+            "join publisher ON publisher.id_publisher=book.id_publisher " +
+            "WHERE is_deleted=0";
 
     private static final String FIND_BOOK_BY_LAST_NAME = "SELECT * FROM library.book \n" +
             "JOIN author ON author.id_author = book.id_author\n" +
             "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
-            "WHERE author.last_name_author = ?";
+            "WHERE author.last_name_author = ? AND is_deleted=0";
 
     private static final String FIND_BOOK_BY_NAME_BOOK = "SELECT * FROM library.book \n" +
             "JOIN author ON author.id_author = book.id_author\n" +
             "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
-            "WHERE book.name_book = ?";
+            "WHERE book.name_book = ? AND is_deleted=0";
 
     private static final String FIND_BOOK_BY_NAME_BOOK_AND_LAST_NAME = "SELECT * FROM library.book \n" +
             "JOIN author ON author.id_author = book.id_author\n" +
             "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
-            "WHERE book.name_book = ? AND author.last_name_author = ?";
+            "WHERE book.name_book = ? AND author.last_name_author = ? AND is_deleted=0";
 
     private static final String INSERT_QUERY = "INSERT INTO library.book(id_author, name_book, id_publisher, amount)" +
             " VALUES(?, ?, ?, ?)";
