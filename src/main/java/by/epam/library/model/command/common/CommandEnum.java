@@ -7,8 +7,10 @@ public enum CommandEnum {
     SHOW_SEARCH_PERSON("show_search_person"), SHOW_SEARCH_BOOK("show_search_book"),
     SHOW_ADD_OR_EDIT_PERSON("show_add_or_edit_person"), SHOW_ADD_OR_EDIT_BOOK("show_add_or_edit_book"),
     SHOW_ADD_AUTHOR("show_add_author"), SHOW_ADD_PUBLISHER("show_add_publisher"), ADD_AUTHOR("add_author"),
-    ADD_PUBLISHER("add_publisher"), ADD_BOOK("add_book"), POSTPONE("postpone"), CANCEL_ORDER("cancel_order"),
-    DELETE_BOOK("delete_book"), DELETE_PERSON("delete_person"), EDIT_BOOK("edit_book"), EDIT_PERSON("edit_person");
+    ADD_PUBLISHER("add_publisher"), ADD_BOOK("add_book"), ADD_PERSON("add_person"), POSTPONE("postpone"),
+    CANCEL_ORDER("cancel_order"), DELETE_BOOK("delete_book"), DELETE_PERSON("delete_person"), EDIT_BOOK("edit_book"),
+    EDIT_PERSON("edit_person"), SHOW_CHANGE_LOGIN_AND_PASSWORD("show_change_login_and_password"),
+    CHANGE_LOGIN_AND_PASSWORD("change_login_and_password");
 
     String value;
 

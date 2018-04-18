@@ -1,6 +1,7 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Book;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class DeleteBookCommand implements ActionCommand {
 
     private static final String ID_BOOK = "idBook";
+    private static final String ADMIN_TABLE = "admin_table";
 
     /**
      * Deletes book from database
@@ -28,6 +30,9 @@ public class DeleteBookCommand implements ActionCommand {
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
+        PageFactory pageFactory = new PageFactory();
+        String page = pageFactory.createPage(ADMIN_TABLE);
+
         String stringIdBook = request.getParameter(ID_BOOK);
         int idBook = Integer.parseInt(stringIdBook);
 
@@ -37,8 +42,6 @@ public class DeleteBookCommand implements ActionCommand {
         book.setDeleted(true);
 
         bookService.deletedBook(book);
-
-        ShowSearchPersonCommand showSearchPersonCommand = new ShowSearchPersonCommand();
-        showSearchPersonCommand.execute(request, response);
+        response.sendRedirect(page);
     }
 }

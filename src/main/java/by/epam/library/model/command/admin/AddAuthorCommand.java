@@ -1,6 +1,7 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Author;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
@@ -13,8 +14,9 @@ import java.io.IOException;
 
 public class AddAuthorCommand implements ActionCommand {
 
-    public static final String LAST_NAME_AUTHOR = "lastNameAuthor";
-    public static final String FIRST_NAME_AUTHOR = "firstNameAuthor";
+    private static final String LAST_NAME_AUTHOR = "lastNameAuthor";
+    private static final String FIRST_NAME_AUTHOR = "firstNameAuthor";
+    private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
 
     /**
      * Adds author in database
@@ -28,6 +30,9 @@ public class AddAuthorCommand implements ActionCommand {
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
+        PageFactory pageFactory = new PageFactory();
+        String page = pageFactory.createPage(SHOW_ADD_AUTHOR_OR_PUBLISHER);
+
         String lastName = request.getParameter(LAST_NAME_AUTHOR);
         String firstName = request.getParameter(FIRST_NAME_AUTHOR);
 
@@ -38,7 +43,6 @@ public class AddAuthorCommand implements ActionCommand {
         AuthorService authorService = new AuthorService();
         authorService.addAuthor(author);
 
-        ShowAddAuthorCommand pageReturnBookCommand = new ShowAddAuthorCommand( );
-        pageReturnBookCommand.execute(request, response);
+        response.sendRedirect(page);
     }
 }

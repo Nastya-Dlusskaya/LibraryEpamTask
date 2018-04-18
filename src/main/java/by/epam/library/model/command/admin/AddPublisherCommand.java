@@ -1,6 +1,7 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Publisher;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
@@ -13,7 +14,8 @@ import java.io.IOException;
 
 public class AddPublisherCommand implements ActionCommand {
 
-    public static final String NAME_PUBLISHER = "namePublisher";
+    private static final String NAME_PUBLISHER = "namePublisher";
+    private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
 
     /**
      * Adds publisher in database
@@ -27,6 +29,9 @@ public class AddPublisherCommand implements ActionCommand {
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
+        PageFactory pageFactory = new PageFactory();
+        String page = pageFactory.createPage(SHOW_ADD_AUTHOR_OR_PUBLISHER);
+
         String namePublisher = request.getParameter(NAME_PUBLISHER);
 
         Publisher publisher = new Publisher();
@@ -35,7 +40,6 @@ public class AddPublisherCommand implements ActionCommand {
         PublisherService publisherService = new PublisherService();
         publisherService.addPublisher(publisher);
 
-        ShowAddPublisherCommand showAddPublisherCommand = new ShowAddPublisherCommand( );
-        showAddPublisherCommand.execute(request, response);
+        response.sendRedirect(page);
     }
 }

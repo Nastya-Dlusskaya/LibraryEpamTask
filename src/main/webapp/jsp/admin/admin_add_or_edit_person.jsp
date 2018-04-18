@@ -21,12 +21,12 @@
 
 <section>
     <c:if test="${person != null}">
-    <form name="update" method="post" action="/" class="form">
-        <input type="hidden" name="command" value="edit"/>
+    <form name="edit_person" method="post" action="/" class="form">
+        <input type="hidden" name="command" value="edit_person"/>
         </c:if>
         <c:if test="${person == null}">
-        <form action="add" method="post" action="/" class="form">
-            <input type="hidden" name="command" value="add"/>
+        <form action="add_person" method="post" action="/" class="form">
+            <input type="hidden" name="command" value="add_person"/>
             </c:if>
             <c:if test="${person != null}">
             <h2>Edit person</h2>
@@ -47,15 +47,14 @@
 
             <ul>
                 <li>
-                    <input type="radio" name="selector" id="librarian">
+                    <input type="radio" name="selector" id="librarian" value="librarian">
                     <label for="librarian">Librarian</label>
                 </li>
                 <li>
-                    <input type="radio" name="selector" id="reader" checked="checked">
+                    <input type="radio" name="selector" id="reader" value="reader" checked="checked">
                     <label for="reader">Reader</label>
                 </li>
             </ul>
-
 
             <br>
             <input type="submit" value="Save">

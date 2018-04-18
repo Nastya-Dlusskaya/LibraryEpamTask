@@ -1,8 +1,13 @@
 package by.epam.library.model.command.admin;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.util.PageFactory;
+import by.epam.library.model.entity.Person;
+import by.epam.library.model.entity.TypePerson;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
+import by.epam.library.services.AuthorService;
+import by.epam.library.services.PersonService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +27,25 @@ public class AddPersonCommand implements ActionCommand {
      */
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
+        PageFactory pageFactory = new PageFactory();
+        String page = pageFactory.createPage("show_add_or_edit_person");
+
+        Person person = new Person();
+
+        String lastName = request.getParameter("lastName");
+        person.setLastName(lastName);
+
+        String firstName = request.getParameter("firstName");
+        person.setFirstName(firstName);
+
+        String stringTypePerson=request.getParameter("selector");
+        TypePerson typePerson = TypePerson.getCommandEnum(stringTypePerson);
+        person.setRole(typePerson);
+
+        PersonService personService = new PersonService();
+        personService.savePerson(person);
+
+        response.sendRedirect(page);
 
     }
 }

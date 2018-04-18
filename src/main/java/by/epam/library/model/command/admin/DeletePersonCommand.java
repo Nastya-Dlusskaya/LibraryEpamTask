@@ -39,7 +39,7 @@ public class DeletePersonCommand implements ActionCommand {
 
         person.setDeleted(true);
 
-        personService.deletedPerson(person);
+        personService.savePerson(person);
 
         response.sendRedirect(page);
     }

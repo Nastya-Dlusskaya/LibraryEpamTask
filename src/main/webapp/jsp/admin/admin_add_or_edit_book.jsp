@@ -21,12 +21,12 @@
 
 <section>
     <c:if test="${book != null}">
-    <form name="update" method="post" action="/" id="form">
-        <input type="hidden" name="command" value="edit"/>
+    <form name="edit_book" method="post" action="/" id="form">
+        <input type="hidden" name="command" value="edit_book"/>
         </c:if>
         <c:if test="${book == null}">
-        <form action="add" method="post" action="/" class="form">
-            <input type="hidden" name="command" value="add"/>
+        <form action="add_book" method="post" action="/" class="form">
+            <input type="hidden" name="command" value="add_book"/>
             </c:if>
 
             <c:if test="${book != null}">

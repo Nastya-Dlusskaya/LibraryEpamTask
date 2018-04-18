@@ -55,14 +55,23 @@
                     </c:if>
                     <c:if test="${captionBook eq 'Ordered book'}">
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></td>
-                        <td></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${order.plannedHandOutDate != null}">
+                                    Book was postponed to
+                                    <fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedHandOutDate}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    Book was ordered
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
                     </c:if>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </section>
-
     <jsp:include page="../footer.jsp"/>
 </body>
 </html>

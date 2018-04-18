@@ -70,7 +70,7 @@ public class PersonService {
     }
 
 
-    public void deletedPerson(Person person) throws ServiceException {
+    public void savePerson(Person person) throws ServiceException {
         try {
             ConnectionPool connectionPool = ConnectionPool.getInstance( );
             Connection connection = connectionPool.getConnection( );
@@ -84,4 +84,5 @@ public class PersonService {
             throw new ServiceException(exception);
         }
     }
+
 }

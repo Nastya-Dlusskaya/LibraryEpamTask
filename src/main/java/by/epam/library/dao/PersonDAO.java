@@ -15,7 +15,7 @@ public class PersonDAO extends AbstractDAO {
             " first_name_person FROM person WHERE login=? AND password=? AND is_deleted=0";
     private static final String FIND_ALL_READER_QUERY = "SELECT * FROM person WHERE role='reader' AND is_deleted=0";
     private static final String FIND_ALL_LIBRARIAN_QUERY = "SELECT * FROM person WHERE role='librarian' AND is_deleted=0";
-    private static final String INSERT_QUERY = "INSERT INTO library.author(role, login, password, last_name_person, " +
+    private static final String INSERT_QUERY = "INSERT INTO library.person(role, login, password, last_name_person, " +
             "first_name_person, is_deleted) VALUES(?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_QUERY = "UPDATE library.person SET role=?, login=?, password=?, " +
             "last_name_person=?, first_name_person=?, is_deleted=? WHERE id_person=?";
@@ -61,10 +61,10 @@ public class PersonDAO extends AbstractDAO {
         Person person = (Person) entity;
         Integer personId = person.getId( );
         if (personId == null) {
-            change(INSERT_QUERY, person.getRole( ), person.getLogin( ), person.getPassword( ), person.getLastName( ),
+            change(INSERT_QUERY, person.getRole( ).name(), person.getLogin( ), person.getPassword( ), person.getLastName( ),
                     person.getFirstName( ), person.getDeleted( ));
         } else {
-            change(UPDATE_QUERY, person.getRole( ).toString(), person.getLogin( ), person.getPassword( ), person.getLastName( ),
+            change(UPDATE_QUERY, person.getRole( ).name(), person.getLogin( ), person.getPassword( ), person.getLastName( ),
                     person.getFirstName( ), person.getDeleted( ), person.getId( ));
         }
     }

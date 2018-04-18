@@ -75,6 +75,12 @@ public class ActionFactory {
                 return new DeleteBookCommand();
             case DELETE_PERSON:
                 return new DeletePersonCommand();
+            case ADD_PERSON:
+                return new AddPersonCommand();
+            case SHOW_CHANGE_LOGIN_AND_PASSWORD:
+                return new ShowChangeLoginAndPasswordCommand();
+            case CHANGE_LOGIN_AND_PASSWORD:
+                return new ChangeLoginAndPasswordCommand();
             default:
                 return new EmptyCommand( );
         }

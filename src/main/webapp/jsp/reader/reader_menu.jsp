@@ -31,5 +31,11 @@
                 Search book
             </a>
         </li>
+
+        <li>
+            <a href="/controller?command=show_change_login_and_password">
+                Personal settings
+            </a>
+        </li>
     </ul>
 </nav>
