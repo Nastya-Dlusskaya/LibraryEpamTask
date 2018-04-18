@@ -36,13 +36,21 @@
             <h2>Add new book</h2>
             </c:if>
             <h3>Author</h3>
-            <select multiple name="authors" size="7">
+            <%--<select multiple name="authors" size="7">--%>
+                <%--<c:forEach var="author" items="${authors}">--%>
+                    <%--<option>--%>
+                        <%--<c:out value="${author}"/>--%>
+                    <%--</option>--%>
+                <%--</c:forEach>--%>
+            <%--</select>--%>
+            <div id="dropdown" class="dropdown-content">
+                <input type="text" placeholder="Search author" id="searchInput" onclick="showAuthor()" onkeyup="searchAuthor()">
+
                 <c:forEach var="author" items="${authors}">
-                    <option>
-                        <c:out value="${author}"/>
-                    </option>
+                    <a href="<c:out value="${author}"/>"><c:out value="${author}"/></a>
                 </c:forEach>
-            </select>
+            </div>
+
 
             <h3>Name of book</h3>
 
@@ -61,5 +69,6 @@
 
 </section>
 <jsp:include page="../footer.jsp"/>
+<script src="/js/dropdown.js"/>
 </body>
 </html>

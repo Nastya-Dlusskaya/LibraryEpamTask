@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractDAO<T> implements DAO {
@@ -34,6 +33,9 @@ public abstract class AbstractDAO<T> implements DAO {
 
     public T executeObject(String query, Object... parameters) throws DAOException {
         List <T> objects = execute(query, parameters);
+        if(objects.size() == 0){
+            return null;
+        }
         return objects.get(0);
     }
 

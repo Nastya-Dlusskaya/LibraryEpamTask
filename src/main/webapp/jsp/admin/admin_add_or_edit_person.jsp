@@ -55,7 +55,15 @@
                     <label for="reader">Reader</label>
                 </li>
             </ul>
+    <c:if test="${person == null}">
+            <h3>Login</h3>
 
+            <input type="text" name="login" value="<c:out value="${login}"/>"/>
+
+            <h3>Password</h3>
+
+            <input type="text" name="password" value="<c:out value="${password}"/>"/>
+            </c:if>
             <br>
             <input type="submit" value="Save">
 </section>

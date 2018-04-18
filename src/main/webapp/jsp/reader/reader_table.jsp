@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="pagination" prefix="p"%>
 <html>
 <head>
     <title>Title</title>
@@ -69,6 +70,7 @@
                     </c:if>
                 </tr>
             </c:forEach>
+            <p:pagination currentPage="1" maxPage="15" userId="0"/>
             </tbody>
         </table>
     </section>

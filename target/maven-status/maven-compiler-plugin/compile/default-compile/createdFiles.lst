@@ -18,6 +18,7 @@ by\epam\library\model\command\common\LoginCommand.class
 by\epam\library\model\command\admin\ShowSearchBookCommand.class
 by\epam\library\dao\BookDAO.class
 by\epam\library\util\LoginAndPasswordGenerator.class
+by\epam\library\tag\Pagination.class
 by\epam\library\util\builder\AuthorBuilder.class
 by\epam\library\dao\OrderDAO.class
 by\epam\library\model\command\admin\AddBookCommand.class

@@ -19,6 +19,7 @@ D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\controller\Controll
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\util\builder\PersonBuilder.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin\ShowAddPublisherCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin\EditBookCommand.java
+D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\reader\ShowChangeLoginAndPasswordCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\librarian\PostponeBookCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\common\ActionCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\librarian\ShowPageReturnBookCommand.java
@@ -48,12 +49,14 @@ D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\entity\TypePlace.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\dao\OrderDAO.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\librarian\LibrarianCommand.java
+D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\tag\Pagination.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\services\PublisherService.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin\ShowAddOrEditPersonCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\util\LoginAndPasswordGenerator.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\dao\AuthorDAO.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\util\builder\BookBuilder.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin\AddPersonCommand.java
+D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\reader\ChangeLoginAndPasswordCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\util\builder\OrderBuilder.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\reader\CurrentBookCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\exception\ServiceException.java

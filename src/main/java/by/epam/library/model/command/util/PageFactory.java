@@ -19,6 +19,8 @@ public class PageFactory {
     private static final String READER_LIST = "reader_list";
     private static final String PATH_PAGE_READER_LIST = "path.page.reader_list";
     private static final String PATH_PAGE_LOGIN = "path.page.login";
+    private static final String CHANGE_LOGIN_AND_PASSWORD = "change_login_and_password";
+    private static final String PATH_PAGE_READER_CHANGE_LOGIN_AND_PASSWORD = "path.page.reader.change_login_and_password";
 
     public String createPage(String typePage) {
         switch (typePage) {
@@ -38,6 +40,8 @@ public class PageFactory {
                 return ConfigurationManager.getProperty(PATH_PAGE_LIBRARIAN);
             case READER_LIST:
                 return ConfigurationManager.getProperty(PATH_PAGE_READER_LIST);
+            case CHANGE_LOGIN_AND_PASSWORD:
+                return ConfigurationManager.getProperty(PATH_PAGE_READER_CHANGE_LOGIN_AND_PASSWORD);
             default:
                 return ConfigurationManager.getProperty(PATH_PAGE_LOGIN);
         }

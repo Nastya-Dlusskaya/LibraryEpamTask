@@ -6,6 +6,7 @@ import by.epam.library.model.entity.Person;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.PersonService;
+import by.epam.library.util.LoginAndPasswordGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +44,12 @@ public class ShowAddOrEditPersonCommand implements ActionCommand {
             Person person = personService.findPersonByID(id);
 
             session.setAttribute("person",person);
+        } else{
+            String generatedLogin = LoginAndPasswordGenerator.createRandomString(6, 10);
+            session.setAttribute("login", generatedLogin);
+            String generatedPassword = LoginAndPasswordGenerator.createRandomString(6, 10);
+            session.setAttribute("password", generatedPassword);
         }
-
         response.sendRedirect(page);
 
     }

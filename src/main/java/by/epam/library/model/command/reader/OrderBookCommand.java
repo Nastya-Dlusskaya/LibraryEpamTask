@@ -12,6 +12,7 @@ import by.epam.library.services.BookService;
 import by.epam.library.services.OrderService;
 import by.epam.library.util.CalenderCalculator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,7 +60,7 @@ public class OrderBookCommand implements ActionCommand {
         HttpSession session = request.getSession( );
         session.setAttribute(STRING, message);
 
-        SearchBookCommand searchBookCommand = new SearchBookCommand();
-        searchBookCommand.execute(request, response);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+        dispatcher.forward(request, response);
     }
 }

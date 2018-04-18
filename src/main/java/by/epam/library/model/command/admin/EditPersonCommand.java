@@ -3,6 +3,7 @@ package by.epam.library.model.command.admin;
 import by.epam.library.model.command.common.ActionCommand;
 import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Person;
+import by.epam.library.model.entity.TypePerson;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.PersonService;
@@ -14,7 +15,7 @@ import java.io.IOException;
 
 public class EditPersonCommand implements ActionCommand {
 
-    private static final String SHOW_ADD_OR_EDIT_PERSON = "show_add_or_edit_person";
+    private static final String SHOW_ADD_OR_EDIT_PERSON = "admin";
 
     /**
      * Edits person in database
@@ -30,9 +31,17 @@ public class EditPersonCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
         String page = pageFactory.createPage(SHOW_ADD_OR_EDIT_PERSON);
-        String stringId = request.getParameter("");
+        Person person = (Person)request.getSession().getAttribute("person");
 
-        Person person = new Person();
+        String lastName = request.getParameter("lastName");
+        person.setLastName(lastName);
+
+        String firstName = request.getParameter("firstName");
+        person.setFirstName(firstName);
+
+        String stringTypePerson=request.getParameter("selector");
+        TypePerson typePerson = TypePerson.getCommandEnum(stringTypePerson);
+        person.setRole(typePerson);
 
         PersonService personService = new PersonService();
         personService.savePerson(person);

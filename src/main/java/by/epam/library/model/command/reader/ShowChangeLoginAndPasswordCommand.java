@@ -15,7 +15,7 @@ public class ShowChangeLoginAndPasswordCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException,
             ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
-        String page = pageFactory.createPage("changeLoginAndPassword");
+        String page = pageFactory.createPage("change_login_and_password");
         response.sendRedirect(page);
     }
 }
