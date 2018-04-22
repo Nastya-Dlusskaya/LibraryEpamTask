@@ -18,10 +18,10 @@
             Search
         </h1>
 
+        <h3>Last name of author</h3>
         <input type="text" name="last_name" id="last_name"/>
-        <label for="last_name">Last name of author</label>
 
-        Name of book
+        <h3>Name of book</h3>
         <input type="text" name="name_book"/>
         <input type="hidden" name="command" value="search_book"/>
         <input type="submit" name="search"/>

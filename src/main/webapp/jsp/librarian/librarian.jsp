@@ -71,7 +71,7 @@
                             <td><c:out value="${order.place}"/></td>
                             <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedReturnDate}"/></th>
                             <th>
-                                <a href="?command=return_book&id=<c:out value="${order}"/>">Take
+                                <a href="?command=return_book&id=<c:out value="${order.id}"/>">Take
                                     book</a>
                             </th>
                         </c:if>

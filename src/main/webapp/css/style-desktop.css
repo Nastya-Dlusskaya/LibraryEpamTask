@@ -9,6 +9,8 @@ section {
     margin-left: 3em;
     margin-right: 3em;
     position: relative;
+    height: auto;
+    min-height: calc(80vh - 80px);
 }
 
 #header {

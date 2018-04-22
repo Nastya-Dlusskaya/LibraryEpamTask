@@ -70,9 +70,19 @@
                     </c:if>
                 </tr>
             </c:forEach>
-            <p:pagination currentPage="1" maxPage="15" userId="0"/>
-            </tbody>
         </table>
+        <div class="pagination">
+            <c:if test="${captionBook eq 'Archive'}">
+                <p:pagination currentPage="1" maxPage="15" command="archive_book"/>
+            </c:if>
+            <c:if test="${captionBook eq 'Current book'}">
+                <p:pagination currentPage="1" maxPage="15" command="current_book"/>
+            </c:if>
+            <c:if test="${captionBook eq 'Ordered book'}">
+                <p:pagination currentPage="1" maxPage="15" command="ordered_book"/>
+            </c:if>
+        </div>
+        </tbody>
     </section>
     <jsp:include page="../footer.jsp"/>
 </body>

@@ -19,10 +19,8 @@ import java.util.List;
 public class ShowAddOrEditBookCommand implements ActionCommand {
 
     private static final String SHOW_ADD_OR_EDIT_PERSON = "show_add_or_edit_book";
-    private static final String TYPE = "type";
-    private static final String EDIT = "edit";
     private static final String ID_BOOK = "idBook";
-    private static final String BOOK = "Books";
+    private static final String BOOK = "book";
     private static final String AUTHORS = "authors";
     private static final String PUBLISHERS = "publishers";
 
@@ -49,12 +47,11 @@ public class ShowAddOrEditBookCommand implements ActionCommand {
         PublisherService publisherService = new PublisherService();
         List publishers = publisherService.findAllPublisher();
 
-        String type = request.getParameter(TYPE);
+        String stringId = request.getParameter(ID_BOOK);
         HttpSession session = request.getSession();
 
-        if(type != null){
-            String stringId = request.getParameter(ID_BOOK);
-            int id = Integer.parseInt(stringId);
+        if(stringId != null){
+            Integer id = Integer.parseInt(stringId);
             BookService bookService = new BookService();
             Book book = bookService.findBookByID(id);
             session.setAttribute(BOOK, book);
