@@ -34,7 +34,7 @@
     </div>
 
     <div class="u12">
-        <c:if test="${not empty books}">
+        <c:if test="${not empty entities}">
         <table border="1" cellpadding="6">
             <thead>
             <tr>
@@ -46,7 +46,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="book" items="${books}">
+            <c:forEach var="book" items="${entities}">
                 <tr>
                     <td><c:out value="${book.author}"/></td>
                     <td><c:out value="${book.name}"/></td>

@@ -39,7 +39,7 @@
 
             <h3>Name of book</h3>
 
-            <input type="text" name="nameBook" value="<c:out value="${book.name}"/>"/>
+            <input type="text" name="nameBook" value="<c:out value="${book.name}"/>" required/>
 
             <h3>Publisher</h3>
 
@@ -52,7 +52,7 @@
             </select>
             <h3>Amount</h3>
 
-            <input type="number" name="amount" value="<c:out value="${book.amount}"/>"/>
+            <input type="number" name="amount" value="<c:out value="${book.amount}"/>" required/>
             <br/>
             <input type="submit" value="Save">
 

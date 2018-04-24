@@ -42,6 +42,11 @@
         <res-ref-name>jdbc/library</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
     </resource-ref>
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>RandomStringGenerator</res-ref-name>
+        <res-type>org.apache.commons.text.RandomStringGenerator</res-type>
+    </resource-ref>
     <jsp-config>
         <taglib>
             <taglib-uri>pagination</taglib-uri>

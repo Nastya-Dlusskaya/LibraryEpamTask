@@ -26,6 +26,7 @@ D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\libra
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\util\builder\PublisherBuilder.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\util\ConfigurationManager.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\librarian\ReturnBookCommand.java
+D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\exception\IllegalTypeOfCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin\ShowAddAuthorCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\command\admin\ShowSearchPersonCommand.java
 D:\EPAM_training\mavenproject1\src\main\java\by\epam\library\model\entity\Order.java

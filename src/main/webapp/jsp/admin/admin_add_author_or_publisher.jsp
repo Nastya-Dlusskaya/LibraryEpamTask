@@ -32,16 +32,16 @@
 
         <c:if test="${title eq 'author'}">
             <h3>Last name of author</h3>
-            <input type="text" name="lastNameAuthor"/>
+            <input type="text" name="lastNameAuthor" required/>
 
             <h3>First name of author</h3>
 
-            <input type="text" name="firstNameAuthor"/>
+            <input type="text" name="firstNameAuthor" required/>
 
         </c:if>
         <c:if test="${title eq 'publisher'}">
             <h3>Name of publisher</h3>
-            <input type="text" name="namePublisher"/>
+            <input type="text" name="namePublisher" required/>
         </c:if>
         <br/>
         <input type="submit" value="Add">

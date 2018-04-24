@@ -24,11 +24,11 @@
         <h3>
             Login
         </h3>
-        <input type="text" name="login" value="${user.login}" required="required"/>
+        <input type="text" name="login" value="${user.login}" required/>
         <h3>
             Password
         </h3>
-        <input type="text" name="password" value="${user.password}" required="required"/>
+        <input type="text" name="password" value="${user.password}" required/>
         <br/>
         <input type="submit" value="Save"/>
     </form>

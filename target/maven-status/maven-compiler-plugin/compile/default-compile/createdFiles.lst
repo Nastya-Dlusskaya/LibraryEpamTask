@@ -3,6 +3,7 @@ by\epam\library\model\command\reader\ShowOrderedBookCommand.class
 by\epam\library\model\entity\Order.class
 by\epam\library\model\command\common\LogoutCommand.class
 by\epam\library\model\command\util\MessageManager.class
+by\epam\library\dao\OrderDAO$1.class
 by\epam\library\model\command\reader\OrderBookCommand.class
 by\epam\library\dao\PublisherDAO.class
 by\epam\library\model\command\admin\AddPublisherCommand.class
@@ -17,6 +18,7 @@ by\epam\library\model\command\reader\CurrentBookCommand.class
 by\epam\library\model\command\common\LoginCommand.class
 by\epam\library\model\command\admin\ShowSearchBookCommand.class
 by\epam\library\dao\BookDAO.class
+by\epam\library\model\exception\IllegalTypeOfCommand.class
 by\epam\library\util\LoginAndPasswordGenerator.class
 by\epam\library\tag\Pagination.class
 by\epam\library\util\builder\AuthorBuilder.class

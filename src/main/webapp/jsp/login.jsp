@@ -21,18 +21,17 @@
                     <h3>
                         User name
                     </h3>
-                    <input type="text" name="login" value="" required="required"/>
+                    <input type="text" name="login" value="" required/>
                     <h3>
                         Password
                     </h3>
-                    <input type="password" name="password" value="" required="required"/>
+                    <input type="password" name="password" value="" required/>
                     <div class="error-login">
                         ${wrongAction}
                         ${nullPage}
                     </div>
                     <input type="submit" value="Log in"/>
                 </form>
-
             </section>
         </div>
     </div>
