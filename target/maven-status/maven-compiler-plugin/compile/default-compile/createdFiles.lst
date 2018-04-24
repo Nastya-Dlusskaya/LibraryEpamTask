@@ -60,11 +60,13 @@ by\epam\library\services\BookService.class
 by\epam\library\model\command\admin\EditPersonCommand.class
 by\epam\library\model\entity\Book.class
 by\epam\library\model\exception\CommandException.class
+by\epam\library\model\command\reader\ChangeLoginAndPasswordCommand.class
 by\epam\library\controller\Controller.class
 by\epam\library\filter\EncodingFilter.class
 by\epam\library\model\entity\Author.class
 by\epam\library\dao\PersonDAO.class
 by\epam\library\model\command\common\ActionCommand.class
+by\epam\library\model\command\reader\ShowChangeLoginAndPasswordCommand.class
 by\epam\library\model\command\librarian\ShowPageReturnBookCommand.class
 by\epam\library\model\command\reader\ReaderCommand.class
 by\epam\library\model\entity\TypePerson.class

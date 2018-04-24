@@ -14,6 +14,7 @@ public abstract class AbstractDAO<T> implements DAO {
     private static final String DELETE_QUERY = "DELETE FROM ? WHERE id=?";
     private static final String INSERT_QUERY = "INSERT INTO ? (?) VALUES (?)";
     private static final String FIND_ALL_QUERY = "SELECT * FROM ?";
+    public static final String COUNT = "COUNT(*)";
 
     protected Connection connection;
 
@@ -55,6 +56,26 @@ public abstract class AbstractDAO<T> implements DAO {
             }
 
             return entities;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    public int executeScalar(String query, Object... parameters) throws DAOException {
+        try (PreparedStatement statement = connection.prepareStatement(query)){
+
+            if(parameters.length > 0){
+                insertData(statement, parameters);
+            }
+
+            ResultSet resultSet = statement.executeQuery();
+
+            int amount = 0;
+            if(resultSet.next()){
+                amount = resultSet.getInt(COUNT);
+            }
+
+            return amount;
         } catch (SQLException e) {
             throw new DAOException(e);
         }

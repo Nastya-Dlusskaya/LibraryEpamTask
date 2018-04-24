@@ -9,19 +9,19 @@
 <nav class="topnav">
     <ul>
         <li>
-            <a href="/controller?command=archive_book">
+            <a href="/controller?command=archive_book&page=1">
                 Reader archive
             </a>
         </li>
 
         <li>
-            <a href="/controller?command=current_book">
+            <a href="/controller?command=current_book&page=1">
                 Current book
             </a>
         </li>
 
         <li>
-            <a href="/controller?command=ordered_book">
+            <a href="/controller?command=ordered_book&page=1">
                 Ordering book
             </a>
         </li>

@@ -1,14 +1,13 @@
 package by.epam.library.util.builder;
 
-import by.epam.library.model.entity.Order;
-import by.epam.library.model.entity.TypePlace;
 import by.epam.library.model.entity.Book;
+import by.epam.library.model.entity.Order;
 import by.epam.library.model.entity.Person;
+import by.epam.library.model.entity.TypePlace;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class OrderBuilder implements Builder {
 

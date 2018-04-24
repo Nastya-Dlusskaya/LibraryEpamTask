@@ -9,13 +9,13 @@
 <nav class="topnav">
     <ul>
         <li>
-            <a href="/?command=librarian">
+            <a href="/?command=librarian&page=1">
                 Hand out book
             </a>
         </li>
 
         <li>
-            <a href="/?command=show_page_return_book">
+            <a href="/?command=show_page_return_book&page=1">
                 Accept book
             </a>
         </li>

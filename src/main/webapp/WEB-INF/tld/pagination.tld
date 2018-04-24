@@ -8,7 +8,6 @@
     <tlib-version>1.0</tlib-version>
     <short-name>pagination</short-name>
 
-
     <tag>
         <name>pagination</name>
         <tag-class>by.epam.library.tag.Pagination</tag-class>
@@ -26,6 +25,11 @@
         <attribute>
             <name>command</name>
             <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>userId</name>
+            <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>

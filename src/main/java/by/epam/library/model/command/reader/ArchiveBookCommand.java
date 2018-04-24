@@ -1,6 +1,7 @@
 package by.epam.library.model.command.reader;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.common.CommandEnum;
 import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Person;
 import by.epam.library.model.exception.CommandException;
@@ -22,6 +23,8 @@ public class ArchiveBookCommand implements ActionCommand {
     private static final String ARCHIVE = "Archive";
     private static final String CAPTION_BOOK = "captionBook";
     private static final String ORDERS = "orders";
+    private static final String CURRENT_PAGE = "currentPage";
+    private static final String MAX_PAGE = "maxPage";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
@@ -32,11 +35,19 @@ public class ArchiveBookCommand implements ActionCommand {
         Person person = (Person) currentSession.getAttribute(USER);
         int id = person.getId( );
 
+        String stringPage = request.getParameter("page");
+        int pageIndex = Integer.parseInt(stringPage);
+
         OrderService orderService = new OrderService( );
-        List orders = orderService.findUserArchive(id);
+        List orders = orderService.findUserArchive(id, pageIndex);
 
         currentSession.setAttribute(CAPTION_BOOK, ARCHIVE);
         currentSession.setAttribute(ORDERS, orders);
+
+        int maxPage = orderService.getCountPage(CommandEnum.ARCHIVE_BOOK, id);
+        currentSession.setAttribute(CURRENT_PAGE, pageIndex);
+        currentSession.setAttribute(MAX_PAGE, maxPage);
+
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         dispatcher.forward(request, response);

@@ -1,16 +1,10 @@
-/*
-	MegaCorp by TEMPLATED
-    templated.co @templatedco
-    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 /* Header */
 section {
     margin-left: 3em;
     margin-right: 3em;
     position: relative;
     height: auto;
-    min-height: calc(80vh - 80px);
+    min-height: calc(100vh - 80px);
 }
 
 #header {

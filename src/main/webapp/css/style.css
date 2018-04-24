@@ -72,18 +72,21 @@ tr:nth-child(even){
 
 .pagination {
     display: inline-block;
+    align-content: center;
 }
 
 .pagination a {
-    color: black;
+    color: #f2f2f2;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    font-size: 0.9em;
 }
 
 .pagination a.active {
     background-color: #2B8FC4;
     color: white;
+
 }
 
 /* Header */

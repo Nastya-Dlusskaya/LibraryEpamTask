@@ -54,6 +54,7 @@ public class LoginCommand implements ActionCommand {
             ActionFactory actionFactory = new ActionFactory( );
             String role = typePerson.toString( );
             ActionCommand command = actionFactory.defineCommand(role);
+            request.setAttribute("page", 1);
             command.execute(request, response);
         } else {
             String message = MessageManager.getProperty("message.login.error");

@@ -18,9 +18,9 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <jsp:include page="../header.jsp"/>
-    <jsp:include page="reader_menu.jsp"/>
     <section>
+        <jsp:include page="../header.jsp"/>
+        <jsp:include page="reader_menu.jsp"/>
         <table border="1">
             <caption>${captionBook}</caption>
             <thead>
@@ -73,13 +73,13 @@
         </table>
         <div class="pagination">
             <c:if test="${captionBook eq 'Archive'}">
-                <p:pagination currentPage="1" maxPage="15" command="archive_book"/>
+                <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="archive_book"/>
             </c:if>
             <c:if test="${captionBook eq 'Current book'}">
-                <p:pagination currentPage="1" maxPage="15" command="current_book"/>
+                <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="current_book"/>
             </c:if>
             <c:if test="${captionBook eq 'Ordered book'}">
-                <p:pagination currentPage="1" maxPage="15" command="ordered_book"/>
+                <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="ordered_book"/>
             </c:if>
         </div>
         </tbody>

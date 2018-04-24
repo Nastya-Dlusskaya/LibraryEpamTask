@@ -1,6 +1,7 @@
 package by.epam.library.model.command.librarian;
 
 import by.epam.library.model.command.common.ActionCommand;
+import by.epam.library.model.command.common.CommandEnum;
 import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
@@ -10,25 +11,38 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 public class ShowPageReturnBookCommand implements ActionCommand {
 
-    public static final String CAPTION_BOOK = "captionBook";
-    public static final String RETURNED_BOOK = "Returned book";
-    public static final String ORDERS = "orders";
+    private static final String CAPTION_BOOK = "captionBook";
+    private static final String RETURNED_BOOK = "Returned book";
+    private static final String ORDERS = "orders";
+    private static final String CURRENT_PAGE = "currentPage";
+    private static final String MAX_PAGE = "maxPage";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory( );
         String page = pageFactory.createPage("librarian");
 
-        OrderService orderService = new OrderService( );
-        List orders = orderService.findReturnBook( );
+        String stringPage = request.getParameter("page");
+        int pageIndex = Integer.parseInt(stringPage);
 
-        request.getSession( ).setAttribute(CAPTION_BOOK, RETURNED_BOOK);
-        request.getSession( ).setAttribute(ORDERS, orders);
+        OrderService orderService = new OrderService( );
+        List orders = orderService.findReturnBook(pageIndex);
+
+        HttpSession currentSession = request.getSession( );
+
+        currentSession.setAttribute(CAPTION_BOOK, RETURNED_BOOK);
+        currentSession.setAttribute(ORDERS, orders);
+
+        int maxPage = orderService.getCountPage(CommandEnum.SHOW_PAGE_RETURN_BOOK);
+        currentSession.setAttribute(CURRENT_PAGE, pageIndex);
+        currentSession.setAttribute(MAX_PAGE, maxPage);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         dispatcher.forward(request, response);
     }
