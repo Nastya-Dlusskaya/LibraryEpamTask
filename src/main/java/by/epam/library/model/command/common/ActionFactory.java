@@ -81,6 +81,8 @@ public class ActionFactory {
                 return new ShowChangeLoginAndPasswordCommand();
             case CHANGE_LOGIN_AND_PASSWORD:
                 return new ChangeLoginAndPasswordCommand();
+            case CHANGE_LOCALE:
+                return new ChangeLanguageCommand();
             default:
                 return new EmptyCommand( );
         }

@@ -1,11 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-    <title>local.namePage.login</title>
+    <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/style-desktop.css" />
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/style-desktop.css"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <fmt:bundle basename="locale">
+        <fmt:message key="local.loginPage.loginHeader" var="formLogin"/>
+        <fmt:message key="local.loginPage.userName" var="userName"/>
+        <fmt:message key="local.loginPage.password" var="password"/>
+        <fmt:message key="local.loginPage.button" var="buttonName"/>
+    </fmt:bundle>
 </head>
 <body>
 <div class="wrapper">
@@ -14,23 +22,23 @@
         <div id="banner">
             <section class="12u">
                 <header>
-                    <h2>Login</h2>
+                    <h2>${formLogin}</h2>
                 </header>
                 <form name="LoginForm" method="post" action="/" class="form" onsubmit="return checkForm(this)">
                     <input type="hidden" name="command" value="login"/>
                     <h3>
-                        User name
+                        ${userName}
                     </h3>
-                    <input type="text" name="login" value="" />
+                    <input type="text" name="login" value=""/>
                     <h3>
-                        Password
+                        ${password}
                     </h3>
                     <input type="password" name="password" required/>
                     <div class="error-login">
                         ${wrongAction}
                         ${nullPage}
                     </div>
-                    <input type="submit" id = "loginButton" value="Log in" onclick=""/>
+                    <input type="submit" id="loginButton" value="${buttonName}" onclick=""/>
                 </form>
             </section>
         </div>

@@ -46,7 +46,7 @@ public class LoginCommand implements ActionCommand {
         PageFactory factory = new PageFactory( );
         page = factory.createPage(typePerson.toString( ));
 
-        HttpSession currentSession = request.getSession(false);
+        HttpSession currentSession = request.getSession(true);
 
         if (typePerson != TypePerson.UNKNOWN) {
             currentSession.setAttribute("user", currentUser);

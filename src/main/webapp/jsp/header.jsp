@@ -1,19 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 26.03.2018
-  Time: 0:20
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:bundle basename="locale">
+    <fmt:message key="local.header.libraryIcon" var="icon"/>
+</fmt:bundle>
 <div>
 
     <div id="header" class="container">
 
-        <div id="logo"><h1>Library</h1></div>
+        <div id="logo"><h1>${icon}</h1></div>
         <div id="user">
             <a class="${user != null ? "" : "hide"}" href="/?command=logout">
-                    ${user}
+                ${user}
             </a>
         </div>
     </div>
