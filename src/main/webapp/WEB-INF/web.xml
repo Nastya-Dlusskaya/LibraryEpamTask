@@ -37,6 +37,18 @@
         <filter-name>EncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>by.epam.library.filter.SecurityFilter</filter-class>
+        <init-param>
+            <param-name>MAIN_PAGE</param-name>
+            <param-value>/jsp/login.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
     <resource-ref>
         <description>DB Connection</description>
         <res-ref-name>jdbc/library</res-ref-name>

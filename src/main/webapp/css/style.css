@@ -220,6 +220,11 @@ header .byline {
     color: #FFF;
 }
 
+.form input[type="submit"]:disabled {
+    background: #686868;
+    color: #FFF;
+}
+
 .form ul{
     list-style: none;
     margin: 0;

@@ -8,8 +8,6 @@ import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.OrderService;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -52,9 +50,8 @@ public class LibrarianCommand implements ActionCommand {
         currentSession.setAttribute(CURRENT_PAGE, pageIndex);
         currentSession.setAttribute(MAX_PAGE, maxPage);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-        dispatcher.forward(request, response);
-        } catch (ServiceException|ServletException|IOException e) {
+        response.sendRedirect(page);
+        } catch (ServiceException|IOException e) {
             throw new CommandException(e);
         }
     }

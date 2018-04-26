@@ -6,12 +6,11 @@ import by.epam.library.model.command.common.ActionFactory;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 
-import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class Controller extends HttpServlet {
 
@@ -27,8 +26,7 @@ public class Controller extends HttpServlet {
     }
 
     /**
-     * m
-     * ethod of handling all requests
+     * method of handling all requests
      *
      * @param request
      * @param response

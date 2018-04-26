@@ -16,26 +16,27 @@
                 <header>
                     <h2>Login</h2>
                 </header>
-                <form name="LoginForm" method="post" action="/" class="form">
+                <form name="LoginForm" method="post" action="/" class="form" onsubmit="return checkForm(this)">
                     <input type="hidden" name="command" value="login"/>
                     <h3>
                         User name
                     </h3>
-                    <input type="text" name="login" value="" required/>
+                    <input type="text" name="login" value="" />
                     <h3>
                         Password
                     </h3>
-                    <input type="password" name="password" value="" required/>
+                    <input type="password" name="password" required/>
                     <div class="error-login">
                         ${wrongAction}
                         ${nullPage}
                     </div>
-                    <input type="submit" value="Log in"/>
+                    <input type="submit" id = "loginButton" value="Log in" onclick=""/>
                 </form>
             </section>
         </div>
     </div>
 </div>
 <jsp:include page="footer.jsp"/>
+<script src="../js/validationLoginForm.js"></script>
 </body>
 </html>
