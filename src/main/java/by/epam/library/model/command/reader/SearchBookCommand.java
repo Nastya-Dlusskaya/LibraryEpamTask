@@ -16,25 +16,34 @@ import java.io.IOException;
 import java.util.List;
 
 public class SearchBookCommand implements ActionCommand {
+    private static final String PAGE_JSP = "pageJSP";
+    private static final String USER = "user";
+    private static final String READER = "reader";
+    private static final String ADMIN_TABLE = "admin_table";
+    private static final String LAST_NAME = "last_name";
+    private static final String NAME_BOOK = "name_book";
+    private static final String MESSAGE_RESPONSE_EMPTY = "message.response.empty";
+    private static final String NO_DATE = "noDate";
+    private static final String ENTITIES = "entities";
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory( );
 
-        Person person = (Person) request.getSession().getAttribute("user");
+        Person person = (Person) request.getSession().getAttribute(USER);
         TypePerson typePerson = person.getRole();
 
         String page;
 
         if(typePerson == TypePerson.READER){
-            page = pageFactory.createPage("reader");
+            page = pageFactory.createPage(READER);
         } else{
-            page = pageFactory.createPage("admin_table");
+            page = pageFactory.createPage(ADMIN_TABLE);
         }
 
 
-        String lastNameAuthor = request.getParameter("last_name");
-        String nameBook = request.getParameter("name_book");
+        String lastNameAuthor = request.getParameter(LAST_NAME);
+        String nameBook = request.getParameter(NAME_BOOK);
 
         List catalog = null;
         BookService bookService = new BookService( );
@@ -49,11 +58,12 @@ public class SearchBookCommand implements ActionCommand {
         }
 
         if (catalog == null) {
-            String message = MessageManager.getProperty("message.response.empty");
-            request.setAttribute("noDate", message);
+            String message = MessageManager.getProperty(MESSAGE_RESPONSE_EMPTY);
+            request.setAttribute(NO_DATE, message);
         }
 
-        request.setAttribute("entities", catalog);
+        request.getSession().setAttribute(ENTITIES, catalog);
+        request.getSession().setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
     }
 }

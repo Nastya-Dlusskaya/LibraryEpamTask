@@ -16,6 +16,7 @@ public class AddPublisherCommand implements ActionCommand {
 
     private static final String NAME_PUBLISHER = "namePublisher";
     private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Adds publisher in database
@@ -39,6 +40,8 @@ public class AddPublisherCommand implements ActionCommand {
 
         PublisherService publisherService = new PublisherService();
         publisherService.addPublisher(publisher);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

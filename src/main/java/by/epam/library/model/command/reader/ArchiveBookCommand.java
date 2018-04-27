@@ -24,6 +24,9 @@ public class ArchiveBookCommand implements ActionCommand {
     private static final String ORDERS = "orders";
     private static final String CURRENT_PAGE = "currentPage";
     private static final String MAX_PAGE = "maxPage";
+    private static final String PAGE = "page";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
@@ -34,7 +37,7 @@ public class ArchiveBookCommand implements ActionCommand {
         Person person = (Person) currentSession.getAttribute(USER);
         int id = person.getId( );
 
-        String stringPage = request.getParameter("page");
+        String stringPage = request.getParameter(PAGE);
         int pageIndex = Integer.parseInt(stringPage);
 
         OrderService orderService = new OrderService( );
@@ -46,6 +49,7 @@ public class ArchiveBookCommand implements ActionCommand {
         int maxPage = orderService.getCountPage(CommandEnum.ARCHIVE_BOOK, id);
         currentSession.setAttribute(CURRENT_PAGE, pageIndex);
         currentSession.setAttribute(MAX_PAGE, maxPage);
+        currentSession.setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

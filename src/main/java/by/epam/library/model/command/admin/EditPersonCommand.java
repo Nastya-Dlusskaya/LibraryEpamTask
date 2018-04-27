@@ -16,6 +16,12 @@ import java.io.IOException;
 public class EditPersonCommand implements ActionCommand {
 
     private static final String SHOW_ADD_OR_EDIT_PERSON = "admin";
+    private static final String PAGE_JSP = "pageJSP";
+    private static final String PERSON = "person";
+    private static final String LAST_NAME = "lastName";
+    private static final String FIRST_NAME = "firstName";
+    private static final String SELECTOR = "selector";
+
 
     /**
      * Edits person in database
@@ -31,20 +37,22 @@ public class EditPersonCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
         String page = pageFactory.createPage(SHOW_ADD_OR_EDIT_PERSON);
-        Person person = (Person)request.getSession().getAttribute("person");
+        Person person = (Person)request.getSession().getAttribute(PERSON);
 
-        String lastName = request.getParameter("lastName");
+        String lastName = request.getParameter(LAST_NAME);
         person.setLastName(lastName);
 
-        String firstName = request.getParameter("firstName");
+        String firstName = request.getParameter(FIRST_NAME);
         person.setFirstName(firstName);
 
-        String stringTypePerson=request.getParameter("selector");
+        String stringTypePerson=request.getParameter(SELECTOR);
         TypePerson typePerson = TypePerson.getCommandEnum(stringTypePerson);
         person.setRole(typePerson);
 
         PersonService personService = new PersonService();
         personService.savePerson(person);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

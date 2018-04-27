@@ -23,6 +23,7 @@ public class ShowAddOrEditBookCommand implements ActionCommand {
     private static final String BOOK = "book";
     private static final String AUTHORS = "authors";
     private static final String PUBLISHERS = "publishers";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Inspire of type of action, load page in response. If action is create, fields in page will empty, else fields
@@ -59,6 +60,7 @@ public class ShowAddOrEditBookCommand implements ActionCommand {
 
         session.setAttribute(AUTHORS, authors);
         session.setAttribute(PUBLISHERS, publishers);
+        session.setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
     }
 }

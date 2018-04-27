@@ -19,6 +19,7 @@ public class ShowSearchBookCommand implements ActionCommand {
     private static final String BOOKS = "Books";
     private static final String CAPTION = "caption";
     private static final String ENTITIES = "entities";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Load all book in page and load it in response
@@ -41,6 +42,7 @@ public class ShowSearchBookCommand implements ActionCommand {
         HttpSession currentSession = request.getSession( );
         currentSession.setAttribute(CAPTION, BOOKS);
         currentSession.setAttribute(ENTITIES, persons);
+        currentSession.setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
     }
 }

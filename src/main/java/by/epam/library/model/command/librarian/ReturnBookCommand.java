@@ -18,6 +18,8 @@ import java.util.Date;
 
 public class ReturnBookCommand implements ActionCommand {
     private static final String ID = "id";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {

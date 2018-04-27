@@ -24,6 +24,7 @@ public class CurrentBookCommand implements ActionCommand {
     private static final String ORDERS = "orders";
     private static final String CURRENT_PAGE = "currentPage";
     private static final String MAX_PAGE = "maxPage";
+    private static final String PAGE_JSP = "pageJSP";
 
 
     @Override
@@ -47,6 +48,7 @@ public class CurrentBookCommand implements ActionCommand {
         int maxPage = orderService.getCountPage(CommandEnum.CURRENT_BOOK, id);
         currentSession.setAttribute(CURRENT_PAGE, pageIndex);
         currentSession.setAttribute(MAX_PAGE, maxPage);
+        currentSession.setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

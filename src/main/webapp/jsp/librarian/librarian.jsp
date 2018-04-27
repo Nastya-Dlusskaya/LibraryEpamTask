@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="pagination" prefix="p"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
     <title>Librarian</title>
@@ -9,6 +11,21 @@
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/css/style-desktop.css" type="text/css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+    <fmt:bundle basename="locale">
+        <fmt:message key="local.librarian.table.header.reader" var="reader"/>
+        <fmt:message key="local.librarian.table.header.book" var="book"/>
+        <fmt:message key="local.librarian.table.header.orderDate" var="orderDate"/>
+        <fmt:message key="local.librarian.table.header.plannedHandOutDate" var="plannedHandOutDate"/>
+        <fmt:message key="local.librarian.table.header.status" var="status"/>
+        <fmt:message key="local.librarian.table.header.place" var="place"/>
+        <fmt:message key="local.librarian.table.header.plannedReturnDate" var="plannedReturnDate"/>
+        <fmt:message key="local.librarian.table.header.takeBook" var="takeBook"/>
+        <fmt:message key="local.librarian.table.postpone" var="postpone"/>
+        <fmt:message key="local.librarian.table.hall" var="hall"/>
+        <fmt:message key="local.librarian.table.home" var="home"/>
+        <fmt:message key="local.librarian.table.cancel" var="cancel"/>
+        <fmt:message key="local.librarian.table.takeBook" var="takeBookLink"/>
+    </fmt:bundle>
 </head>
 <body>
 
@@ -22,17 +39,17 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Reader</th>
-                <th>Book</th>
+                <th>${reader}</th>
+                <th>${book}</th>
                 <c:if test="${captionBook eq 'Ordered book'}">
-                    <th>Order Date</th>
-                    <th>Planned hand out date</th>
-                    <th>Action</th>
+                    <th>${orderDate}</th>
+                    <th>${plannedHandOutDate}</th>
+                    <th>${status}</th>
                 </c:if>
                 <c:if test="${captionBook eq 'Returned book'}">
-                    <th>Place</th>
-                    <th>Planned return date</th>
-                    <th>Take book</th>
+                    <th>${place}</th>
+                    <th>${plannedReturnDate}</th>
+                    <th>${takeBook}</th>
                 </c:if>
             </tr>
             </thead>
@@ -48,12 +65,12 @@
                         <th>
                             <c:choose>
                                 <c:when test="${order.plannedHandOutDate == null}">
-                                    <a href="?command=postpone&id=<c:out value="${order.id}"/>">Put Aside</a>
+                                    <a href="?command=postpone&id=<c:out value="${order.id}"/>">${postpone}</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&type=hall">Hall</a>
-                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&type=home">Home</a>
-                                    <a href="?command=cancel_order&id=<c:out value="${order.id}"/>">Cancel</a>
+                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&type=hall">${hall}</a>
+                                    <a href="?command=hand&id=<c:out value="${order.id}"/>&type=home">${home}</a>
+                                    <a href="?command=cancel_order&id=<c:out value="${order.id}"/>">${cancel}</a>
                                 </c:otherwise>
                             </c:choose>
                         </th>
@@ -62,8 +79,7 @@
                         <td><c:out value="${order.place}"/></td>
                         <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedReturnDate}"/></th>
                         <th>
-                            <a href="?command=return_book&id=<c:out value="${order.id}"/>">Take
-                                book</a>
+                            <a href="?command=return_book&id=<c:out value="${order.id}"/>">${takeBookLink}</a>
                         </th>
                     </c:if>
                 </tr>

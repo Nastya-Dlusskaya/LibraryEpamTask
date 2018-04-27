@@ -21,6 +21,8 @@ public class ShowPageReturnBookCommand implements ActionCommand {
     private static final String ORDERS = "orders";
     private static final String CURRENT_PAGE = "currentPage";
     private static final String MAX_PAGE = "maxPage";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
@@ -38,9 +40,11 @@ public class ShowPageReturnBookCommand implements ActionCommand {
         currentSession.setAttribute(CAPTION_BOOK, RETURNED_BOOK);
         currentSession.setAttribute(ORDERS, orders);
 
+
         int maxPage = orderService.getCountPage(CommandEnum.SHOW_PAGE_RETURN_BOOK);
         currentSession.setAttribute(CURRENT_PAGE, pageIndex);
         currentSession.setAttribute(MAX_PAGE, maxPage);
+        currentSession.setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

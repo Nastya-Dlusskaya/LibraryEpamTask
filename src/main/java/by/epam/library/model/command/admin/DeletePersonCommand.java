@@ -15,6 +15,7 @@ import java.io.IOException;
 public class DeletePersonCommand implements ActionCommand {
 
     private static final String ID_PERSON = "idPerson";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Deletes person from database
@@ -40,6 +41,8 @@ public class DeletePersonCommand implements ActionCommand {
         person.setDeleted(true);
 
         personService.savePerson(person);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

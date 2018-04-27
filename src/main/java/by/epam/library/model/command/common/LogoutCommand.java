@@ -10,10 +10,12 @@ import java.io.IOException;
 
 public class LogoutCommand implements ActionCommand {
 
+    private static final String EMPTY = "empty";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, IOException {
         PageFactory pageFactory = new PageFactory( );
-        String page = pageFactory.createPage("empty");
+        String page = pageFactory.createPage(EMPTY);
         HttpSession currnetSession = request.getSession();
         currnetSession.invalidate( );
         response.sendRedirect(page);

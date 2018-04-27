@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/style-desktop.css"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css"/>
-
     <fmt:bundle basename="locale">
         <fmt:message key="local.loginPage.loginHeader" var="formLogin"/>
         <fmt:message key="local.loginPage.userName" var="userName"/>
@@ -34,17 +33,16 @@
                         ${password}
                     </h3>
                     <input type="password" name="password" required/>
-                    <div class="error-login">
+                    <div class="error">
                         ${wrongAction}
                         ${nullPage}
                     </div>
-                    <input type="submit" id="loginButton" value="${buttonName}" onclick=""/>
+                    <input type="submit" id="loginButton" value="${buttonName}"/>
                 </form>
             </section>
         </div>
     </div>
 </div>
 <jsp:include page="footer.jsp"/>
-<script src="../js/validationLoginForm.js"></script>
 </body>
 </html>

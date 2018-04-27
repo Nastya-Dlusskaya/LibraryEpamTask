@@ -1,11 +1,9 @@
 package by.epam.library.model.command.librarian;
 
 import by.epam.library.model.command.common.ActionCommand;
-import by.epam.library.model.command.util.PageFactory;
 import by.epam.library.model.entity.Order;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
-import by.epam.library.services.BookService;
 import by.epam.library.services.OrderService;
 import by.epam.library.util.CalenderCalculator;
 
@@ -18,6 +16,8 @@ import java.util.Date;
 
 public class PostponeBookCommand implements ActionCommand {
     private static final String ID = "id";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException,

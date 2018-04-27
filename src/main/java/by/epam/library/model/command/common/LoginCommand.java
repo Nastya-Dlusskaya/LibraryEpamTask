@@ -18,6 +18,12 @@ public class LoginCommand implements ActionCommand {
 
     private static final String PARAMETER_LOGIN = "login";
     private static final String PARAMETER_PASSWORD = "password";
+    private static final String PAGE = "page";
+    private static final int NUMBER_PAGE = 1;
+    private static final String USER = "user";
+    private static final String MESSAGE_LOGIN_ERROR = "message.login.error";
+    private static final String WRONG_ACTION = "wrongAction";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Send request and get type of user
@@ -27,8 +33,6 @@ public class LoginCommand implements ActionCommand {
      * @throws CommandException
      */
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServletException, IOException, ServiceException {
-        String page = null;
-
         String login = request.getParameter(PARAMETER_LOGIN);
         String password = request.getParameter(PARAMETER_PASSWORD);
 
@@ -44,21 +48,22 @@ public class LoginCommand implements ActionCommand {
         }
 
         PageFactory factory = new PageFactory( );
-        page = factory.createPage(typePerson.toString( ));
+        String page = factory.createPage(typePerson.toString( ));
 
         HttpSession currentSession = request.getSession(true);
 
         if (typePerson != TypePerson.UNKNOWN) {
-            currentSession.setAttribute("user", currentUser);
+            currentSession.setAttribute(USER, currentUser);
 
             ActionFactory actionFactory = new ActionFactory( );
             String role = typePerson.toString( );
             ActionCommand command = actionFactory.defineCommand(role);
-            request.setAttribute("page", 1);
+            request.setAttribute(PAGE, NUMBER_PAGE);
             command.execute(request, response);
         } else {
-            String message = MessageManager.getProperty("message.login.error");
-            currentSession.setAttribute("wrongAction", message);
+            String message = MessageManager.getProperty(MESSAGE_LOGIN_ERROR);
+            currentSession.setAttribute(PAGE_JSP,page);
+            currentSession.setAttribute(WRONG_ACTION, message);
             response.sendRedirect(page);
         }
 

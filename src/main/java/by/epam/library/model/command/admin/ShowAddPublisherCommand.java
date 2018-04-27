@@ -19,6 +19,7 @@ public class ShowAddPublisherCommand implements ActionCommand {
     private static final String PUBLISHER = "publisher";
     private static final String TITLE = "title";
     private static final String ENTITIES = "entities";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Add list of publisher in page and loads it in response
@@ -41,6 +42,7 @@ public class ShowAddPublisherCommand implements ActionCommand {
         HttpSession currentSession = request.getSession( );
         currentSession.setAttribute(TITLE, PUBLISHER);
         currentSession.setAttribute(ENTITIES, publishers);
+        currentSession.setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
     }
 }

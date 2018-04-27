@@ -27,6 +27,8 @@ public class OrderBookCommand implements ActionCommand {
     private static final String MESSAGE_BOOK_ORDER = "message.book.order";
     private static final String STRING = "bookOrder";
     private static final String READER = "reader";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
@@ -58,6 +60,7 @@ public class OrderBookCommand implements ActionCommand {
         String message = MessageManager.getProperty(MESSAGE_BOOK_ORDER);
         HttpSession session = request.getSession( );
         session.setAttribute(STRING, message);
+        session.setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

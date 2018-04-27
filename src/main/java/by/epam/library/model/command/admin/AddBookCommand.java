@@ -17,6 +17,11 @@ import java.io.IOException;
 public class AddBookCommand implements ActionCommand {
 
     private static final String SHOW_ADD_OR_EDIT_BOOK = "show_add_or_edit_book";
+    private static final String LIST_AUTHOR = "listAuthor";
+    private static final String NAME_BOOK = "nameBook";
+    private static final String LIST_PUBLISHERS = "listPublishers";
+    private static final String AMOUNT = "amount";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Adds book in database
@@ -35,27 +40,29 @@ public class AddBookCommand implements ActionCommand {
 
         Book book = new Book();
 
-        String stringIdAuthor = request.getParameter("listAuthor");
+        String stringIdAuthor = request.getParameter(LIST_AUTHOR);
         int idAuthor = Integer.parseInt(stringIdAuthor);
         Author author = new Author();
         author.setId(idAuthor);
         book.setAuthor(author);
 
-        String name = request.getParameter("nameBook");
+        String name = request.getParameter(NAME_BOOK);
         book.setName(name);
 
-        String stringIdPublisher = request.getParameter("listPublishers");
+        String stringIdPublisher = request.getParameter(LIST_PUBLISHERS);
         int idPublisher = Integer.parseInt(stringIdPublisher);
         Publisher publisher = new Publisher();
         publisher.setId(idPublisher);
         book.setPublisher(publisher);
 
-        String stringAmount = request.getParameter("amount");
+        String stringAmount = request.getParameter(AMOUNT);
         int amount = Integer.parseInt(stringAmount);
         book.setAmount(amount);
 
         BookService bookService = new BookService();
         bookService.addBook(book);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }

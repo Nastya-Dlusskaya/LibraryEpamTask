@@ -103,7 +103,6 @@ tr:nth-child(even){
 
 #wrapper{
     padding: 5em 0em 3em 0em;
-    min-height: calc(60vh - 80px);
 }
 
 #header-wrapper {
@@ -167,16 +166,14 @@ header .byline {
     margin-top: 1em;
 }
 
-.error-login{
+form .error{
     font-size: 1.2em;
     font-family: 'Open Sans', sans-serif;
     color: #f7cec1;
+    display: block;
 }
 
 /* Input form */
-.form{
-
-}
 
 .form h3{
     text-transform: uppercase;

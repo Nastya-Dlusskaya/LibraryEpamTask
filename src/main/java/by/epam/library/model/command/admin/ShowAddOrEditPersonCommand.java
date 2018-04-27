@@ -17,6 +17,11 @@ import java.io.IOException;
 public class ShowAddOrEditPersonCommand implements ActionCommand {
 
     private static final String SHOW_ADD_OR_EDIT_PERSON = "show_add_or_edit_person";
+    private static final String PAGE_JSP = "pageJSP";
+    private static final String ID_PERSON = "idPerson";
+    private static final String PERSON = "person";
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
 
     /**
      * Inspire of type of action, load page in response. If action is create, fields in page will empty, else fields
@@ -36,20 +41,21 @@ public class ShowAddOrEditPersonCommand implements ActionCommand {
         String page = pageFactory.createPage(SHOW_ADD_OR_EDIT_PERSON);
 
         HttpSession session = request.getSession();
-        String stringID = request.getParameter("idPerson");
+        String stringID = request.getParameter(ID_PERSON);
         if(stringID != null){
             int id = Integer.parseInt(stringID);
 
             PersonService personService = new PersonService();
             Person person = personService.findPersonByID(id);
 
-            session.setAttribute("person",person);
+            session.setAttribute(PERSON,person);
         } else{
             String generatedLogin = LoginAndPasswordGenerator.createRandomString(6, 10);
-            session.setAttribute("login", generatedLogin);
+            session.setAttribute(LOGIN, generatedLogin);
             String generatedPassword = LoginAndPasswordGenerator.createRandomString(6, 10);
-            session.setAttribute("password", generatedPassword);
+            session.setAttribute(PASSWORD, generatedPassword);
         }
+        session.setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
 
     }

@@ -23,6 +23,8 @@ public class ShowSearchPersonCommand implements ActionCommand {
     private static final String TITLE = "title";
     private static final String CAPTION = "caption";
     private static final String ENTITIES = "entities";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     /**
      * Inspie if type of person, load list of person in page and load it in response
@@ -57,6 +59,7 @@ public class ShowSearchPersonCommand implements ActionCommand {
         currentSession.setAttribute(TITLE, caption);
         currentSession.setAttribute(CAPTION, caption);
         currentSession.setAttribute(ENTITIES, persons);
+        currentSession.setAttribute(PAGE_JSP, page);
         response.sendRedirect(page);
     }
 }

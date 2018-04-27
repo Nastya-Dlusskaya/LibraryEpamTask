@@ -16,6 +16,7 @@ import java.util.List;
 public class ShowAddAuthorCommand implements ActionCommand {
 
     private static final String ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
+    private static final String PAGE_JSP = "pageJSP";
     private static final String AUTHOR = "author";
     private static final String TITLE = "title";
     private static final String ENTITIES = "entities";
@@ -40,6 +41,7 @@ public class ShowAddAuthorCommand implements ActionCommand {
         List author = authorService.findAllAuthor();
 
         HttpSession currentSession = request.getSession( );
+        currentSession.setAttribute(PAGE_JSP,page);
         currentSession.setAttribute(TITLE, AUTHOR);
         currentSession.setAttribute(ENTITIES, author);
         response.sendRedirect(page);

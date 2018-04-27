@@ -13,18 +13,32 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ChangeLoginAndPasswordCommand implements ActionCommand {
+
+    private static final String READER = "reader";
+    private static final String USER = "user";
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
+    private static final String PAGE_JSP = "pageJSP";
+
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException,
             ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
-        String page = pageFactory.createPage("reader");
-        Person user = (Person)request.getSession().getAttribute("user");
-        String newUserLogin = request.getParameter("login");
-        String newUserPassword = request.getParameter("password");
+        String page = pageFactory.createPage(READER);
+
+        Person user = (Person)request.getSession().getAttribute(USER);
+        String newUserLogin = request.getParameter(LOGIN);
+        String newUserPassword = request.getParameter(PASSWORD);
+
         user.setLogin(newUserLogin);
         user.setPassword(newUserPassword);
+
         PersonService personService = new PersonService();
         personService.savePerson(user);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
+
         response.sendRedirect(page);
     }
 }

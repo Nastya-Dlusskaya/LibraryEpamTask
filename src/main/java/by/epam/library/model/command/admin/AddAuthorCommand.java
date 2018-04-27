@@ -7,6 +7,7 @@ import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.AuthorService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ public class AddAuthorCommand implements ActionCommand {
     private static final String LAST_NAME_AUTHOR = "lastNameAuthor";
     private static final String FIRST_NAME_AUTHOR = "firstNameAuthor";
     private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Adds author in database
@@ -43,6 +45,9 @@ public class AddAuthorCommand implements ActionCommand {
         AuthorService authorService = new AuthorService();
         authorService.addAuthor(author);
 
-        response.sendRedirect(page);
+        request.getSession().setAttribute(PAGE_JSP,page);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+        dispatcher.forward(request, response);
     }
 }

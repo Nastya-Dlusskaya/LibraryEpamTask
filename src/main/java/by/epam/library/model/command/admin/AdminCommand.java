@@ -13,6 +13,7 @@ import java.io.IOException;
 public class AdminCommand implements ActionCommand {
 
     private static final String ADMIN = "admin";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Loads page in the response
@@ -28,7 +29,7 @@ public class AdminCommand implements ActionCommand {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory( );
         String page = pageFactory.createPage(ADMIN);
-
+        request.getSession().setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
     }
 }

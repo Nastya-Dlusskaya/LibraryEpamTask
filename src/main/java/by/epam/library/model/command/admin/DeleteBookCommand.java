@@ -6,7 +6,6 @@ import by.epam.library.model.entity.Book;
 import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.BookService;
-import by.epam.library.services.PersonService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,7 @@ public class DeleteBookCommand implements ActionCommand {
 
     private static final String ID_BOOK = "idBook";
     private static final String ADMIN_TABLE = "admin_table";
+    private static final String PAGE_JSP = "pageJSP";
 
     /**
      * Deletes book from database
@@ -40,6 +40,8 @@ public class DeleteBookCommand implements ActionCommand {
         Book book = bookService.findBookByID(idBook);
 
         book.setDeleted(true);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
 
         bookService.deletedBook(book);
         response.sendRedirect(page);

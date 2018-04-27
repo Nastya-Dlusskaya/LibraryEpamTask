@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ShowChangeLoginAndPasswordCommand implements ActionCommand {
+    private static final String PAGE_JSP = "pageJSP";
+
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException,
             ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
         String page = pageFactory.createPage("change_login_and_password");
+        request.getSession().setAttribute(PAGE_JSP,page);
         response.sendRedirect(page);
     }
 }

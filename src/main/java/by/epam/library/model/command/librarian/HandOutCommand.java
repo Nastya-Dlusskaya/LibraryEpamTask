@@ -19,6 +19,8 @@ public class HandOutCommand implements ActionCommand {
 
     private static final String TYPE = "type";
     private static final String ID = "id";
+    private static final String PAGE_JSP = "pageJSP";
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {

@@ -14,6 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AddPersonCommand implements ActionCommand {
+    private static final String PAGE_JSP = "pageJSP";
+    private static final String ADMIN_TABLE = "admin_table";
+    private static final String LAST_NAME = "lastName";
+    private static final String FIRST_NAME = "firstName";
+    private static final String SELECTOR = "selector";
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
+
     /**
      * Adds person in database
      *
@@ -27,28 +35,30 @@ public class AddPersonCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
-        String page = pageFactory.createPage("admin_table");
+        String page = pageFactory.createPage(ADMIN_TABLE);
 
         Person person = new Person();
 
-        String lastName = request.getParameter("lastName");
+        String lastName = request.getParameter(LAST_NAME);
         person.setLastName(lastName);
 
-        String firstName = request.getParameter("firstName");
+        String firstName = request.getParameter(FIRST_NAME);
         person.setFirstName(firstName);
 
-        String stringTypePerson=request.getParameter("selector");
+        String stringTypePerson=request.getParameter(SELECTOR);
         TypePerson typePerson = TypePerson.getCommandEnum(stringTypePerson);
         person.setRole(typePerson);
 
-        String login = request.getParameter("login");
+        String login = request.getParameter(LOGIN);
         person.setLogin(login);
 
-        String password = request.getParameter("password");
+        String password = request.getParameter(PASSWORD);
         person.setPassword(password);
 
         PersonService personService = new PersonService();
         personService.savePerson(person);
+
+        request.getSession().setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);
     }
