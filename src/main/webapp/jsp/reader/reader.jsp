@@ -13,6 +13,7 @@
         <fmt:message key="local.reader.header.search" var="search"/>
         <fmt:message key="local.reader.header.lastNameAuthor" var="lastNameAuthor"/>
         <fmt:message key="local.reader.header.nameBook" var="nameBook"/>
+        <fmt:message key="local.reader.button.searchButton" var="searchButton"/>
         <fmt:message key="local.reader.table.header.author" var="authorHeader"/>
         <fmt:message key="local.reader.table.header.nameBook" var="nameBookHeader"/>
         <fmt:message key="local.reader.table.header.publisher" var="publisherHeader"/>
@@ -26,17 +27,16 @@
     <jsp:include page="../header.jsp"/>
     <jsp:include page="reader_menu.jsp"/>
     <form name="search" method="post" action="/" class="form">
+        <input type="hidden" name="command" value="search_book"/>
         <h1>
             ${search}
         </h1>
-
         <h3>${lastNameAuthor}</h3>
         <input type="text" name="last_name" id="last_name"/>
-
         <h3>${nameBook}</h3>
         <input type="text" name="name_book" id="name_book"/>
-        <input type="hidden" name="command" value="search_book"/>
-        <input type="submit" name="search"/>
+        <br>
+        <input type="submit" value="${searchButton}"/>
     </form>
 
     <div class="error">

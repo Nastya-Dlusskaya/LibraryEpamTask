@@ -16,6 +16,11 @@
         <fmt:message key="local.adminAddOrEditBook.caption.publisher" var="publisher"/>
         <fmt:message key="local.adminAddOrEditBook.caption.amount" var="amount"/>
         <fmt:message key="local.adminAddOrEditBook.button" var="button"/>
+        <fmt:message key="local.error.required" var="nameBookRequired"/>
+        <fmt:message key="local.error.minLength.nameBook" var="nameBookMinLength"/>
+        <fmt:message key="local.error.maxLength.nameBook" var="nameBookMaxLength"/>
+        <fmt:message key="local.error.required" var="numberRequired"/>
+        <fmt:message key="local.error.minNumber" var="numberMinNumber"/>
     </fmt:bundle>
 </head>
 <body>
@@ -28,7 +33,7 @@
         <input type="hidden" name="idBook" value="${book.id}"/>
         </c:if>
         <c:if test="${book == null}">
-        <form action="addBookForm" method="post" action="/" class="form">
+        <form name="addBookForm" method="post" action="/" class="form">
             <input type="hidden" name="command" value="add_book"/>
             </c:if>
             <c:if test="${book != null}">
@@ -50,9 +55,9 @@
             <h3>${nameBook}</h3>
 
             <input type="text" name="nameBook" id="nameBook" value="<c:out value="${book.name}"/>"
-                   data-msg-nameBook-required="${amount}"
-                   data-msg-nameBook-minlength="${amount} ${amount}"
-                   data-msg-nameBook-maxlength="${amount} ${amount} ${amount}"/>
+                   data-msg-nameBook-required="${nameBookRequired}"
+                   data-msg-nameBook-minlength="${nameBookMinLength}"
+                   data-msg-nameBook-maxlength="${nameBookMaxLength}"/>
 
             <h3>${publisher}</h3>
 
@@ -66,11 +71,13 @@
             <h3>${amount}</h3>
 
             <input type="number" name="amount" id="amount" value="<c:out value="${book.amount}"/>"
-                   data-msg-amount-required="${amount}"
-                   data-msg-amount-number="${amount} ${amount}"/>
+                   data-msg-amount-required="${numberRequired}"
+                   data-msg-amount-min="${numberMinNumber}"/>
+            <input type="hidden" name="isDeleted" value="<c:out value="${book.isDeleted}"/>"/>
             <br/>
             <input type="submit" value="${button}">
-
+        </form>
+    </form>
 </section>
 <jsp:include page="../footer.jsp"/>
 <script src="/js/vendor/jquery-1.12.4.min.js"></script>

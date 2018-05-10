@@ -17,16 +17,25 @@
         <fmt:message key="local.adminAuthorOrPublisher.table.lastName" var="lastNameAuthorHeader"/>
         <fmt:message key="local.adminAuthorOrPublisher.table.firstName" var="firstNameAuthorHeader"/>
         <fmt:message key="local.adminAuthorOrPublisher.table.publisher" var="namePublisherHeader"/>
+        <fmt:message key="local.error.required" var="lastNameAuthorRequired"/>
+        <fmt:message key="local.error.required" var="firstNameAuthorRequired"/>
+        <fmt:message key="local.error.required" var="namePublisherRequired"/>
+        <fmt:message key="local.error.minLength.lastNameAuthor" var="lastNameAuthorMinLength"/>
+        <fmt:message key="local.error.minLength.firstNameAuthor" var="firstNameAuthorMinLength"/>
+        <fmt:message key="local.error.minLength.namePublisher" var="namePublisherMinLength"/>
+        <fmt:message key="local.error.maxLength.lastNameAuthor" var="lastNameAuthorMaxLength"/>
+        <fmt:message key="local.error.maxLength.firstNameAuthor" var="firstNameAuthorMaxLenght"/>
+        <fmt:message key="local.error.maxLength.namePublisher" var="namePublisherMaxLength"/>
     </fmt:bundle>
 </head>
 <body>
+<input type="hidden" name="typePage">
 <jsp:include page="../header.jsp"/>
 <jsp:include page="admin_menu.jsp"/>
 <section>
     <h1>
         ${add} ${title}
     </h1>
-
     <c:if test="${title eq 'author'}">
         <form name="addAuthor" method="post" action="/" class="form">
 
@@ -34,35 +43,32 @@
 
             <h3>${lastNameAuthor}</h3>
             <input type="text" name="lastNameAuthor" id="lastNameAuthor"
-                   data-msg-lastName-required="${loginCaption}"
-                   data-msg-lastName-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-lastName-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
+                   data-msg-lastName-required="${lastNameAuthorRequired}"
+                   data-msg-lastName-minlength="${lastNameAuthorMinLength}"
+                   data-msg-lastName-maxlength="${lastNameAuthorMaxLength}"/>
 
             <h3>${firstNameAuthor}</h3>
             <input type="text" name="firstNameAuthor" id="firstNameAuthor"
-                   data-msg-firstName-required="${loginCaption}"
-                   data-msg-firstName-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-firstName-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
+                   data-msg-firstName-required="${firstNameAuthorRequired}"
+                   data-msg-firstName-minlength="${firstNameAuthorMinLength}"
+                   data-msg-firstName-maxlength="${firstNameAuthorMaxLenght}"/>
             <br/>
             <input type="submit" value="${addButton}">
         </form>
     </c:if>
-
     <c:if test="${title eq 'publisher'}">
         <form name="addPublisher" method="post" action="/" class="form">
 
             <input type="hidden" name="command" value="add_publisher"/>
             <h3>${namePublisher}</h3>
             <input type="text" name="namePublisher" id="namePublisher"
-                   data-msg-namePublisher-required="${loginCaption}"
-                   data-msg-namePublisher-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-namePublisher-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
+                   data-msg-namePublisher-required="${namePublisherRequired}"
+                   data-msg-namePublisher-minlength="${namePublisherMinLength}"
+                   data-msg-namePublisher-maxlength="${namePublisherMaxLength}"/>
             <br/>
             <input type="submit" value="${addButton}">
         </form>
     </c:if>
-
-
     <div align="center">
         <table border="1">
             <thead>
@@ -91,9 +97,7 @@
             </tbody>
         </table>
     </div>
-
 </section>
-
 <jsp:include page="../footer.jsp"/>
 <script src="/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="/js/vendor/jquery.validate.min.js"></script>

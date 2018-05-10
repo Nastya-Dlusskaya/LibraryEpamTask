@@ -7,7 +7,8 @@ $(function () {
             lastName: {
                 required: true,
                 minlength: 2,
-                maxlength: 25
+                maxlength: 25,
+                pattern: /[A-Za-z]/
             },
             firstName: {
                 required: true,
@@ -29,7 +30,8 @@ $(function () {
             lastName: {
                 required: getMsg('#lastName', 'data-msg-lastName-required'),
                 minlength: getMsg('#lastName', 'data-msg-lastName-minlength'),
-                maxlength: getMsg('#lastName', 'data-msg-lastName-maxlength')
+                maxlength: getMsg('#lastName', 'data-msg-lastName-maxlength'),
+                pattern: getMsg('#lastName', 'data-msg-lastName-pattern')
             },
             firstName: {
                 required: getMsg('#firstName', 'data-msg-firstName-required'),

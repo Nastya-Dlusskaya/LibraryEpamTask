@@ -14,10 +14,10 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="wrapper">
+<section>
     <jsp:include page="../header.jsp"/>
     <jsp:include page="admin_menu.jsp"/>
-</div>
+</>
 
     <jsp:include page="../footer.jsp"/>
 </body>

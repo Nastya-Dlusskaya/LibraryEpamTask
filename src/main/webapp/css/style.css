@@ -204,10 +204,6 @@ form .error{
     font-size: 0.9em;
     font-weight: 300;
     color: #FFF !important;
-    -moz-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
-    -webkit-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
-    -o-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
-    -ms-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
     transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
     text-align: center;
 }
@@ -246,7 +242,7 @@ form .error{
 
 .form ul li label{
     display: block;
-    position: relative;
+    position: absolute;
     font-weight: 300;
     font-size: 1.5em;
     margin: 10px auto;

@@ -64,6 +64,10 @@ public class EditBookCommand implements ActionCommand {
         int amount = Integer.parseInt(stringAmount);
         book.setAmount(amount);
 
+        String stringIsDeleted = request.getParameter("isDeleted");
+        Boolean isDeleted = Boolean.valueOf(stringIsDeleted);
+        book.setDeleted(isDeleted);
+
         BookService bookService = new BookService();
         bookService.addBook(book);
 

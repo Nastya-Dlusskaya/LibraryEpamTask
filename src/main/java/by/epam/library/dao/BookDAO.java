@@ -1,6 +1,5 @@
 package by.epam.library.dao;
 
-import by.epam.library.model.entity.Author;
 import by.epam.library.model.entity.Book;
 import by.epam.library.model.exception.DAOException;
 import by.epam.library.util.builder.BookBuilder;
@@ -37,11 +36,11 @@ public class BookDAO extends AbstractDAO {
             "JOIN publisher ON publisher.id_publisher = book.id_publisher\n" +
             "WHERE book.name_book = ? AND author.last_name_author = ? AND is_deleted=0";
 
-    private static final String INSERT_QUERY = "INSERT INTO library.book(id_author, name_book, id_publisher, amount)" +
-            " VALUES(?, ?, ?, ?)";
+    private static final String INSERT_QUERY = "INSERT INTO library.book(id_author, name_book, id_publisher, amount, is_deleted)" +
+            " VALUES(?, ?, ?, ?, ?)";
 
     private static final String UPDATE_QUERY = "UPDATE library.book SET id_author=?, name_book=?, id_publisher=?, " +
-            "amount=? WHERE id_book=?";
+            "amount=?, is_deleted=? WHERE id_book=?";
 
     public BookDAO(Connection connection) {
         super(connection);
@@ -64,10 +63,10 @@ public class BookDAO extends AbstractDAO {
         Integer id = book.getId();
         if(id == null){
             change(INSERT_QUERY, book.getAuthor().getId(), book.getName(), book.getPublisher().getId(),
-                    book.getAmount()) ;
+                    book.getAmount(), book.getDeleted()) ;
         } else{
             change(UPDATE_QUERY, book.getAuthor().getId(), book.getName(), book.getPublisher().getId(),
-                    book.getAmount(), book.getId());
+                    book.getAmount(), book.getDeleted(), book.getId());
         }
     }
 

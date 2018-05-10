@@ -23,7 +23,7 @@
                 <header>
                     <h2>${formLogin}</h2>
                 </header>
-                <form name="LoginForm" method="post" action="/" class="form" onsubmit="return checkForm(this)">
+                <form name="LoginForm" method="post" action="/" class="form">
                     <input type="hidden" name="command" value="login"/>
                     <h3>
                         ${userName}

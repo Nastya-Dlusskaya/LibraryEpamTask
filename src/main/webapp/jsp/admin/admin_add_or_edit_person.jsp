@@ -18,6 +18,15 @@
         <fmt:message key="local.adminAddOrEditPerson.caption.role.reader" var="reader"/>
         <fmt:message key="local.adminAddOrEditPerson.caption.login" var="loginCaption"/>
         <fmt:message key="local.adminAddOrEditPerson.caption.password" var="passwordCaption"/>
+        <fmt:message key="local.error.required" var="required"/>
+        <fmt:message key="local.error.minLength.lastNamePerson" var="lastNamePersonMinLength"/>
+        <fmt:message key="local.error.maxLength.lastNamePerson" var="lastNamePersonMaxLength"/>
+        <fmt:message key="local.error.minLength.firstNamePerson" var="firstNamePersonMinLength"/>
+        <fmt:message key="local.error.maxLength.firstNamePerson" var="firstNamePersonMaxLength"/>
+        <fmt:message key="local.error.minLength.login" var="loginMinLength"/>
+        <fmt:message key="local.error.maxLength.login" var="loginMaxLength"/>
+        <fmt:message key="local.error.minLength.password" var="passwordMinLength"/>
+        <fmt:message key="local.error.maxLength.password" var="passwordMaxLength"/>
         <fmt:message key="local.adminAddOrEditPerson.button" var="save"/>
     </fmt:bundle>
 </head>
@@ -34,26 +43,22 @@
             <input type="hidden" name="command" value="add_person"/>
             </c:if>
             <c:if test="${person != null}">
-            <h2>${edit}</h2>
+                <h2>${edit}</h2>
             </c:if>
             <c:if test="${person == null}">
-            <h2>${add}</h2>
+                <h2>${add}</h2>
             </c:if>
-
             <h3>${lastName}</h3>
-
             <input type="text" id="lastName" name="lastName" value="<c:out value="${person.lastName}"/>"
-                   data-msg-lastName-required="${loginCaption}"
-                   data-msg-lastName-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-lastName-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
-
+                   data-msg-lastName-required="${required}"
+                   data-msg-lastName-minlength="${lastNamePersonMinLength}"
+                   data-msg-lastName-maxlength="${lastNamePersonMaxLength}"
+                   data-msg-lastName-pattern="najnfwhvebljhfa"/>
             <h3>${firstName}</h3>
-
             <input type="text" id="firstName" name="firstName" value="<c:out value="${person.firstName}"/>"
-                   data-msg-firstName-required="${loginCaption}"
-                   data-msg-firstName-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-firstName-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
-
+                   data-msg-firstName-required="${required}"
+                   data-msg-firstName-minlength="${firstNamePersonMinLength}"
+                   data-msg-firstName-maxlength="${firstNamePersonMaxLength}"/>
             <h3>${role}</h3>
 
             <ul>
@@ -66,22 +71,20 @@
                     <label for="reader">${reader}</label>
                 </li>
             </ul>
-    <c:if test="${person == null}">
-            <h3>${loginCaption}</h3>
 
-            <input type="text" id="login" name="login" value="<c:out value="${login}"/>"
-                   data-msg-login-required="${loginCaption}"
-                   data-msg-login-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-login-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
-
-            <h3>${passwordCaption}</h3>
-
-            <input type="text" id="password" name="password" value="<c:out value="${password}"/>"
-                   data-msg-password-required="${loginCaption}"
-                   data-msg-password-minlength="${loginCaption} ${loginCaption}"
-                   data-msg-password-maxlength="${loginCaption} ${loginCaption} ${loginCaption}"/>
+            <c:if test="${person == null}">
+                <h3>${loginCaption}</h3>
+                <input type="text" id="login" name="login" value="<c:out value="${login}"/>"
+                       data-msg-login-required="${required}"
+                       data-msg-login-minlength="${loginMinLength}"
+                       data-msg-login-maxlength="${loginMaxLength}"/>
+                <h3>${passwordCaption}</h3>
+                <input type="text" id="password" name="password" value="<c:out value="${password}"/>"
+                       data-msg-password-required="${required}"
+                       data-msg-password-minlength="${passwordMinLength}"
+                       data-msg-password-maxlength="${passwordMaxLength}"/>
             </c:if>
-            <br>
+            <br/>
             <input type="submit" value="${save}">
         </form>
     </form>

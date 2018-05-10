@@ -143,8 +143,8 @@ public class BookService {
         try {
             connectionPool = ConnectionPool.getInstance( );
             connection = connectionPool.getConnection( );
-            BookDAO authorDAO = new BookDAO(connection);
-            authorDAO.save(book);
+            BookDAO bookDAO = new BookDAO(connection);
+            bookDAO.save(book);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
         } finally {

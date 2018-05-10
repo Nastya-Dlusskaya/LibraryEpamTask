@@ -11,6 +11,11 @@
     <fmt:bundle basename="locale">
         <fmt:message key="local.readerChange.login" var="login"/>
         <fmt:message key="local.readerChange.password" var="password"/>
+        <fmt:message key="local.error.required" var="required"/>
+        <fmt:message key="local.error.minLength.login" var="loginMinLength"/>
+        <fmt:message key="local.error.maxLength.login" var="loginMaxLength"/>
+        <fmt:message key="local.error.minLength.password" var="passwordMinLength"/>
+        <fmt:message key="local.error.maxLength.password" var="passwordMaxLength"/>
         <fmt:message key="local.readerChange.button" var="saveButton"/>
     </fmt:bundle>
 
@@ -25,16 +30,16 @@
             ${login}
         </h3>
         <input type="text" name="login" value="${user.login}" id="login"
-               data-msg-login-required="${login}"
-               data-msg-login-minlength="${login} ${login}"
-               data-msg-login-maxlength="${login} ${login} ${login}"/>
+               data-msg-login-required="${required}"
+               data-msg-login-minlength="${loginMinLength}"
+               data-msg-login-maxlength="${loginMaxLength}"/>
         <h3>
             ${password}
         </h3>
         <input type="text" name="password" value="${user.password}" id="password"
-               data-msg-password-required="${login}"
-               data-msg-password-minlength="${login} ${login}"
-               data-msg-password-maxlength="${login} ${login} ${login}"/>
+               data-msg-password-required="${required}"
+               data-msg-password-minlength="${passwordMinLength}"
+               data-msg-password-maxlength="${passwordMaxLength}"/>
         <br>
         <input type="submit" value="${saveButton}"/>
     </form>

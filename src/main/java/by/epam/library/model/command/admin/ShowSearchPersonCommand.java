@@ -21,7 +21,7 @@ public class ShowSearchPersonCommand implements ActionCommand {
     private static final String READERS = "Readers";
     private static final String LIBRARIANS = "Librarians";
     private static final String TITLE = "title";
-    private static final String CAPTION = "caption";
+    private static final String CAPTION = "typePage";
     private static final String ENTITIES = "entities";
     private static final String PAGE_JSP = "pageJSP";
 

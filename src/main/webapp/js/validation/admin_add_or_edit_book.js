@@ -2,7 +2,7 @@ $(function () {
     function getMsg(selector, atr) {
         return $(selector).attr(atr);
     }
-    $("form[name='addPersonForm']").validate({
+    $("form[name='addBookForm']").validate({
         rules: {
             nameBook: {
                 required: true,
@@ -11,7 +11,8 @@ $(function () {
             },
             amount: {
                 required: true,
-                number: true
+                number: true,
+                min: 1
             }
         },
         messages: {
@@ -22,14 +23,15 @@ $(function () {
             },
             amount: {
                 required: getMsg('#amount', 'data-msg-amount-required'),
-                number: getMsg('#amount', 'data-msg-amount-number')
+                number: getMsg('#amount', 'data-msg-amount-number'),
+                min: getMsg('#amount', 'data-msg-amount-min')
             }
         },
         submitHandler: function (form) {
             form.submit();
         }
     });
-    $("form[name='editPersonForm']").validate({
+    $("form[name='editBookForm']").validate({
         rules: {
             nameBook: {
                 required: true,
@@ -38,7 +40,8 @@ $(function () {
             },
             amount: {
                 required: true,
-                number: true
+                number: true,
+                min: 1
             }
         },
         messages: {
@@ -49,7 +52,8 @@ $(function () {
             },
             amount: {
                 required: getMsg('#amount', 'data-msg-amount-required'),
-                number: getMsg('#amount', 'data-msg-amount-number')
+                number: getMsg('#amount', 'data-msg-amount-number'),
+                min: getMsg('#amount', 'data-msg-amount-min')
             }
         },
         submitHandler: function (form) {
