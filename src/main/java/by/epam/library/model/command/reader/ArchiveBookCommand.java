@@ -43,14 +43,14 @@ public class ArchiveBookCommand implements ActionCommand {
         OrderService orderService = new OrderService( );
         List orders = orderService.findUserArchive(id, pageIndex);
 
-        currentSession.setAttribute(CAPTION_BOOK, ARCHIVE);
-        currentSession.setAttribute(ORDERS, orders);
+        request.setAttribute(CAPTION_BOOK, ARCHIVE);
+        request.setAttribute(ORDERS, orders);
 
         int maxPage = orderService.getCountPage(CommandEnum.ARCHIVE_BOOK, id);
-        currentSession.setAttribute(CURRENT_PAGE, pageIndex);
-        currentSession.setAttribute(MAX_PAGE, maxPage);
+        request.setAttribute(CURRENT_PAGE, pageIndex);
+        request.setAttribute(MAX_PAGE, maxPage);
         currentSession.setAttribute(PAGE_JSP,page);
 
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

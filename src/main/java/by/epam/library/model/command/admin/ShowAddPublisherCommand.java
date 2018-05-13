@@ -40,9 +40,9 @@ public class ShowAddPublisherCommand implements ActionCommand {
         List publishers = publisherService.findAllPublisher( );
 
         HttpSession currentSession = request.getSession( );
-        currentSession.setAttribute(TITLE, PUBLISHER);
-        currentSession.setAttribute(ENTITIES, publishers);
+        request.setAttribute(TITLE, PUBLISHER);
+        request.setAttribute(ENTITIES, publishers);
         currentSession.setAttribute(PAGE_JSP,page);
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

@@ -55,7 +55,7 @@ public class LoginCommand implements ActionCommand {
         if (typePerson != TypePerson.UNKNOWN) {
             currentSession.setAttribute(USER, currentUser);
 
-            ActionFactory actionFactory = new ActionFactory( );
+            ActionFactory actionFactory = ActionFactory.getInstance( );
             String role = typePerson.toString( );
             ActionCommand command = actionFactory.defineCommand(role);
             request.setAttribute(PAGE, NUMBER_PAGE);

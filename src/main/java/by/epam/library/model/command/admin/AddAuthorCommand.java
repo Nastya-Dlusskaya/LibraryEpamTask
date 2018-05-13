@@ -7,7 +7,6 @@ import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.AuthorService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +46,6 @@ public class AddAuthorCommand implements ActionCommand {
 
         request.getSession().setAttribute(PAGE_JSP,page);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
-        dispatcher.forward(request, response);
+        response.sendRedirect(page);
     }
 }

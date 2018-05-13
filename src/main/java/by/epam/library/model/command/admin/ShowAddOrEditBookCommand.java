@@ -55,12 +55,12 @@ public class ShowAddOrEditBookCommand implements ActionCommand {
             Integer id = Integer.parseInt(stringId);
             BookService bookService = new BookService();
             Book book = bookService.findBookByID(id);
-            session.setAttribute(BOOK, book);
+            request.setAttribute(BOOK, book);
         }
 
-        session.setAttribute(AUTHORS, authors);
-        session.setAttribute(PUBLISHERS, publishers);
+        request.setAttribute(AUTHORS, authors);
+        request.setAttribute(PUBLISHERS, publishers);
         session.setAttribute(PAGE_JSP,page);
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

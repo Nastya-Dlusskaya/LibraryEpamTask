@@ -37,15 +37,15 @@ public class ShowPageReturnBookCommand implements ActionCommand {
 
         HttpSession currentSession = request.getSession( );
 
-        currentSession.setAttribute(CAPTION_BOOK, RETURNED_BOOK);
-        currentSession.setAttribute(ORDERS, orders);
+        request.setAttribute(CAPTION_BOOK, RETURNED_BOOK);
+        request.setAttribute(ORDERS, orders);
 
 
         int maxPage = orderService.getCountPage(CommandEnum.SHOW_PAGE_RETURN_BOOK);
-        currentSession.setAttribute(CURRENT_PAGE, pageIndex);
-        currentSession.setAttribute(MAX_PAGE, maxPage);
+        request.setAttribute(CURRENT_PAGE, pageIndex);
+        request.setAttribute(MAX_PAGE, maxPage);
         currentSession.setAttribute(PAGE_JSP,page);
 
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

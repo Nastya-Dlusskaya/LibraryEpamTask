@@ -8,6 +8,7 @@ import by.epam.library.model.exception.CommandException;
 import by.epam.library.model.exception.ServiceException;
 import by.epam.library.services.OrderService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,7 +31,7 @@ public class LibrarianCommand implements ActionCommand {
         PageFactory pageFactory = new PageFactory( );
         String page = pageFactory.createPage(LIBRARIAN);
 
-        int pageIndex = 0;
+        int pageIndex;
         if(request.getParameter("page") == null) {
             pageIndex = (int) request.getAttribute("page");
         } else{
@@ -45,17 +46,19 @@ public class LibrarianCommand implements ActionCommand {
             orders = orderService.findOrders(pageIndex);
 
         HttpSession currentSession = request.getSession();
-        currentSession.setAttribute(CAPTION_BOOK, ORDERED_BOOK);
-        currentSession.setAttribute(ORDERS, orders);
+            request.setAttribute(CAPTION_BOOK, ORDERED_BOOK);
+            request.setAttribute(ORDERS, orders);
 
         int maxPage = orderService.getCountPage(CommandEnum.LIBRARIAN);
-        currentSession.setAttribute(CURRENT_PAGE, pageIndex);
-        currentSession.setAttribute(MAX_PAGE, maxPage);
+            request.setAttribute(CURRENT_PAGE, pageIndex);
+            request.setAttribute(MAX_PAGE, maxPage);
         currentSession.setAttribute(PAGE_JSP, page);
 
-        response.sendRedirect(page);
+            request.getRequestDispatcher(page).forward(request, response);
         } catch (ServiceException|IOException e) {
             throw new CommandException(e);
+        } catch (ServletException e) {
+            e.printStackTrace( );
         }
     }
 }

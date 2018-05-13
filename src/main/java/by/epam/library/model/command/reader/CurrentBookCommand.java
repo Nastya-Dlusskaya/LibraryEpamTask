@@ -42,14 +42,14 @@ public class CurrentBookCommand implements ActionCommand {
         OrderService orderService = new OrderService( );
         List orders = orderService.findUserCurrentBook(id, pageIndex);
 
-        currentSession.setAttribute(CAPTION_BOOK, CURRENT_BOOK);
-        currentSession.setAttribute(ORDERS, orders);
+        request.setAttribute(CAPTION_BOOK, CURRENT_BOOK);
+        request.setAttribute(ORDERS, orders);
 
         int maxPage = orderService.getCountPage(CommandEnum.CURRENT_BOOK, id);
-        currentSession.setAttribute(CURRENT_PAGE, pageIndex);
-        currentSession.setAttribute(MAX_PAGE, maxPage);
+        request.setAttribute(CURRENT_PAGE, pageIndex);
+        request.setAttribute(MAX_PAGE, maxPage);
         currentSession.setAttribute(PAGE_JSP,page);
 
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

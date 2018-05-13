@@ -59,7 +59,7 @@ public class OrderBookCommand implements ActionCommand {
 
         String message = MessageManager.getProperty(MESSAGE_BOOK_ORDER);
         HttpSession session = request.getSession( );
-        session.setAttribute(STRING, message);
+        request.setAttribute(STRING, message);
         session.setAttribute(PAGE_JSP,page);
 
         response.sendRedirect(page);

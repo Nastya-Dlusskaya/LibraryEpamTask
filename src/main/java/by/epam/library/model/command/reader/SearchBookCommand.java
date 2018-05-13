@@ -45,7 +45,7 @@ public class SearchBookCommand implements ActionCommand {
         String lastNameAuthor = request.getParameter(LAST_NAME);
         String nameBook = request.getParameter(NAME_BOOK);
 
-        List catalog = null;
+        List catalog;
         BookService bookService = new BookService( );
         if ((lastNameAuthor == null && nameBook == null) || (lastNameAuthor.isEmpty( ) && nameBook.isEmpty( ))) {
             catalog = bookService.findAllBook( );
@@ -62,8 +62,8 @@ public class SearchBookCommand implements ActionCommand {
             request.setAttribute(NO_DATE, message);
         }
 
-        request.getSession().setAttribute(ENTITIES, catalog);
-        request.getSession().setAttribute(PAGE_JSP,page);
-        response.sendRedirect(page);
+        request.setAttribute(ENTITIES, catalog);
+        request.setAttribute(PAGE_JSP, page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

@@ -40,9 +40,9 @@ public class ShowSearchBookCommand implements ActionCommand {
         List persons = bookService.findAllBook( );
 
         HttpSession currentSession = request.getSession( );
-        currentSession.setAttribute(CAPTION, BOOKS);
-        currentSession.setAttribute(ENTITIES, persons);
+        request.setAttribute(CAPTION, BOOKS);
+        request.setAttribute(ENTITIES, persons);
         currentSession.setAttribute(PAGE_JSP,page);
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

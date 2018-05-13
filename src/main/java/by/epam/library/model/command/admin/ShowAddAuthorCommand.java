@@ -42,8 +42,8 @@ public class ShowAddAuthorCommand implements ActionCommand {
 
         HttpSession currentSession = request.getSession( );
         currentSession.setAttribute(PAGE_JSP,page);
-        currentSession.setAttribute(TITLE, AUTHOR);
-        currentSession.setAttribute(ENTITIES, author);
-        response.sendRedirect(page);
+        request.setAttribute(TITLE, AUTHOR);
+        request.setAttribute(ENTITIES, author);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

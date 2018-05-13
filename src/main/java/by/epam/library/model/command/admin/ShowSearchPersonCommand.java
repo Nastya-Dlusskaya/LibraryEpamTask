@@ -56,10 +56,10 @@ public class ShowSearchPersonCommand implements ActionCommand {
         }
 
         HttpSession currentSession = request.getSession( );
-        currentSession.setAttribute(TITLE, caption);
-        currentSession.setAttribute(CAPTION, caption);
-        currentSession.setAttribute(ENTITIES, persons);
+        request.setAttribute(TITLE, caption);
+        request.setAttribute(CAPTION, caption);
+        request.setAttribute(ENTITIES, persons);
         currentSession.setAttribute(PAGE_JSP, page);
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 }

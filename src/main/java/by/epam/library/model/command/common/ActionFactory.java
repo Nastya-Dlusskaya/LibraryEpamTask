@@ -1,90 +1,56 @@
 package by.epam.library.model.command.common;
 
-import by.epam.library.model.command.admin.*;
-import by.epam.library.model.command.librarian.*;
-import by.epam.library.model.command.reader.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class ActionFactory {
+    private static ActionFactory instance = new ActionFactory( );
+    private final Map<CommandEnum, ActionCommand> factory;
 
-    /**
-     * Find necessary command
-     *
-     * @param typeCommand
-     * @return
-     */
+    private ActionFactory() {
+        factory = new HashMap<>( );
+        Properties properties = new Properties( );
+        try {
+            FileInputStream reader = new FileInputStream("D:\\EPAM_training\\mavenproject1\\src\\main\\resources" +
+                    "\\commandList.properties");
+            properties.load(reader);
+            Enumeration<?> commandNames = properties.propertyNames( );
+            while (commandNames.hasMoreElements( )) {
+                String stringCurrentCommandName = (String) commandNames.nextElement( );
+                CommandEnum currentCommandName = CommandEnum.getCommandEnum(stringCurrentCommandName);
+                String pathCurrentCommand = properties.getProperty(stringCurrentCommandName);
+                ActionCommand currentCommand = (ActionCommand) Class.forName(pathCurrentCommand).newInstance( );
+                factory.put(currentCommandName, currentCommand);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace( );
+        } catch (IOException e) {
+            e.printStackTrace( );
+        } catch (IllegalAccessException e) {
+            e.printStackTrace( );
+        } catch (InstantiationException e) {
+            e.printStackTrace( );
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace( );
+        }
+    }
+
+    public static ActionFactory getInstance() {
+        return instance;
+    }
+
     public ActionCommand defineCommand(String typeCommand) {
         if (typeCommand == null || typeCommand.equals("")) {
             return new EmptyCommand( );
         }
         CommandEnum currentEnum = CommandEnum.getCommandEnum(typeCommand);
 
-        switch (currentEnum) {
-            case LOGIN:
-                return new LoginCommand( );
-            case LIBRARIAN:
-                return new LibrarianCommand( );
-            case ADMIN:
-                return new AdminCommand( );
-            case READER:
-                return new ReaderCommand( );
-            case LOGOUT:
-                return new LogoutCommand( );
-            case HAND:
-                return new HandOutCommand( );
-            case SEARCH_BOOK:
-                return new SearchBookCommand( );
-            case ORDER:
-                return new OrderBookCommand( );
-            case ARCHIVE_BOOK:
-                return new ArchiveBookCommand( );
-            case CURRENT_BOOK:
-                return new CurrentBookCommand( );
-            case ORDERED_BOOK:
-                return new ShowOrderedBookCommand( );
-            case SHOW_PAGE_RETURN_BOOK:
-                return new ShowPageReturnBookCommand( );
-            case ADD_BOOK:
-                return new AddBookCommand();
-            case POSTPONE:
-                return new PostponeBookCommand();
-            case CANCEL_ORDER:
-                return new CancelOrderCommand();
-            case RETURN_BOOK:
-                return new ReturnBookCommand( );
-            case SHOW_SEARCH_BOOK:
-                return new ShowSearchBookCommand( );
-            case SHOW_SEARCH_PERSON:
-                return new ShowSearchPersonCommand( );
-            case SHOW_ADD_OR_EDIT_BOOK:
-                return new ShowAddOrEditBookCommand( );
-            case SHOW_ADD_OR_EDIT_PERSON:
-                return new ShowAddOrEditPersonCommand( );
-            case SHOW_ADD_PUBLISHER:
-                return new ShowAddPublisherCommand();
-            case SHOW_ADD_AUTHOR:
-                return new ShowAddAuthorCommand();
-            case ADD_AUTHOR:
-                return new AddAuthorCommand();
-            case ADD_PUBLISHER:
-                return new AddPublisherCommand();
-            case EDIT_BOOK:
-                return new EditBookCommand();
-            case EDIT_PERSON:
-                return new EditPersonCommand();
-            case DELETE_BOOK:
-                return new DeleteBookCommand();
-            case DELETE_PERSON:
-                return new DeletePersonCommand();
-            case ADD_PERSON:
-                return new AddPersonCommand();
-            case SHOW_CHANGE_LOGIN_AND_PASSWORD:
-                return new ShowChangeLoginAndPasswordCommand();
-            case CHANGE_LOGIN_AND_PASSWORD:
-                return new ChangeLoginAndPasswordCommand();
-            case CHANGE_LOCALE:
-                return new ChangeLanguageCommand();
-            default:
-                return new EmptyCommand( );
-        }
+        return factory.get(currentEnum);
     }
+
 }

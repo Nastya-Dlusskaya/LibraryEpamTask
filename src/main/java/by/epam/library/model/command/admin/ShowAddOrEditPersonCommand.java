@@ -48,15 +48,15 @@ public class ShowAddOrEditPersonCommand implements ActionCommand {
             PersonService personService = new PersonService();
             Person person = personService.findPersonByID(id);
 
-            session.setAttribute(PERSON,person);
+            request.setAttribute(PERSON, person);
         } else{
             String generatedLogin = LoginAndPasswordGenerator.createRandomString(6, 10);
-            session.setAttribute(LOGIN, generatedLogin);
+            request.setAttribute(LOGIN, generatedLogin);
             String generatedPassword = LoginAndPasswordGenerator.createRandomString(6, 10);
-            session.setAttribute(PASSWORD, generatedPassword);
+            request.setAttribute(PASSWORD, generatedPassword);
         }
         session.setAttribute(PAGE_JSP,page);
-        response.sendRedirect(page);
+        request.getRequestDispatcher(page).forward(request, response);
 
     }
 }
