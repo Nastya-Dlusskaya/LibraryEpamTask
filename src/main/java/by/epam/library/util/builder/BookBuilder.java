@@ -9,23 +9,19 @@ import java.sql.SQLException;
 
 public class BookBuilder implements Builder {
 
-    private static final String ID = "id_book";
-    private static final String NAME = "name_book";
-    private static final String AMOUNT = "amount";
-
     @Override
     public Book buildObject(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt(ID);
+        int id = resultSet.getInt(Book.ID_BOOK);
 
         AuthorBuilder authorCreator = new AuthorBuilder();
         Author author = authorCreator.buildObject(resultSet);
 
-        String name = resultSet.getString(NAME);
+        String name = resultSet.getString(Book.NAME_BOOK);
 
         PublisherBuilder publisherCreator = new PublisherBuilder();
         Publisher publisher = publisherCreator.buildObject(resultSet);
 
-        int amount = resultSet.getInt(AMOUNT);
+        int amount = resultSet.getInt(Book.AMOUNT);
         return new Book(id, author, name, publisher, amount);
     }
 }

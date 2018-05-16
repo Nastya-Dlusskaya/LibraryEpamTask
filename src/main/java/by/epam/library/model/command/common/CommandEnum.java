@@ -10,7 +10,7 @@ public enum CommandEnum {
     ADD_PUBLISHER("add_publisher"), ADD_BOOK("add_book"), ADD_PERSON("add_person"), POSTPONE("postpone"),
     CANCEL_ORDER("cancel_order"), DELETE_BOOK("delete_book"), DELETE_PERSON("delete_person"), EDIT_BOOK("edit_book"),
     EDIT_PERSON("edit_person"), SHOW_CHANGE_LOGIN_AND_PASSWORD("show_change_login_and_password"),
-    CHANGE_LOGIN_AND_PASSWORD("change_login_and_password"), CHANGE_LOCALE("change_language");
+    CHANGE_LOGIN_AND_PASSWORD("change_login_and_password"), CHANGE_LOCALE("change_language"), SEARCH_PERSON("search_person");
 
     String value;
 

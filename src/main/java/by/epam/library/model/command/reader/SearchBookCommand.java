@@ -62,8 +62,9 @@ public class SearchBookCommand implements ActionCommand {
             request.setAttribute(NO_DATE, message);
         }
 
+        request.setAttribute("typePage", "book");
         request.setAttribute(ENTITIES, catalog);
-        request.setAttribute(PAGE_JSP, page);
+        request.getSession( ).setAttribute(PAGE_JSP, page);
         request.getRequestDispatcher(page).forward(request, response);
     }
 }

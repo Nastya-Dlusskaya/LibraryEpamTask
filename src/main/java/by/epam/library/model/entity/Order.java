@@ -1,9 +1,20 @@
 package by.epam.library.model.entity;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Order {
+    public static final String TABLE = "order";
+
+    public static final String ID = "id";
+    public static final String ID_PERSON = "id_person";
+    public static final String ID_BOOK = "id_book";
+    public static final String ORDER_DATE = "order_date";
+    public static final String PLANNED_HAND_OUT_DATE = "planned_hand_out_date";
+    public static final String HAND_OUT_DATE = "hang_out_date";
+    public static final String PLANNED_RETURN_DATE = "planned_return_date";
+    public static final String ACTUAL_RETURN_DATE = "actual_return_date";
+    public static final String PLACE = "place";
+
     private Integer id;
     private Person reader;
     private Book book;

@@ -1,6 +1,12 @@
 package by.epam.library.model.entity;
 
 public class Author {
+    public static final String TABLE = "author";
+
+    public static final String ID_AUTHOR = "id_author";
+    public static final String LAST_NAME_AUTHOR = "last_name_author";
+    public static final String FIRST_NAME_AUTHOR = "first_name_author";
+
     private Integer id;
     private String lastName;
     private String firstName;

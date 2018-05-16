@@ -11,17 +11,9 @@ import java.sql.Timestamp;
 
 public class OrderBuilder implements Builder {
 
-    private static final String ID = "id";
-    private static final String ORDER_DATE = "order_date";
-    private static final String PLANNED_HAND_OUT_DATE = "planned_hand_out_date";
-    private static final String HANG_OUT_DATE = "hang_out_date";
-    private static final String PLANNED_RETURN_DATE = "planned_return_date";
-    private static final String ACTUAL_RETURN_DATE = "actual_return_date";
-    private static final String PLACE = "place";
-
     @Override
     public Order buildObject(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt(ID);
+        int id = resultSet.getInt(Order.ID);
 
         PersonBuilder personCreator = new PersonBuilder();
         Person person = personCreator.buildObject(resultSet);
@@ -29,13 +21,13 @@ public class OrderBuilder implements Builder {
         BookBuilder bookCreator = new BookBuilder();
         Book book = bookCreator.buildObject(resultSet);
 
-        Timestamp orderDate = resultSet.getTimestamp(ORDER_DATE);
-        Timestamp plannedHandOutDate = resultSet.getTimestamp(PLANNED_HAND_OUT_DATE);
-        Timestamp hangOutDate = resultSet.getTimestamp(HANG_OUT_DATE);
-        Timestamp plannedReturnDate = resultSet.getTimestamp(PLANNED_RETURN_DATE);
-        Timestamp actualReturnDate = resultSet.getTimestamp(ACTUAL_RETURN_DATE);
+        Timestamp orderDate = resultSet.getTimestamp(Order.ORDER_DATE);
+        Timestamp plannedHandOutDate = resultSet.getTimestamp(Order.PLANNED_HAND_OUT_DATE);
+        Timestamp hangOutDate = resultSet.getTimestamp(Order.HAND_OUT_DATE);
+        Timestamp plannedReturnDate = resultSet.getTimestamp(Order.PLANNED_RETURN_DATE);
+        Timestamp actualReturnDate = resultSet.getTimestamp(Order.ACTUAL_RETURN_DATE);
 
-        String place = resultSet.getString(PLACE);
+        String place = resultSet.getString(Order.PLACE);
         TypePlace typePlace = TypePlace.getTypePlace(place);
         return new Order(id, person, book, orderDate, plannedHandOutDate, hangOutDate, plannedReturnDate,
                 actualReturnDate, typePlace);

@@ -16,7 +16,7 @@ public class AddAuthorCommand implements ActionCommand {
 
     private static final String LAST_NAME_AUTHOR = "lastNameAuthor";
     private static final String FIRST_NAME_AUTHOR = "firstNameAuthor";
-    private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
+    private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "admin";
     private static final String PAGE_JSP = "pageJSP";
 
     /**

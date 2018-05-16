@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PublisherDAO extends AbstractDAO {
 
-    private static final String FIND_ALL_PUBLISHER = "SELECT id_publisher, name_publisher FROM publisher";
+    private static final String FIND_ALL_PUBLISHER = "SELECT id_publisher, name_publisher FROM publisher ORDER BY name_publisher";
     private static final String FIND_PUBLISHER_BY_ID = "SELECT * FROM library.publisher WHERE id_publisher=?";
     private static final String INSERT_QUERY = "INSERT INTO library.publisher(name_publisher)" +
             " VALUES(?)";

@@ -1,6 +1,15 @@
 package by.epam.library.model.entity;
 
 public class Person {
+    public static final String ID_PERSON = "id_person";
+    public static final String ROLE = "role";
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
+    public static final String LAST_NAME_PERSON = "last_name_person";
+    public static final String FIRST_NAME_PERSON = "first_name_person";
+    public static final String IS_DELETED = "is_deleted";
+    private static final String TABLE = "person";
+
     private Integer id;
     private TypePerson role;
     private String login;

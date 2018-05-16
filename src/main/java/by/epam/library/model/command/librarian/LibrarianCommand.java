@@ -19,7 +19,7 @@ public class LibrarianCommand implements ActionCommand {
 
     private static final String LIBRARIAN = "librarian";
     private static final String ORDERS = "orders";
-    private static final String CAPTION_BOOK = "captionBook";
+    private static final String CAPTION_BOOK = "typeTable";
     private static final String ORDERED_BOOK = "Ordered book";
     private static final String CURRENT_PAGE = "currentPage";
     private static final String MAX_PAGE = "maxPage";

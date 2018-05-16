@@ -18,13 +18,11 @@ public class AuthorService {
             connectionPool = ConnectionPool.getInstance( );
             connection = connectionPool.getConnection( );
             AuthorDAO authorDAO = new AuthorDAO(connection);
-            return authorDAO.findAll();
+            return authorDAO.findAll( );
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
         } finally {
-            if (connectionPool != null) {
-                connectionPool.returnConnection(connection);
-            }
+            connectionPool.returnConnection(connection);
         }
     }
 
@@ -39,9 +37,7 @@ public class AuthorService {
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
         } finally {
-            if (connectionPool != null) {
-                connectionPool.returnConnection(connection);
-            }
+            connectionPool.returnConnection(connection);
         }
     }
 }

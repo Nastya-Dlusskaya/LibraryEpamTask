@@ -33,28 +33,34 @@
 <jsp:include page="admin_menu.jsp"/>
 <section>
     <form name="search" method="post" action="/" class="form">
-        <h1>
+        <h2>
             ${search}
-            <c:if test="${typePage eq 'Books'}">
+            <c:if test="${typePage eq 'book'}">
                 ${books}
             </c:if>
-            <c:if test="${typePage eq 'Readers'}">
+            <c:if test="${typePage eq 'reader'}">
                 ${readers}
             </c:if>
-            <c:if test="${typePage eq 'Librarians'}">
+            <c:if test="${typePage eq 'librarian'}">
                 ${librarians}
             </c:if>
-        </h1>
-        <c:if test="${typePage eq 'Readers' || typePage eq 'Librarians'}">
+        </h2>
+        <c:if test="${typePage eq 'reader' || typePage eq 'librarian'}">
             <h3>${lastName}</h3>
             <input type="text" name="last_name"/>
             <br/>
             <h3>${firstName}</h3>
             <input type="text" name="first_name"/>
             <input type="hidden" name="command" value="search_person"/>
+            <c:if test="${typePage eq 'reader'}">
+                <input type="hidden" name="type" value="reader"/>
+            </c:if>
+            <c:if test="${typePage eq 'librarian'}">
+                <input type="hidden" name="type" value="librarian"/>
+            </c:if>
         </c:if>
 
-        <c:if test="${typePage eq 'Books'}">
+        <c:if test="${typePage eq 'book'}">
             <h3>${lastNameAuthor}</h3>
             <input type="text" name="last_name"/>
             <br/>
@@ -68,23 +74,23 @@
     <c:if test="${not empty entities}">
         <table border="1">
             <caption>
-                <c:if test="${typePage eq 'Books'}">
+                <c:if test="${typePage eq 'book'}">
                     ${books}
                 </c:if>
-                <c:if test="${typePage eq 'Readers'}">
+                <c:if test="${typePage eq 'reader'}">
                     ${readers}
                 </c:if>
-                <c:if test="${typePage eq 'Librarians'}">
+                <c:if test="${typePage eq 'librarian'}">
                     ${librarians}
                 </c:if>
             </caption>
             <thead>
             <tr>
-                <c:if test="${typePage eq 'Readers' || typePage eq 'Librarians'}">
+                <c:if test="${typePage eq 'reader' || typePage eq 'librarian'}">
                     <th>${lastName}</th>
                     <th>${firstName}</th>
                 </c:if>
-                <c:if test="${typePage eq 'Books'}">
+                <c:if test="${typePage eq 'book'}">
                     <th>${author}</th>
                     <th>${name}</th>
                     <th>${publisher}</th>
@@ -96,8 +102,8 @@
             <tbody>
             <c:forEach var="entity" items="${entities}">
                 <tr>
-                    <c:choose>
-                        <c:when test="${typePage eq 'Books'}">
+
+                    <c:if test="${typePage eq 'book'}">
                             <td>
                                 <c:out value="${entity.author}"/>
                             </td>
@@ -119,8 +125,8 @@
                                         ${actionDelete}
                                 </a>
                             </td>
-                        </c:when>
-                        <c:otherwise>
+                    </c:if>
+                    <c:if test="${typePage eq 'reader' || typePage eq 'librarian'}">
                             <td>
                                 <c:out value="${entity.lastName}"/>
                             </td>
@@ -136,8 +142,7 @@
                                         ${actionDelete}
                                 </a>
                             </td>
-                        </c:otherwise>
-                    </c:choose>
+                    </c:if>
                 </tr>
             </c:forEach>
             </tbody>

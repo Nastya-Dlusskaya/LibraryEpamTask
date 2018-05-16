@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class AddBookCommand implements ActionCommand {
 
-    private static final String SHOW_ADD_OR_EDIT_BOOK = "show_add_or_edit_book";
+    private static final String SHOW_ADD_OR_EDIT_BOOK = "admin";
     private static final String LIST_AUTHOR = "listAuthor";
     private static final String NAME_BOOK = "nameBook";
     private static final String LIST_PUBLISHERS = "listPublishers";

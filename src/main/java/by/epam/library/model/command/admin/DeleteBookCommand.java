@@ -15,7 +15,7 @@ import java.io.IOException;
 public class DeleteBookCommand implements ActionCommand {
 
     private static final String ID_BOOK = "idBook";
-    private static final String ADMIN_TABLE = "admin_table";
+    private static final String ADMIN_TABLE = "admin";
     private static final String PAGE_JSP = "pageJSP";
 
     /**

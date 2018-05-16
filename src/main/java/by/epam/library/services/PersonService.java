@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PersonService {
 
-    public List findAllLibrarian() throws ServiceException {
+    public List<Person> findAllLibrarian() throws ServiceException {
         try {
             ConnectionPool connectionPool = ConnectionPool.getInstance( );
             Connection connection = connectionPool.getConnection( );
@@ -23,7 +23,7 @@ public class PersonService {
         }
     }
 
-    public List findAllReaders() throws ServiceException {
+    public List<Person> findAllReaders() throws ServiceException {
         try {
             ConnectionPool connectionPool = ConnectionPool.getInstance( );
             Connection connection = connectionPool.getConnection( );
@@ -85,4 +85,52 @@ public class PersonService {
         }
     }
 
+    public List<Person> findAllPersonByType(String typePerson) throws ServiceException {
+        List catalog = null;
+        if (typePerson.equals("Reader")) {
+            catalog = findAllReaders( );
+        } else if (typePerson.equals("Librarian")) {
+            catalog = findAllLibrarian( );
+        }
+        return catalog;
+    }
+
+    public List<Person> findPersonByLastNamePersonAndFirstNamePersonByType(String typePerson, String lastNamePerson,
+                                                                           String firstNamePerson)
+            throws ServiceException {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance( );
+            Connection connection = connectionPool.getConnection( );
+            PersonDAO personDAO = new PersonDAO(connection);
+            connectionPool.returnConnection(connection);
+            return personDAO.findPersonByLastNamePersonAndFirstNamePersonByType
+                    (typePerson, lastNamePerson, firstNamePerson);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        }
+    }
+
+    public List<Person> findBookByLastNamePersonByType(String typePerson, String lastNamePerson) throws ServiceException {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance( );
+            Connection connection = connectionPool.getConnection( );
+            PersonDAO personDAO = new PersonDAO(connection);
+            connectionPool.returnConnection(connection);
+            return personDAO.findBookByLastNamePersonByType(typePerson, lastNamePerson);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        }
+    }
+
+    public List<Person> findBookByFirstNamePersonByType(String typePerson, String firstNamePerson) throws ServiceException {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance( );
+            Connection connection = connectionPool.getConnection( );
+            PersonDAO personDAO = new PersonDAO(connection);
+            connectionPool.returnConnection(connection);
+            return personDAO.findBookByFirstNamePersonByType(typePerson, firstNamePerson);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getMessage( ), e);
+        }
+    }
 }

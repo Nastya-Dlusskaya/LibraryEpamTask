@@ -30,7 +30,7 @@ public class DeletePersonCommand implements ActionCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws CommandException, ServiceException, ServletException, IOException {
         PageFactory pageFactory = new PageFactory();
-        String page = pageFactory.createPage("admin_table");
+        String page = pageFactory.createPage("admin");
 
         String stringIdPerson = request.getParameter(ID_PERSON);
         int idPerson = Integer.parseInt(stringIdPerson);

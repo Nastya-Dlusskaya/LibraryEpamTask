@@ -18,8 +18,7 @@ public class ShowSearchPersonCommand implements ActionCommand {
     private static final String TYPE_PAGE = "admin_table";
     private static final String TYPE = "type";
     private static final String READER = "reader";
-    private static final String READERS = "Readers";
-    private static final String LIBRARIANS = "Librarians";
+    private static final String LIBRARIANS = "librarian";
     private static final String TITLE = "title";
     private static final String CAPTION = "typePage";
     private static final String ENTITIES = "entities";
@@ -49,7 +48,7 @@ public class ShowSearchPersonCommand implements ActionCommand {
 
         if (typePerson.equals(READER)) {
             persons = personService.findAllReaders( );
-            caption = READERS;
+            caption = READER;
         } else {
             persons = personService.findAllLibrarian( );
             caption = LIBRARIANS;

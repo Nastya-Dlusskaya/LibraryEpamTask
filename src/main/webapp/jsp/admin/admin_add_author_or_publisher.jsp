@@ -33,9 +33,9 @@
 <jsp:include page="../header.jsp"/>
 <jsp:include page="admin_menu.jsp"/>
 <section>
-    <h1>
+    <h2>
         ${add} ${title}
-    </h1>
+    </h2>
     <c:if test="${title eq 'author'}">
         <form name="addAuthor" method="post" action="/" class="form">
 

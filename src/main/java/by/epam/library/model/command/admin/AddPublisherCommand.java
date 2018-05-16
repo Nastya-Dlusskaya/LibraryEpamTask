@@ -15,7 +15,7 @@ import java.io.IOException;
 public class AddPublisherCommand implements ActionCommand {
 
     private static final String NAME_PUBLISHER = "namePublisher";
-    private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "show_add_author_or_publisher";
+    private static final String SHOW_ADD_AUTHOR_OR_PUBLISHER = "admin";
     private static final String PAGE_JSP = "pageJSP";
 
     /**

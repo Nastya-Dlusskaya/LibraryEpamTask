@@ -11,39 +11,46 @@ import java.util.List;
 
 public class BookService {
 
-    private static final String BOOK_TABLE = "library.book";
-    private static final String AMOUNT_FIELD = "amount";
-    private static final String BOOK_ID = "id_book";
-
     public Book findBookByID(int id) throws ServiceException {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
             return (Book) bookDAO.findById(id);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
         } finally {
-            //connectionPool.returnConnection(connection);
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
     }
 
     public List findAllBook() throws ServiceException {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
-            connectionPool.returnConnection(connection);
             return bookDAO.findAll();
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
     }
 
     public void decrementAmountBook(int id) {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
             Book book = (Book) bookDAO.findById(id);
 
@@ -56,13 +63,19 @@ public class BookService {
             connectionPool.returnConnection(connection);
         } catch (DAOException e) {
             e.printStackTrace( );
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
     }
 
     public void incrementAmountBook(int id) {
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
             Book book = (Book) bookDAO.findById(id);
 
@@ -75,49 +88,63 @@ public class BookService {
             connectionPool.returnConnection(connection);
         } catch (DAOException e) {
             e.printStackTrace( );
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
     }
 
     public List findBookByLastNameAuthorAndNameBook(String lastNameAuthor, String nameBook) throws ServiceException {
-        List catalog;
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
-            catalog = bookDAO.findBookByLastNameAuthorAndNameBook(lastNameAuthor, nameBook);
-            connectionPool.returnConnection(connection);
+            return bookDAO.findBookByLastNameAuthorAndNameBook(lastNameAuthor, nameBook);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
-        return catalog;
     }
 
     public List findBookByLastNameAuthor(String lastNameAuthor) throws ServiceException {
-        List catalog;
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
-            catalog = bookDAO.findBookByLastNameAuthor(lastNameAuthor);
-            connectionPool.returnConnection(connection);
+            return bookDAO.findBookByLastNameAuthor(lastNameAuthor);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
-        return catalog;
     }
 
     public List findBookByNameBook(String nameBook) throws ServiceException {
-        List catalog;
+        ConnectionPool connectionPool = null;
+        Connection connection = null;
         try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance( );
-            Connection connection = connectionPool.getConnection( );
+            connectionPool = ConnectionPool.getInstance( );
+            connection = connectionPool.getConnection( );
             BookDAO bookDAO = new BookDAO(connection);
-            catalog = bookDAO.findBookByNameBook(nameBook);
-            connectionPool.returnConnection(connection);
+            return bookDAO.findBookByNameBook(nameBook);
         } catch (DAOException e) {
             throw new ServiceException(e.getMessage( ), e);
+        } finally {
+            if (connectionPool != null) {
+                connectionPool.returnConnection(connection);
+            }
         }
-        return catalog;
+
     }
 
     public void addBook(Book book) throws ServiceException {

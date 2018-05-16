@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AuthorDAO extends AbstractDAO {
     private static final String FIND_ALL_AUTHOR = "SELECT last_name_author, first_name_author, id_author " +
-            "FROM library.author";
+            "FROM library.author ORDER BY last_name_author";
     private static final String FIND_AUTHOR_BY_ID = "SELECT last_name_author, first_name_author, id_author " +
             "FROM library.author WHERE id_author=?";
     private static final String INSERT_QUERY = "INSERT INTO library.author(last_name_author, first_name_author)" +

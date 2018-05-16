@@ -7,10 +7,10 @@ import java.io.IOException;
 
 public class Pagination extends SimpleTagSupport {
 
-    Integer currentPage;
-    Integer maxPage;
-    String command;
-    Integer userId;
+    private Integer currentPage;
+    private Integer maxPage;
+    private String command;
+    private Integer userId;
 
     public void setCommand(String command) {
         this.command = command;

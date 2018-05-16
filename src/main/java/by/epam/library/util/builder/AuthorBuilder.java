@@ -7,15 +7,11 @@ import java.sql.SQLException;
 
 public class AuthorBuilder implements Builder {
 
-    private static final String ID = "id_author";
-    private static final String LAST_NAME = "last_name_author";
-    private static final String FIRST_NAME = "first_name_author";
-
     @Override
     public Author buildObject(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt(ID);
-        String lastName = resultSet.getString(LAST_NAME);
-        String firstName = resultSet.getString(FIRST_NAME);
+        int id = resultSet.getInt(Author.ID_AUTHOR);
+        String lastName = resultSet.getString(Author.LAST_NAME_AUTHOR);
+        String firstName = resultSet.getString(Author.FIRST_NAME_AUTHOR);
         return new Author(id, lastName, firstName);
     }
 }

@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class AddPersonCommand implements ActionCommand {
     private static final String PAGE_JSP = "pageJSP";
-    private static final String ADMIN_TABLE = "admin_table";
+    private static final String ADMIN_TABLE = "admin";
     private static final String LAST_NAME = "lastName";
     private static final String FIRST_NAME = "firstName";
     private static final String SELECTOR = "selector";
@@ -59,6 +59,7 @@ public class AddPersonCommand implements ActionCommand {
         personService.savePerson(person);
 
         request.getSession().setAttribute(PAGE_JSP,page);
+        request.setAttribute("type", typePerson);
 
         response.sendRedirect(page);
     }

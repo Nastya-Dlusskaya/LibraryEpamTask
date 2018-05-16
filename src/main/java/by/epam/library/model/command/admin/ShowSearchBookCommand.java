@@ -16,7 +16,7 @@ import java.util.List;
 public class ShowSearchBookCommand implements ActionCommand {
 
     private static final String ADMIN_TABLE = "admin_table";
-    private static final String BOOKS = "Books";
+    private static final String BOOKS = "book";
     private static final String CAPTION = "typePage";
     private static final String ENTITIES = "entities";
     private static final String PAGE_JSP = "pageJSP";

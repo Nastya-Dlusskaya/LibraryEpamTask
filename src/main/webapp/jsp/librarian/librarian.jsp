@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="pagination" prefix="p"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
@@ -12,6 +11,8 @@
     <link rel="stylesheet" href="/css/style-desktop.css" type="text/css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
     <fmt:bundle basename="locale">
+        <fmt:message key="local.librarian.table.caption.orderedBook" var="orderedBook"/>
+        <fmt:message key="local.librarian.table.header.returnedBook" var="returnedBook"/>
         <fmt:message key="local.librarian.table.header.reader" var="reader"/>
         <fmt:message key="local.librarian.table.header.book" var="book"/>
         <fmt:message key="local.librarian.table.header.orderDate" var="orderDate"/>
@@ -35,18 +36,23 @@
 
     <c:if test="${not empty orders}">
         <table border="1">
-            <caption>${captionBook}</caption>
+            <c:if test="${typeTable eq 'Ordered book'}">
+                <caption>${orderedBook}</caption>
+            </c:if>
+            <c:if test="${typeTable eq 'Returned book'}">
+                <caption>${returnedBook}</caption>
+            </c:if>
             <thead>
             <tr>
                 <th>ID</th>
                 <th>${reader}</th>
                 <th>${book}</th>
-                <c:if test="${captionBook eq 'Ordered book'}">
+                <c:if test="${typeTable eq 'Ordered book'}">
                     <th>${orderDate}</th>
                     <th>${plannedHandOutDate}</th>
                     <th>${status}</th>
                 </c:if>
-                <c:if test="${captionBook eq 'Returned book'}">
+                <c:if test="${typeTable eq 'Returned book'}">
                     <th>${place}</th>
                     <th>${plannedReturnDate}</th>
                     <th>${takeBook}</th>
@@ -59,7 +65,7 @@
                     <td><c:out value="${order.id}"></c:out></td>
                     <td><c:out value="${order.reader}"/></td>
                     <td><c:out value="${order.book}"/></td>
-                    <c:if test="${captionBook eq 'Ordered book'}">
+                    <c:if test="${typeTable eq 'Ordered book'}">
                         <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></th>
                         <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedHandOutDate}"/></th>
                         <th>
@@ -75,7 +81,7 @@
                             </c:choose>
                         </th>
                     </c:if>
-                    <c:if test="${captionBook eq 'Returned book'}">
+                    <c:if test="${typeTable eq 'Returned book'}">
                         <td><c:out value="${order.place}"/></td>
                         <th><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedReturnDate}"/></th>
                         <th>
@@ -87,10 +93,10 @@
             </tbody>
         </table>
         <div class="pagination">
-            <c:if test="${captionBook eq 'Ordered book'}">
+            <c:if test="${typeTable eq 'Ordered book'}">
                 <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="librarian"/>
             </c:if>
-            <c:if test="${captionBook eq 'Returned book'}">
+            <c:if test="${typeTable eq 'Returned book'}">
                 <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="show_page_return_book"/>
             </c:if>
         </div>

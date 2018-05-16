@@ -1,6 +1,11 @@
 package by.epam.library.model.entity;
 
 public class Publisher {
+    public static final String TABLE = "publisher";
+
+    public static final String ID_PUBLISHER = "id_publisher";
+    public static final String NAME_PUBLISHER = "name_publisher";
+
     private Integer id;
     private String name;
 

@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/css/style-desktop.css" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css"/>
     <fmt:bundle basename="locale">
+        <fmt:message key="local.readerTable.table.caption.archive" var="archive"/>
+        <fmt:message key="local.readerTable.table.caption.currentBook" var="currentBook"/>
+        <fmt:message key="local.readerTable.table.caption.orderedBook" var="orderedBook"/>
         <fmt:message key="local.readerTable.table.header.author" var="authorHeader"/>
         <fmt:message key="local.readerTable.table.header.nameBook" var="nameBookHeader"/>
         <fmt:message key="local.readerTable.table.header.handOutDate" var="handOutDateHeader"/>
@@ -26,20 +29,28 @@
         <jsp:include page="../header.jsp"/>
         <jsp:include page="reader_menu.jsp"/>
         <table border="1">
-            <caption>${captionBook}</caption>
+            <c:if test="${typeTable eq 'Archive'}">
+                <caption>${archive}</caption>
+            </c:if>
+            <c:if test="${typeTable eq 'Current book'}">
+                <caption>${currentBook}</caption>
+            </c:if>
+            <c:if test="${typeTable eq 'Ordered book'}">
+                <caption>${orderedBook}</caption>
+            </c:if>
             <thead>
             <tr>
                 <th>${authorHeader}</th>
                 <th>${nameBookHeader}</th>
-                <c:if test="${captionBook eq 'Archive'}">
+                <c:if test="${typeTable eq 'Archive'}">
                     <th>${handOutDateHeader}</th>
                     <th>${returnedDateHeader}</th>
                 </c:if>
-                <c:if test="${captionBook eq 'Current book'}">
+                <c:if test="${typeTable eq 'Current book'}">
                     <th>${handOutDateHeader}</th>
                     <th>${plannedReturnDateHeader}</th>
                 </c:if>
-                <c:if test="${captionBook eq 'Ordered book'}">
+                <c:if test="${typeTable eq 'Ordered book'}">
                     <th>${orderedDateHeader}</th>
                     <th>${status}</th>
                 </c:if>
@@ -50,15 +61,15 @@
                 <tr>
                     <td><c:out value="${order.book.author}"/></td>
                     <td><c:out value="${order.book.name}"/></td>
-                    <c:if test="${captionBook eq 'Archive'}">
+                    <c:if test="${typeTable eq 'Archive'}">
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.handOutDate}"/></td>
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.actualReturnDate}"/></td>
                     </c:if>
-                    <c:if test="${captionBook eq 'Current book'}">
+                    <c:if test="${typeTable eq 'Current book'}">
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.handOutDate}"/></td>
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.plannedReturnDate}"/></td>
                     </c:if>
-                    <c:if test="${captionBook eq 'Ordered book'}">
+                    <c:if test="${typeTable eq 'Ordered book'}">
                         <td><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${order.orderDate}"/></td>
                         <td>
                             <c:choose>
@@ -76,13 +87,13 @@
             </c:forEach>
         </table>
         <div class="pagination">
-            <c:if test="${captionBook eq 'Archive'}">
+            <c:if test="${typeTable eq 'Archive'}">
                 <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="archive_book"/>
             </c:if>
-            <c:if test="${captionBook eq 'Current book'}">
+            <c:if test="${typeTable eq 'Current book'}">
                 <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="current_book"/>
             </c:if>
-            <c:if test="${captionBook eq 'Ordered book'}">
+            <c:if test="${typeTable eq 'Ordered book'}">
                 <p:pagination currentPage="${currentPage}" maxPage="${maxPage}" command="ordered_book"/>
             </c:if>
         </div>

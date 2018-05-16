@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ShowPageReturnBookCommand implements ActionCommand {
 
-    private static final String CAPTION_BOOK = "captionBook";
+    private static final String CAPTION_BOOK = "typeTable";
     private static final String RETURNED_BOOK = "Returned book";
     private static final String ORDERS = "orders";
     private static final String CURRENT_PAGE = "currentPage";

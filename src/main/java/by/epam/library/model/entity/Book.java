@@ -1,6 +1,15 @@
 package by.epam.library.model.entity;
 
 public class Book {
+    public static final String TABLE = "book";
+
+    public static final String ID_BOOK = "id_book";
+    public static final String ID_AUTHOR = "id_author";
+    public static final String NAME_BOOK = "name_book";
+    public static final String ID_PUBLISHER = "id_publisher";
+    public static final String AMOUNT = "amount";
+    public static final String IS_DELETED = "is_deleted";
+
     private Integer id;
     private Author author;
     private String name;
